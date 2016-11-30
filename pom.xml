@@ -5,8 +5,8 @@
         http://maven.apache.org/maven-v4_0_0.xsd">
 
     <properties>
-        <bsp.handlebars.version>1.2.101-12aba4</bsp.handlebars.version>
-        <bsp.styleguide.version>1.1.350-86f868</bsp.styleguide.version>
+        <bsp.handlebars.version>2.0-SNAPSHOT</bsp.handlebars.version>
+        <bsp.styleguide.version>2.0-SNAPSHOT</bsp.styleguide.version>
         <cms.version>3.2-SNAPSHOT</cms.version>
         <dari.version>3.2-SNAPSHOT</dari.version>
         <slf4j.version>1.7.12</slf4j.version>
@@ -215,61 +215,14 @@
             </plugin>
 
             <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>exec-maven-plugin</artifactId>
-                <version>1.2.1</version>
-
-                <configuration>
-                    <skip>${styleguide.viewgenerator.skip}</skip>
-                </configuration>
-
-                <dependencies>
-                    <dependency>
-                        <groupId>com.psddev</groupId>
-                        <artifactId>styleguide</artifactId>
-                        <version>${bsp.styleguide.version}</version>
-                    </dependency>
-                </dependencies>
-
+                <groupId>com.psddev</groupId>
+                <artifactId>styleguide-maven-plugin</artifactId>
+                <version>${bsp.styleguide.version}</version>
                 <executions>
                     <execution>
-                        <id>generate-view-classes</id>
-                        <phase>process-resources</phase>
                         <goals>
-                            <goal>java</goal>
+                            <goal>generate-views</goal>
                         </goals>
-                        <configuration>
-                            <classpathScope>compile</classpathScope>
-                            <includePluginDependencies>true</includePluginDependencies>
-                            <mainClass>com.psddev.styleguide.ViewClassGenerator</mainClass>
-                            <arguments>
-                                <argument>--json-dir=${project.basedir}/styleguide</argument>
-                                <argument>--java-package-prefix=com.brightspot.view</argument>
-                                <argument>--build-dir=${project.build.directory}/generated-sources/styleguide</argument>
-                                <argument>--watch=${styleguide.viewgenerator.watch}</argument>
-                                <argument>--ignore-files=_config.json,package.json</argument>
-                            </arguments>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>build-helper-maven-plugin</artifactId>
-                <version>1.9.1</version>
-                <executions>
-                    <execution>
-                        <id>add-view-classes</id>
-                        <phase>generate-sources</phase>
-                        <goals>
-                            <goal>add-source</goal>
-                        </goals>
-                        <configuration>
-                            <sources>
-                                <source>${project.build.directory}/generated-sources/styleguide</source>
-                            </sources>
-                        </configuration>
                     </execution>
                 </executions>
             </plugin>
