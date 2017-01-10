@@ -1,0 +1,13 @@
+<div class="Article">
+  {{#with headline}}
+    <h1 class="Article-headline">
+      {{this}}
+    </h1>
+  {{/with}}
+
+  {{#with body}}
+    <div class="Article-body">
+      {{this}}
+    </div>
+  {{/with}}
+</div>

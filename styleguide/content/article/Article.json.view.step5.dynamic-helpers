@@ -1,0 +1,5 @@
+{
+  "_template": "Article.hbs",
+  "headline": "{{words(10)}}",
+  "body": "{{paragraphs([2,3])}}"
+}

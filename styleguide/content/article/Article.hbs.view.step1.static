@@ -1,0 +1,9 @@
+<div class="Article">
+  <h1 class="Article-headline">
+    Headline Text
+  </h1>
+
+  <div class="Article-body">
+    Body Paragraphs
+  </div>
+</div>
