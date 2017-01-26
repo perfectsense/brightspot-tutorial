@@ -11,8 +11,6 @@
         <dari.version>3.2-SNAPSHOT</dari.version>
         <slf4j.version>1.7.12</slf4j.version>
         <tomcat.port>9480</tomcat.port>
-        <styleguide.viewgenerator.skip>false</styleguide.viewgenerator.skip>
-        <styleguide.viewgenerator.watch>false</styleguide.viewgenerator.watch>
     </properties>
 
     <modelVersion>4.0.0</modelVersion>
@@ -230,46 +228,59 @@
     </build>
 
     <profiles>
-        <profile>
-            <id>yarn</id>
+            <profile>
+                <id>yarn</id>
 
-            <activation>
-                <file>
-                    <exists>yarn.lock</exists>
-                </file>
-            </activation>
+                <activation>
+                    <file>
+                        <exists>yarn.lock</exists>
+                    </file>
+                </activation>
 
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>com.github.eirslett</groupId>
-                        <artifactId>frontend-maven-plugin</artifactId>
-                        <version>1.2</version>
+                <build>
+                    <plugins>
+                        <plugin>
+                            <groupId>com.github.eirslett</groupId>
+                            <artifactId>frontend-maven-plugin</artifactId>
+                            <version>1.2</version>
 
-                        <executions>
-                            <execution>
-                                <id>install-node-and-yarn</id>
-                                <phase>generate-resources</phase>
-                                <goals>
-                                    <goal>install-node-and-yarn</goal>
-                                </goals>
-                                <configuration>
-                                    <nodeVersion>v6.9.1</nodeVersion>
-                                    <yarnVersion>v0.16.1</yarnVersion>
-                                </configuration>
-                            </execution>
+                            <executions>
+                                <execution>
+                                    <id>install-node-and-yarn</id>
+                                    <phase>generate-resources</phase>
+                                    <goals>
+                                        <goal>install-node-and-yarn</goal>
+                                    </goals>
+                                    <configuration>
+                                        <nodeVersion>v6.9.1</nodeVersion>
+                                        <yarnVersion>v0.16.1</yarnVersion>
+                                    </configuration>
+                                </execution>
 
-                            <execution>
-                                <id>yarn</id>
-                                <goals>
-                                    <goal>yarn</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
+                                <execution>
+                                    <id>yarn-cache-clean</id>
+                                    <goals>
+                                        <goal>yarn</goal>
+                                    </goals>
+                                    <configuration>
+                                        <arguments>cache clean</arguments>
+                                    </configuration>
+                                </execution>
+
+                                <execution>
+                                    <id>yarn</id>
+                                    <goals>
+                                        <goal>yarn</goal>
+                                    </goals>
+                                    <configuration>
+                                        <arguments>--pure-lockfile</arguments>
+                                    </configuration>
+                                </execution>
+                            </executions>
+                        </plugin>
+                    </plugins>
+                </build>
+            </profile>
 
         <profile>
             <id>gulp</id>
