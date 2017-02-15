@@ -7,8 +7,8 @@
     <properties>
         <bsp.handlebars.version>2.0-SNAPSHOT</bsp.handlebars.version>
         <bsp.styleguide.version>2.0-SNAPSHOT</bsp.styleguide.version>
-        <cms.version>3.2-SNAPSHOT</cms.version>
-        <dari.version>3.2-SNAPSHOT</dari.version>
+        <cms.version>3.3-SNAPSHOT</cms.version>
+        <dari.version>3.3-SNAPSHOT</dari.version>
         <slf4j.version>1.7.12</slf4j.version>
         <tomcat.port>9480</tomcat.port>
     </properties>
@@ -18,7 +18,7 @@
     <parent>
         <groupId>com.psddev</groupId>
         <artifactId>dari-parent</artifactId>
-        <version>3.2-SNAPSHOT</version>
+        <version>3.3-SNAPSHOT</version>
     </parent>
 
     <groupId>com.brightspot</groupId>
