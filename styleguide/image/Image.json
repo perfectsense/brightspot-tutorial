@@ -1,0 +1,5 @@
+{
+    "_template": "Image.hbs",
+    "src": "{{image(500,500)}}",
+    "alt": "Image Example"
+}

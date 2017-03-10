@@ -1,0 +1,10 @@
+{
+    "_template": "Module.hbs",
+    "items": [
+        {
+            "_template": "/styleguide/image/Image.hbs",
+            "src": "{{image(500,500)}}",
+            "alt": "Image Example"
+        }
+    ]
+}

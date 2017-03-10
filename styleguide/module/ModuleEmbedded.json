@@ -1,0 +1,25 @@
+{
+    "_template": "Module.hbs",
+    "items": [
+        {
+            "_template": "Module.hbs",
+            "items": [
+                {
+                    "_template": "/styleguide/image/Image.hbs",
+                    "src": "{{image(250,250)}}",
+                    "alt": "Embedded Image Example 1"
+                },
+                {
+                    "_template": "/styleguide/image/Image.hbs",
+                    "src": "{{image(250,250)}}",
+                    "alt": "Embedded Image Example 2"
+                },
+                {
+                    "_template": "/styleguide/image/Image.hbs",
+                    "src": "{{image(250,250)}}",
+                    "alt": "Embedded Image Example 3"
+                }
+            ]
+        }
+    ]
+}
