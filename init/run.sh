@@ -1,5 +1,7 @@
 #!/bin/bash
 
+ARGS=$*
+
 configure() {
     echo "Configuring Tomcat..."
     mkdir -p .tomcat
@@ -12,7 +14,7 @@ configure() {
 }
 
 run() {
-    ../mvnw -P run clean package cargo:run
+    ../mvnw -P run clean $ARGS package cargo:run
 }
 
 
