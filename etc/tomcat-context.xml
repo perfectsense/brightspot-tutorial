@@ -3,7 +3,7 @@
     <Resources cachingAllowed="false" />
 
     <Environment name="PRODUCTION" type="java.lang.Boolean" value="false" />
-    <Environment name="SECRET" type="java.lang.String" value="tutorial" />
+    <Environment name="SECRET" type="java.lang.String" value="<project-dir>-tutorial" />
 
     <!-- Database -->
     <Environment name="dari/defaultDatabase" type="java.lang.String" value="tutorial.local" />
