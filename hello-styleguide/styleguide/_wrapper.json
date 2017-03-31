@@ -1,0 +1,13 @@
+{
+     "_template": "content/article/Page.hbs",
+     "title": "Brightspot Extraterrestrial",
+     "header": {
+         "_dataUrl": "content/article/PageHeader.json"
+     },
+     "main": {
+         "_delegate": true
+     },
+     "footer": {
+         "_dataUrl": "content/article/PageFooter.json"
+     }
+ }
