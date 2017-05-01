@@ -11,7 +11,7 @@
         <dari.version>3.3-SNAPSHOT</dari.version>
         <slf4j.version>1.7.12</slf4j.version>
         <tomcat.port>9480</tomcat.port>
-        <with-styleguide>true</with-styleguide>
+        <with-styleguide>false</with-styleguide>
     </properties>
 
     <modelVersion>4.0.0</modelVersion>
@@ -23,7 +23,7 @@
     </parent>
 
     <groupId>com.brightspot</groupId>
-    <artifactId>tutorial-init</artifactId>
+    <artifactId>tutorial-hello-world</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
 

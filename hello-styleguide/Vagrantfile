@@ -11,9 +11,9 @@ Vagrant.configure(2) do |config|
   # https://docs.vagrantup.com.
 
   # Change the config.vm.hostname and vb.name variables to match your project's name.
-  config.vm.hostname = "brightspot-tutorial-init.vagrant"
+  config.vm.hostname = "brightspot-tutorial-hello-styleguide.vagrant"
   config.vm.provider :virtualbox do |vb|
-    vb.name = "brightspot-tutorial-init.vagrant"
+    vb.name = "brightspot-tutorial-hello-styleguide.vagrant"
     vb.customize ["modifyvm", :id, "--memory", "2048"]
     vb.customize ["modifyvm", :id, "--cpus", "1"]
   end
