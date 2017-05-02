@@ -17,7 +17,7 @@ public class PageViewModel extends ViewModel<Article> implements PageEntryView {
         return model.as(Seo.ObjectModification.class).findTitle();
     }
 
-    public ArticleViewModel getMain() {
+    public ArticleViewModel getBody() {
         return createView(ArticleViewModel.class, model);
     }
 }

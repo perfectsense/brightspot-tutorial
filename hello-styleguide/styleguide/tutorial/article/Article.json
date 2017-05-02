@@ -1,0 +1,6 @@
+{
+    "_template": "Article.hbs",
+    "headline": "{{words(8)}}",
+    "leadImageUrl": "{{image(400, 300)}}",
+    "body": "{{paragraphs([2,3])}}"
+}
