@@ -1,0 +1,6 @@
+{
+    "_template": "NavigationItem.hbs",
+    "isHighlighted": true,
+    "linkText": "{{words(2)}}",
+    "linkUrl" : "#"
+}

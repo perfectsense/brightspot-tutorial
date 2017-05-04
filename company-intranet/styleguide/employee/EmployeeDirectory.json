@@ -1,0 +1,10 @@
+{
+    "_template": "EmployeeDirectory.hbs",
+    "title": "Employees",
+    "results": [
+        {
+            "_include": "EmployeeCard.json",
+            "_repeat": 25
+        }
+    ]
+}

@@ -1,0 +1,14 @@
+<div class="Navigation">
+
+    {{#with logoUrl}}
+        <div class="Navigation-logo">
+            <img src="{{this}}">
+        </div>
+    {{/with}}
+
+    {{#with items}}
+        <div class="Navigation-items">
+            {{this}}
+        </div>
+    {{/with}}
+</div>

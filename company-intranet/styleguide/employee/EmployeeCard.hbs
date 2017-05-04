@@ -1,0 +1,53 @@
+<div class="EmployeeCard">
+
+    <div class="EmployeeCard-left">
+        {{#with name}}
+            <div class="EmployeeCard-name">
+                {{this}}
+            </div>
+        {{/with}}
+
+        {{#with organization}}
+            <div class="EmployeeCard-organization">
+                {{this}}
+            </div>
+        {{/with}}
+
+        {{#with position}}
+            <div class="EmployeeCard-position">
+                {{this}}
+            </div>
+        {{/with}}
+
+        <div class="EmployeeCard-stats">
+            {{#with projectCount}}
+                <div class="EmployeeCard-project">
+                    <span class="EmployeeCard-project-label">Projects</span>
+                    <span class="EmployeeCard-project-count">{{this}}</span>
+                </div>
+            {{/with}}
+
+            {{#with teamCount}}
+                <div class="EmployeeCard-team">
+                    <span class="EmployeeCard-team-label">Teams</span>
+                    <span class="EmployeeCard-team-count">{{this}}</span>
+                </div>
+            {{/with}}
+        </div>
+    </div>
+
+    <div class="EmployeeCard-right">
+        {{#with avatarUrl}}
+            <div class="EmployeeCard-avatar">
+                <img src="{{this}}">
+            </div>
+        {{/with}}
+
+        {{#with hireDate}}
+            <div class="EmployeeCard-hireDate">
+                Hired: {{this}}
+            </div>
+        {{/with}}
+    </div>
+
+</div>

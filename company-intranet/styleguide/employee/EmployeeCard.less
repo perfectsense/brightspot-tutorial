@@ -1,0 +1,93 @@
+.EmployeeCard {
+    display: flex;
+
+    float: left;
+    width: 356px;
+    height: 100px;
+    margin: 0 18px 18px 0;
+    padding: 28px 24px 16px;
+    background-color: #FFF;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+
+    &-left {
+        flex-grow: 2;
+        flex-shrink: 0;
+        position: relative;
+    }
+
+    &-right {
+        flex-grow: 1;
+        position: relative;
+    }
+
+    &-name {
+        font-size: 24px;
+        margin-bottom: 4px;
+    }
+
+    &-organization {
+        font-size: 14px;
+        color: #AAA;
+        margin-bottom: 4px;
+    }
+
+    &-position {
+        font-size: 14px;
+        color: #AAA;
+        margin-bottom: 4px;
+    }
+
+    &-stats {
+        position: absolute;
+        bottom: 0;
+    }
+
+    &-project {
+        display: inline;
+        margin-right: 50px;
+
+        &-label {
+            font-size: 12px;
+            color: #999;
+            margin-right: 10px;
+        }
+
+        &-count {
+            font-size: 14px;
+            color: #5EA8F6;
+        }
+    }
+
+    &-team {
+        display: inline;
+
+        &-label {
+            font-size: 12px;
+            color: #999;
+            margin-right: 10px;
+        }
+
+        &-count {
+            color: #5EA8F6;
+        }
+    }
+
+    &-avatar {
+        text-align: right;
+        margin-bottom: 40px;
+
+        & img {
+            border-radius: 50%;
+        }
+    }
+
+    &-hireDate {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+
+        text-align: right;
+        font-size: 12px;
+        color: #999;
+    }
+}
