@@ -148,6 +148,8 @@ public class EmployeeDataGenerator {
             if (useUrl) {
                 String avatarUrl = avatarData.getRandomAvatarUrl(random, personName.getGender());
                 avatarFile = StorageItem.Static.createUrl(avatarUrl);
+                updateStorageItemCmsMetadata(avatarFile);
+
             } else {
                 String avatarPath = avatarData.getRandomAvatarResourcePath(random, personName.getGender());
                 avatarFile = createImageStorageItemFromResource(avatarPath);
@@ -238,6 +240,23 @@ public class EmployeeDataGenerator {
         return new Date(randomSeconds * 1000);
     }
 
+    private static void updateStorageItemCmsMetadata(StorageItem storageItem) {
+        Map<String, Object> metadata = storageItem.getMetadata();
+        if (metadata == null) {
+            metadata = new LinkedHashMap<>();
+            storageItem.setMetadata(metadata);
+        }
+        if (!metadata.containsKey("cms.crops")) {
+            metadata.put("cms.crops", new HashMap<>());
+        }
+        if (!metadata.containsKey("cms.focus")) {
+            metadata.put("cms.focus", new HashMap<>());
+        }
+        if (!metadata.containsKey("cms.edits")) {
+            metadata.put("cms.edits", new HashMap<>());
+        }
+    }
+
     private static StorageItem createImageStorageItemFromResource(String resourcePath) throws IOException {
 
         StorageItem storageItem = StorageItem.Static.create();
@@ -253,19 +272,7 @@ public class EmployeeDataGenerator {
         storageItem.setPath(resourcePath);
         storageItem.setData(ResourceFileReader.getFileAsInputStream(resourcePath));
 
-        Map<String, Object> metadata = storageItem.getMetadata();
-        if (metadata == null) {
-            metadata = new LinkedHashMap<>();
-        }
-        if (!metadata.containsKey("cms.crops")) {
-            metadata.put("cms.crops", new HashMap<>());
-        }
-        if (!metadata.containsKey("cms.focus")) {
-            metadata.put("cms.focus", new HashMap<>());
-        }
-        if (!metadata.containsKey("cms.edits")) {
-            metadata.put("cms.edits", new HashMap<>());
-        }
+        updateStorageItemCmsMetadata(storageItem);
 
         StorageItemUploadPart part = new StorageItemUploadPart();
 
