@@ -1,5 +1,7 @@
 package com.company.address;
 
+import java.util.Arrays;
+
 public enum StateProvince {
 
     AL("Alabama", "AL"),
@@ -9,6 +11,7 @@ public enum StateProvince {
     CA("California", "CA"),
     CO("Colorado", "CO"),
     CT("Connecticut", "CT"),
+    DC("Washington, DC", "DC"),
     DE("Delaware", "DE"),
     FL("Florida", "FL"),
     GA("Georgia", "GA"),
@@ -72,5 +75,13 @@ public enum StateProvince {
     @Override
     public String toString() {
         return "(" + getAbbreviation() + ") " + getName();
+    }
+
+    public static StateProvince fromAbbreviation(String fromAbbreviation) {
+        return Arrays.stream(StateProvince.values()).filter(sp -> sp.getAbbreviation().equalsIgnoreCase(fromAbbreviation)).findFirst().orElse(null);
+    }
+
+    public static StateProvince fromName(String fromName) {
+        return Arrays.stream(StateProvince.values()).filter(sp -> sp.getName().equalsIgnoreCase(fromName)).findFirst().orElse(null);
     }
 }

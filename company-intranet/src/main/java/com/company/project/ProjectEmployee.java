@@ -5,12 +5,12 @@ import java.util.Date;
 import com.company.employee.Employee;
 
 import com.psddev.cms.db.Content;
+import com.psddev.dari.db.Recordable;
 
+@Recordable.Embedded
 public class ProjectEmployee extends Content {
 
-    @Indexed
-    @IgnoredIfEmbedded
-    private Project project;
+    private transient Project project;
 
     @Indexed
     private Employee employee;
@@ -52,5 +52,10 @@ public class ProjectEmployee extends Content {
 
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
+    }
+
+    @Override
+    public String getLabel() {
+        return getEmployee() != null ? getEmployee().getLabel() : null;
     }
 }

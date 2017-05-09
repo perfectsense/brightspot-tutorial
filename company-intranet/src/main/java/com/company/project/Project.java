@@ -1,9 +1,11 @@
 package com.company.project;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import com.company.employee.Employee;
@@ -13,14 +15,11 @@ import com.psddev.cms.db.Content;
 import com.psddev.cms.db.Directory;
 import com.psddev.cms.db.Site;
 import com.psddev.cms.db.ToolUi;
-import com.psddev.dari.db.Query;
 import com.psddev.dari.util.StringUtils;
 
 public class Project extends Content implements
         CompanyEvent,
         Directory.Item {
-
-    private static final boolean USE_EMBEDDED_EMPLOYEE_DATA = true;
 
     @Required
     @Indexed(unique = true)
@@ -33,10 +32,9 @@ public class Project extends Content implements
 
     private Date endDate;
 
-    // Unhide if USE_EMBEDDED_EMPLOYEE_DATA is set to true
-    //@ToolUi.Hidden
+    @DisplayName("Employees")
     @Embedded
-    private List<ProjectEmployee> employees;
+    private List<ProjectEmployee> projectEmployees;
 
     public String getName() {
         return name;
@@ -70,15 +68,18 @@ public class Project extends Content implements
         this.endDate = endDate;
     }
 
-    public List<ProjectEmployee> getEmployees() {
-        if (employees == null) {
-            employees = new ArrayList<>();
+    public List<ProjectEmployee> getProjectEmployees() {
+        if (projectEmployees == null) {
+            projectEmployees = new ArrayList<>();
         }
-        return employees;
+
+        updateProjectEmployees();
+
+        return projectEmployees;
     }
 
-    public void setEmployees(List<ProjectEmployee> employees) {
-        this.employees = employees;
+    public void setProjectEmployees(List<ProjectEmployee> projectEmployees) {
+        this.projectEmployees = projectEmployees;
     }
 
     @Override
@@ -86,24 +87,12 @@ public class Project extends Content implements
         return getStartDate();
     }
 
-    public List<Employee> getAllEmployees() {
-
-        // flag showing alternate data models to retrieve same data
-        if (USE_EMBEDDED_EMPLOYEE_DATA) {
-            return getEmployees()
-                    .stream()
-                    .map(ProjectEmployee::getEmployee)
-                    .filter(Objects::nonNull)
-                    .collect(Collectors.toList());
-
-        } else {
-            return Query.from(ProjectEmployee.class)
-                    .where("project = ?", this)
-                    .selectAll()
-                    .stream()
-                    .map(ProjectEmployee::getEmployee)
-                    .collect(Collectors.toList());
-        }
+    public Set<Employee> getAllEmployees() {
+        return getProjectEmployees()
+                .stream()
+                .map(ProjectEmployee::getEmployee)
+                .filter(Objects::nonNull)
+                .collect(Collectors.toSet());
     }
 
     @DisplayName("Active Employees")
@@ -112,25 +101,17 @@ public class Project extends Content implements
 
         Date now = new Date();
 
-        // flag showing alternate data models to retrieve same data
-        if (USE_EMBEDDED_EMPLOYEE_DATA) {
-            return getEmployees()
-                    .stream()
-                    .filter(pe -> now.after(pe.getStartDate())
-                            && (pe.getEndDate() == null || pe.getEndDate().after(now)))
-                    .map(ProjectEmployee::getEmployee)
-                    .filter(Objects::nonNull)
-                    .collect(Collectors.toList());
-
-        } else {
-            return Query.from(ProjectEmployee.class)
-                    .where("project = ?", this)
-                    .and("startDate <= ?0 && (endDate > ?0 || endDate = missing)", now)
-                    .selectAll()
-                    .stream()
-                    .map(ProjectEmployee::getEmployee)
-                    .collect(Collectors.toList());
+        if (getEndDate() != null && getEndDate().before(now)) {
+            return Collections.emptyList();
         }
+
+        return getProjectEmployees()
+                .stream()
+                .filter(pe -> now.after(pe.getStartDate())
+                        && (pe.getEndDate() == null || pe.getEndDate().after(now)))
+                .map(ProjectEmployee::getEmployee)
+                .filter(Objects::nonNull)
+                .collect(Collectors.toList());
     }
 
     @Override
@@ -142,5 +123,20 @@ public class Project extends Content implements
         }
 
         return null;
+    }
+
+    @Override
+    protected void beforeSave() {
+        super.beforeSave();
+        updateProjectEmployees();
+    }
+
+    private void updateProjectEmployees() {
+        if (projectEmployees != null) {
+
+            for (ProjectEmployee pe : projectEmployees) {
+                pe.setProject(this);
+            }
+        }
     }
 }

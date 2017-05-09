@@ -4,10 +4,8 @@ import com.company.organization.Organization;
 
 import com.psddev.cms.db.Content;
 import com.psddev.cms.db.ToolUi;
-import com.psddev.dari.db.Recordable;
 
 @ToolUi.Publishable(false)
-@Recordable.BootstrapPackages("temp")
 public class Position extends Content {
 
     @Required

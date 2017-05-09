@@ -1,19 +1,21 @@
 package com.company.company;
 
+import java.util.Date;
+
 import com.psddev.cms.db.Content;
 import com.psddev.cms.db.Directory;
 import com.psddev.cms.db.Site;
 import com.psddev.cms.db.ToolUi;
-import com.psddev.dari.db.Recordable;
 import com.psddev.dari.db.Singleton;
 import com.psddev.dari.util.StorageItem;
 
 @ToolUi.Main
-@Recordable.BootstrapPackages("temp")
 public class Company extends Content implements Singleton,
         Directory.Item {
 
     private String name;
+
+    private Date foundedOn;
 
     private StorageItem logo;
 
@@ -23,6 +25,14 @@ public class Company extends Content implements Singleton,
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Date getFoundedOn() {
+        return foundedOn;
+    }
+
+    public void setFoundedOn(Date foundedOn) {
+        this.foundedOn = foundedOn;
     }
 
     public StorageItem getLogo() {

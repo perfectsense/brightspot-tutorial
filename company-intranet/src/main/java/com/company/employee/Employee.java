@@ -2,8 +2,10 @@ package com.company.employee;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -11,14 +13,13 @@ import com.company.address.Address;
 import com.company.event.CompanyEvent;
 import com.company.position.Position;
 import com.company.project.Project;
-import com.company.project.ProjectEmployee;
+import com.company.rte.BasicRichTextToolbar;
 import com.company.team.Team;
 
 import com.psddev.cms.db.Content;
 import com.psddev.cms.db.Directory;
 import com.psddev.cms.db.Site;
 import com.psddev.cms.db.ToolUi;
-import com.psddev.dari.db.Query;
 import com.psddev.dari.util.StorageItem;
 import com.psddev.dari.util.StringUtils;
 
@@ -50,7 +51,7 @@ public class Employee extends Content implements
 
     private Address address;
 
-    @ToolUi.RichText
+    @ToolUi.RichText(toolbar = BasicRichTextToolbar.class)
     private String shortBio;
 
     private List<String> skills;
@@ -64,7 +65,7 @@ public class Employee extends Content implements
     private Date dateOfTermination;
 
     @Indexed
-    private List<Team> teams;
+    private Set<Team> teams;
 
     public String getFirstName() {
         return firstName;
@@ -173,14 +174,14 @@ public class Employee extends Content implements
         this.dateOfTermination = dateOfTermination;
     }
 
-    public List<Team> getTeams() {
+    public Set<Team> getTeams() {
         if (teams == null) {
-            teams = new ArrayList<>();
+            teams = new LinkedHashSet<>();
         }
         return teams;
     }
 
-    public void setTeams(List<Team> teams) {
+    public void setTeams(Set<Team> teams) {
         this.teams = teams;
     }
 
@@ -208,13 +209,16 @@ public class Employee extends Content implements
 
         Date now = new Date();
 
-        return Query.from(ProjectEmployee.class)
-                .where("employee = ?", this)
-                .and("startDate <= ?0 && (endDate > ?0 || endDate = missing)", now)
-                .selectAll()
-                .stream()
-                .map(ProjectEmployee::getProject)
-                .collect(Collectors.toList());
+        // TODO: Still need to implement
+//        return Query.from(ProjectEmployee.class)
+//                .where("employee = ?", this)
+//                .and("startDate <= ?0 && (endDate > ?0 || endDate = missing)", now)
+//                .selectAll()
+//                .stream()
+//                .map(ProjectEmployee::getProject)
+//                .collect(Collectors.toList());
+
+        return new ArrayList<>();
     }
 
     @Override
