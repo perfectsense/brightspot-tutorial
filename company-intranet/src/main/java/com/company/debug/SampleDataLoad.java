@@ -20,6 +20,7 @@ import com.company.project.ProjectDataGenerator;
 import com.company.team.TeamDataGenerator;
 
 import com.psddev.cms.db.Content;
+import com.psddev.cms.db.Directory;
 import com.psddev.cms.db.ToolUser;
 import com.psddev.dari.db.Database;
 import com.psddev.dari.db.ForwardingDatabase;
@@ -148,5 +149,11 @@ public class SampleDataLoad extends DebugServlet {
 
         record.as(Content.ObjectModification.class).setUpdateUser(user);
         record.as(Content.ObjectModification.class).setPublishUser(user);
+
+        Directory.Data dirData = record.as(Directory.Data.class);
+        dirData.clearPaths();
+        for (Directory.Path path : record.as(Directory.ObjectModification.class).createPaths(null)) {
+            dirData.addPath(path.getSite(), path.getPath(), path.getType());
+        }
     }
 }
