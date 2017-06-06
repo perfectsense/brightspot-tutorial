@@ -49,8 +49,11 @@ public class SampleDataLoad extends DebugServlet {
                 writeStart("h2").writeHtml("Company Intranet - Sample Data Loader").writeEnd();
 
                 if (!"start".equals(req.getParameter("action"))) {
-
-                    writeStart("form", "action", "", "class", "form-horizontal", "method", "post"); {
+                    writeStart("form",
+                            "action", "",
+                            "class", "form-horizontal",
+                            "method", "post",
+                            "onsubmit", "this.querySelectorAll('input[type=\"submit\"]')[0].setAttribute('disabled', 'disabled');"); {
 
                         writeTag("input", "type", "hidden", "name", "action", "value", "start");
 
