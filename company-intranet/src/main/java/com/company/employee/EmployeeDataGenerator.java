@@ -1,10 +1,14 @@
 package com.company.employee;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.UncheckedIOException;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.net.URLConnection;
 import java.security.GeneralSecurityException;
 import java.security.SecureRandom;
 import java.security.cert.X509Certificate;
@@ -48,11 +52,14 @@ import com.company.team.TeamDataGenerator;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.psddev.dari.db.Query;
 import com.psddev.dari.db.Record;
 import com.psddev.dari.util.ClassFinder;
 import com.psddev.dari.util.CollectionUtils;
+import com.psddev.dari.util.IoUtils;
 import com.psddev.dari.util.ObjectUtils;
 import com.psddev.dari.util.Settings;
 import com.psddev.dari.util.StorageItem;
@@ -64,6 +71,8 @@ import com.psddev.dari.util.TypeDefinition;
 import com.psddev.dari.util.TypeReference;
 
 public class EmployeeDataGenerator {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(EmployeeDataGenerator.class);
 
     private Consumer<Record> recordUpdater;
     private Random random;
@@ -144,15 +153,35 @@ public class EmployeeDataGenerator {
 
             boolean useUrl = true;
             StorageItem avatarFile;
+            String avatarFilePath = null;
 
-            if (useUrl) {
-                String avatarUrl = avatarData.getRandomAvatarUrl(random, personName.getGender());
-                avatarFile = StorageItem.Static.createUrl(avatarUrl);
-                updateStorageItemCmsMetadata(avatarFile);
+            try {
+                if (useUrl) {
+                    boolean downloadUrl = true;
+                    String avatarUrl = avatarData.getRandomAvatarUrl(random, personName.getGender());
+                    avatarFilePath = avatarUrl;
 
-            } else {
-                String avatarPath = avatarData.getRandomAvatarResourcePath(random, personName.getGender());
-                avatarFile = createImageStorageItemFromResource(avatarPath);
+                    if (downloadUrl) {
+                        avatarFile = createImageStorageItemFromResource(avatarUrl);
+
+                    } else {
+                        avatarFile = StorageItem.Static.createUrl(avatarUrl);
+                        updateStorageItemCmsMetadata(avatarFile);
+                    }
+
+                } else {
+                    String avatarPath = avatarData.getRandomAvatarResourcePath(random, personName.getGender());
+                    avatarFilePath = avatarPath;
+                    avatarFile = createImageStorageItemFromResource(avatarPath);
+                }
+
+            } catch (IOException e) {
+                LOGGER.warn("Failed to create employee avatar for [" + avatarFilePath + "]. Cause: " + e.getMessage());
+                avatarFile = null;
+            }
+
+            if (avatarFile == null) {
+                continue;
             }
 
             String firstName = personName.getFirstName();
@@ -257,6 +286,40 @@ public class EmployeeDataGenerator {
         }
     }
 
+    private static byte[] getUrlBytes(String url) throws IOException {
+
+        long start = System.currentTimeMillis();
+        int timeoutMillis = 10000;
+        AtomicReference<IOException> errorRef = new AtomicReference<>();
+
+        InputStream urlStream = AvatarData.executeWithSslSecurityDisabled(() -> {
+
+            try {
+                URLConnection connection = new URL(url).openConnection();
+                connection.setConnectTimeout(timeoutMillis);
+                connection.setReadTimeout(timeoutMillis);
+                return connection.getInputStream();
+
+            } catch (IOException e) {
+                errorRef.set(e);
+                return null;
+            }
+        });
+
+        IOException error = errorRef.get();
+
+        if (error != null) {
+            throw error;
+        } else {
+            try {
+                return IoUtils.toByteArray(urlStream);
+            } finally {
+                IoUtils.closeQuietly(urlStream);
+                LOGGER.info("Fetched [" + url + "] in [" + (System.currentTimeMillis() - start) + "] ms.");
+            }
+        }
+    }
+
     private static StorageItem createImageStorageItemFromResource(String resourcePath) throws IOException {
 
         StorageItem storageItem = StorageItem.Static.create();
@@ -268,9 +331,39 @@ public class EmployeeDataGenerator {
             contentType = "image/" + resourcePath.substring(lastDotAt + 1);
         }
 
+        String path;
+        InputStream data;
+        File file;
+
+        if (resourcePath.startsWith("http")) {
+            path = new URL(resourcePath).getPath();
+
+            byte[] dataBytes = getUrlBytes(resourcePath);
+
+            data = new ByteArrayInputStream(dataBytes);
+
+            file = File.createTempFile(path, null);
+            FileOutputStream fos = new FileOutputStream(file);
+            try {
+                fos.write(dataBytes);
+            } finally {
+                IoUtils.closeQuietly(fos);
+            }
+            file.deleteOnExit();
+
+        } else {
+            path = resourcePath;
+            data = ResourceFileReader.getFileAsInputStream(resourcePath);
+            try {
+                file = new File(ResourceFileReader.getFileAsURL(resourcePath).toURI());
+            } catch (URISyntaxException e) {
+                throw new IOException(e);
+            }
+        }
+
         storageItem.setContentType(contentType);
-        storageItem.setPath(resourcePath);
-        storageItem.setData(ResourceFileReader.getFileAsInputStream(resourcePath));
+        storageItem.setPath(path);
+        storageItem.setData(data);
 
         updateStorageItemCmsMetadata(storageItem);
 
@@ -279,11 +372,7 @@ public class EmployeeDataGenerator {
         part.setContentType(contentType);
         // Using StringUtils.getFileName as fileItem.getName may include the path
         part.setName(StringUtils.getFileName(resourcePath));
-        try {
-            part.setFile(new File(ResourceFileReader.getFileAsURL(resourcePath).toURI()));
-        } catch (URISyntaxException e) {
-            throw new IOException(e);
-        }
+        part.setFile(file);
         part.setStorageName(Settings.get(String.class, StorageItem.DEFAULT_STORAGE_SETTING));
 
         // Add additional beforeSave functionality through StorageItemBeforeSave implementations
