@@ -41,6 +41,10 @@ public class ProjectDataGenerator {
         for (Project project : generateProjects(recordUpdater, random)) {
 
             try {
+                if (recordUpdater != null) {
+                    recordUpdater.accept(project);
+                }
+
                 project.save();
 
                 saved.add(project);
