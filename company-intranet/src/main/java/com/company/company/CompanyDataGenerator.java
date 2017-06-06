@@ -38,7 +38,7 @@ public class CompanyDataGenerator {
             }
 
             if (company.getFoundedOn() == null) {
-                company.setFoundedOn(Date.from(LocalDate.of(2008, 10, 23).atStartOfDay(ZoneId.systemDefault()).toInstant()));
+                company.setFoundedOn(Date.from(LocalDate.of(2014, 10, 23).atStartOfDay(ZoneId.systemDefault()).toInstant()));
             }
 
             if (recordUpdater != null) {
