@@ -9,7 +9,7 @@
     <Environment name="dari/defaultDatabase" type="java.lang.String" value="tutorial.local" />
     <Environment name="dari/database/tutorial.local/class" type="java.lang.String" value="com.psddev.dari.h2.H2Database" />
     <Environment name="dari/database/tutorial.local/dataSource/class" type="java.lang.String" value="org.h2.jdbcx.JdbcDataSource" />
-    <Environment name="dari/database/tutorial.local/dataSource/url" type="java.lang.String" value="jdbc:h2:<project-dir>.h2" />
+    <Environment name="dari/database/tutorial.local/dataSource/url" type="java.lang.String" value="jdbc:h2:<project-dir>.h2/.h2" />
     <Environment name="dari/database/tutorial.local/dataSource/user" type="java.lang.String" value="root" />
     <Environment name="dari/database/tutorial.local/dataSource/password" type="java.lang.String" value="" />
 
