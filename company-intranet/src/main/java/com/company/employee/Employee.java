@@ -1,6 +1,7 @@
 package com.company.employee;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -206,19 +207,8 @@ public class Employee extends Content implements
     @DisplayName("Active Projects")
     @Ignored(false)
     public List<Project> getActiveProjects() {
-
-        Date now = new Date();
-
         // TODO: Still need to implement
-//        return Query.from(ProjectEmployee.class)
-//                .where("employee = ?", this)
-//                .and("startDate <= ?0 && (endDate > ?0 || endDate = missing)", now)
-//                .selectAll()
-//                .stream()
-//                .map(ProjectEmployee::getProject)
-//                .collect(Collectors.toList());
-
-        return new ArrayList<>();
+        return Collections.emptyList();
     }
 
     @Override
