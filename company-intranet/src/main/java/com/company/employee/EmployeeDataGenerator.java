@@ -362,7 +362,7 @@ public class EmployeeDataGenerator {
         }
 
         storageItem.setContentType(contentType);
-        storageItem.setPath(path);
+        storageItem.setPath(StringUtils.removeStart(path, "/"));
         storageItem.setData(data);
 
         updateStorageItemCmsMetadata(storageItem);
