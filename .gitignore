@@ -1,3 +1,7 @@
+# Please add IDE-specific files (e.g. .*.sw* from Vim or .idea from IntelliJ)
+# to your global config. If you don't have one set up already, you can create
+# it using "git config --global core.excludesfile ~/.gitignore".
+
 target
 node
 node_modules
@@ -8,4 +12,3 @@ node_modules
 .vagrant
 **/female/*.png
 **/male/*.png
-
