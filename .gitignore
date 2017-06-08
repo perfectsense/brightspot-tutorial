@@ -4,6 +4,8 @@ node_modules
 .tomcat
 .storage
 .h2.mv.db
+.h2
+.vagrant
 **/female/*.png
 **/male/*.png
 
