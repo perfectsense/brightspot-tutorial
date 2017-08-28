@@ -5,11 +5,6 @@
         http://maven.apache.org/maven-v4_0_0.xsd">
 
     <properties>
-        <bsp.handlebars.version>2.0-SNAPSHOT</bsp.handlebars.version>
-        <bsp.styleguide.version>2.0-SNAPSHOT</bsp.styleguide.version>
-        <cms.version>3.3-SNAPSHOT</cms.version>
-        <dari.version>3.3-SNAPSHOT</dari.version>
-        <slf4j.version>1.7.12</slf4j.version>
         <tomcat.port>9480</tomcat.port>
         <with-styleguide>true</with-styleguide>
     </properties>
@@ -18,8 +13,8 @@
 
     <parent>
         <groupId>com.psddev</groupId>
-        <artifactId>dari-parent</artifactId>
-        <version>3.3-SNAPSHOT</version>
+        <artifactId>brightspot-parent</artifactId>
+        <version>41-SNAPSHOT</version>
     </parent>
 
     <groupId>com.brightspot</groupId>
@@ -34,56 +29,47 @@
         <dependency>
             <groupId>com.psddev</groupId>
             <artifactId>cms-db</artifactId>
-            <version>${cms.version}</version>
         </dependency>
 
         <dependency>
             <groupId>com.psddev</groupId>
             <artifactId>cms-hunspell</artifactId>
-            <version>${cms.version}</version>
         </dependency>
 
         <dependency>
             <groupId>com.psddev</groupId>
             <artifactId>cms-tool-ui</artifactId>
-            <version>${cms.version}</version>
             <type>war</type>
         </dependency>
 
         <dependency>
             <groupId>com.psddev</groupId>
             <artifactId>dari-aws</artifactId>
-            <version>${dari.version}</version>
         </dependency>
 
         <dependency>
             <groupId>com.psddev</groupId>
             <artifactId>dari-db</artifactId>
-            <version>${dari.version}</version>
         </dependency>
 
         <dependency>
             <groupId>com.psddev</groupId>
             <artifactId>dari-h2</artifactId>
-            <version>${dari.version}</version>
         </dependency>
 
         <dependency>
             <groupId>com.psddev</groupId>
             <artifactId>dari-mysql</artifactId>
-            <version>${dari.version}</version>
         </dependency>
 
         <dependency>
             <groupId>com.psddev</groupId>
             <artifactId>dari-util</artifactId>
-            <version>${dari.version}</version>
         </dependency>
 
         <dependency>
             <groupId>com.psddev</groupId>
             <artifactId>handlebars</artifactId>
-            <version>${bsp.handlebars.version}</version>
         </dependency>
 
         <dependency>
@@ -116,19 +102,19 @@
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>jcl-over-slf4j</artifactId>
-            <version>${slf4j.version}</version>
+            <version>1.7.12</version>
         </dependency>
 
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
-            <version>${slf4j.version}</version>
+            <version>1.7.12</version>
         </dependency>
 
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-jdk14</artifactId>
-            <version>${slf4j.version}</version>
+            <version>1.7.12</version>
         </dependency>
 
         <dependency>
@@ -325,7 +311,8 @@
                     <plugin>
                         <groupId>com.psddev</groupId>
                         <artifactId>styleguide-maven-plugin</artifactId>
-                        <version>${bsp.styleguide.version}</version>
+                        <!-- TODO: Remove version once plugin management is added to parent. -->
+                        <version>2.0-SNAPSHOT</version>
                         <executions>
                             <execution>
                                 <goals>
