@@ -150,10 +150,12 @@ public class SampleDataLoad extends DebugServlet {
         record.as(Content.ObjectModification.class).setUpdateUser(user);
         record.as(Content.ObjectModification.class).setPublishUser(user);
 
+        /*
         Directory.Data dirData = record.as(Directory.Data.class);
         dirData.clearPaths();
         for (Directory.Path path : record.as(Directory.ObjectModification.class).createPaths(null)) {
             dirData.addPath(path.getSite(), path.getPath(), path.getType());
         }
+        */
     }
 }
