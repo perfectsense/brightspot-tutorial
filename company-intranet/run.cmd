@@ -12,7 +12,7 @@ POWERSHELL -Command "(gc ..\etc\tomcat-context.xml) -replace '<project-dir>', '<
 POWERSHELL -Command "(gc .tomcat\tomcat-context.xml) -replace '<project-dir>', "$pwd" | Out-File -encoding ASCII .tomcat\tomcat-context.xml
 POWERSHELL -Command "(gc ..\etc\tomcat-storage.xml) -replace '<project-dir>', '<project-dir>\' | Out-File -encoding ASCII .tomcat\tomcat-storage.xml
 POWERSHELL -Command "(gc .tomcat\tomcat-storage.xml) -replace '<project-dir>', "$pwd" | Out-File -encoding ASCII .tomcat\tomcat-storage.xml
-COPY etc\tomcat-logging.properties .tomcat\tomcat-logging.properties
+COPY ..\etc\tomcat-logging.properties .tomcat\tomcat-logging.properties
 
 ECHO "Initializing Storage Directory..."
 IF NOT EXIST ".storage" mkdir .storage
