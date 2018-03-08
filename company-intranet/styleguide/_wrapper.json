@@ -1,5 +1,5 @@
 {
-     "_template": "page/PageEmbed.hbs",
+     "_template": "/page/PageEmbed.hbs",
      "title": "Brightspot Intranet",
      "body": {
          "_delegate": true

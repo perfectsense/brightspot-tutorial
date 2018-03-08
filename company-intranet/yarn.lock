@@ -522,9 +522,9 @@ braces@^2.3.0:
     split-string "^3.0.2"
     to-regex "^3.0.1"
 
-brightspot-styleguide@2.0.381-5f4809:
-  version "2.0.381-5f4809"
-  resolved "https://artifactory.psdops.com/api/npm/npm/brightspot-styleguide/-/brightspot-styleguide-v2.0.381-5f4809.tgz#2f9d662b39deaeb455e0325ea6ed37a945e31bba"
+brightspot-styleguide@3.0.467-7b95fc:
+  version "3.0.467-7b95fc"
+  resolved "https://artifactory.psdops.com/api/npm/npm/brightspot-styleguide/-/brightspot-styleguide-v3.0.467-7b95fc.tgz#e8b2c9e905f685a0600d046cfdf5885f66b64efe"
   dependencies:
     babel-eslint "6.1.2"
     blissfuljs "1.0.3"

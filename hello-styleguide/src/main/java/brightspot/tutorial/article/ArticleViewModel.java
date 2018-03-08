@@ -1,7 +1,7 @@
 package brightspot.tutorial.article;
 
 import brightspot.tutorial.image.Image;
-import styleguide.tutorial.article.ArticleView;
+import com.psddev.styleguide.tutorial.article.ArticleView;
 
 import com.psddev.cms.rte.RichTextViewBuilder;
 import com.psddev.cms.view.ViewModel;

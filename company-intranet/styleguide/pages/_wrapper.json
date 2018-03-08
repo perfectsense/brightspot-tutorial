@@ -1,8 +1,8 @@
 {
-    "_template": "/styleguide/page/Page.hbs",
+    "_template": "/page/Page.hbs",
     "title": "Brightspot Intranet",
     "navigation": {
-        "_include": "/styleguide/page/Navigation.json"
+        "_include": "/page/Navigation.json"
     },
     "body": {
         "_delegate": true

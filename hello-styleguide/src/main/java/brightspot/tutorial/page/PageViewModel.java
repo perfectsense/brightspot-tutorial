@@ -1,7 +1,7 @@
 package brightspot.tutorial.page;
 
-import styleguide.tutorial.page.PageView;
-import styleguide.tutorial.page.PageViewBodyField;
+import com.psddev.styleguide.tutorial.page.PageView;
+import com.psddev.styleguide.tutorial.page.PageViewBodyField;
 
 import com.psddev.cms.db.Content;
 import com.psddev.cms.db.Seo;

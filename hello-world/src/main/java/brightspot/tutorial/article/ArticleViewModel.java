@@ -1,12 +1,12 @@
 package brightspot.tutorial.article;
 
- import brightspot.tutorial.image.Image;
+import brightspot.tutorial.image.Image;
 
- import com.psddev.cms.rte.RichTextViewBuilder;
- import com.psddev.cms.view.ViewInterface;
- import com.psddev.cms.view.ViewModel;
- import com.psddev.dari.util.StorageItem;
- import com.psddev.handlebars.HandlebarsTemplate;
+import com.psddev.cms.rte.RichTextViewBuilder;
+import com.psddev.cms.view.ViewInterface;
+import com.psddev.cms.view.ViewModel;
+import com.psddev.dari.util.StorageItem;
+import com.psddev.handlebars.HandlebarsTemplate;
 
 @ViewInterface
 @HandlebarsTemplate("brightspot/tutorial/article/Article")

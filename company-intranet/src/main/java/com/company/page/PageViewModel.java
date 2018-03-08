@@ -1,8 +1,8 @@
 package com.company.page;
 
-import styleguide.page.PageView;
-import styleguide.page.PageViewBodyField;
-import styleguide.page.PageViewNavigationField;
+import com.psddev.styleguide.page.PageView;
+import com.psddev.styleguide.page.PageViewBodyField;
+import com.psddev.styleguide.page.PageViewNavigationField;
 
 import com.psddev.cms.db.Content;
 import com.psddev.cms.view.PageEntryView;
