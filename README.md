@@ -22,3 +22,4 @@ This repository contains several tutorial projects illustrating various aspects 
 
 The command compiles the Brightspot project and launches the application at `http://localhost:9480`. The Brightspot login page appears at `http://localhost:9480/cms`.
 
+Alternatively, you can download the Brightspot [Vagrantfile](https://s3.amazonaws.com/perfectsense-ops/boxes/brightspot/Vagrantfile), place it in the root of one the directories listed above and run `vagrant up`. For information on how to run and deploy code with Vagrant, please consult the Brightspot [Documentation](http://docs.brightspot.com/).
