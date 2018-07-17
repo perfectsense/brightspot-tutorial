@@ -44,6 +44,12 @@ gulp.task(styleguide.task.js(), (done) => {
   })
 })
 
+// Copies static assets (images, fonts, etc.) into the styleguide build
+gulp.task(styleguide.task.extra('assets'), () => {
+  return gulp.src('styleguide/assets/**', { base: '.' })
+      .pipe(gulp.dest(styleguide.path.build()))
+})
+
 gulp.task(styleguide.task.extra('TASKNAME_GOES_HERE'), () => {
   // create a custom build task here
 })
