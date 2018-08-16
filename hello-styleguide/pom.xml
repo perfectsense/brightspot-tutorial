@@ -73,6 +73,11 @@
         </dependency>
 
         <dependency>
+            <groupId>com.psddev</groupId>
+            <artifactId>theme</artifactId>
+        </dependency>
+
+        <dependency>
             <groupId>javax.el</groupId>
             <artifactId>javax.el-api</artifactId>
             <version>3.0.0</version>
