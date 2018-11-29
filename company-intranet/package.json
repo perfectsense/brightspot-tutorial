@@ -3,7 +3,7 @@
   "private": true,
   "devDependencies": {
     "autoprefixer": "6.5.1",
-    "brightspot-styleguide": "3.0.516-2add9c",
+    "brightspot-styleguide": "4.0.0-SNAPSHOT.10700",
     "gulp": "3.9.1",
     "gulp-clean-css": "2.0.13",
     "gulp-file": "0.3.0",
