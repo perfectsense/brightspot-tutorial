@@ -6,7 +6,7 @@ This repository contains several tutorial projects illustrating various aspects 
 
 ## Directories
 
-* **init** - This directory contains a bare-bones project with just enough to start the Hello World tutorial found at http://docs.brightspot.com/cms/developers-guide/tutorials/article-index.html.
+* **init** - This directory contains a bare-bones project with just enough to start the Hello World tutorial found at http://docs.brightspot.com/cms/developers-guide/tutorials/init-index.html.
 
 * **hello-world** - This directory contains the results of the Hello World tutorial. Readers can compare their results from the Hello World tutorial with this one. In addition, readers can use this directory to skip the Hello World tutorial and proceed directly with the Hello Styleguide tutorial starting at http://docs.brightspot.com/cms/developers-guide/tutorials/hello-world-index.html.
 
