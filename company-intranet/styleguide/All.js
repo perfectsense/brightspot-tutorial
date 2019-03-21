@@ -1,3 +1,0 @@
-// scripts go here...
-
-export default {}

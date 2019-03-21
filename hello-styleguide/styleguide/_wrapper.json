@@ -1,7 +1,0 @@
-{
-     "_template": "tutorial/page/Page.hbs",
-     "title": "Hello Styleguide",
-     "body": {
-         "_delegate": true
-     }
- }

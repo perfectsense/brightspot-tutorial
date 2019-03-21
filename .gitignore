@@ -3,12 +3,4 @@
 # it using "git config --global core.excludesfile ~/.gitignore".
 
 target
-node
-node_modules
-.tomcat
-.storage
-.h2.mv.db
-.h2
 .vagrant
-**/female/*.png
-**/male/*.png
