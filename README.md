@@ -97,7 +97,17 @@ service <service-name> (stop|start|restart)
 ```
 
 Make sure you are the root user before issuing commands by running `sudo -i`
-after login.
+after login. Alternatively, you can add the following snippet to your
+Vagrantfile (global or local) to automatically switch you to the root user upon
+login (`vagrant ssh`):
+
+```ruby
+  # Switches to root user upon login.
+  config.vm.provision "shell", inline: <<-SCRIPT
+    echo 'case \"\$-\" in *i*) sudo -i ;; esac' > /home/vagrant/.bash_profile
+    chown vagrant:vagrant /home/vagrant/.bash_profile
+  SCRIPT
+```
 
 #### Apache (w/ DIMS)
 
