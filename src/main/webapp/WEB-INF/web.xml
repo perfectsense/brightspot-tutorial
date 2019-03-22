@@ -21,10 +21,6 @@
         <dispatcher>REQUEST</dispatcher>
     </filter-mapping>
 
-    <!-- BEGIN CUSTOM FILTERS -->
-
-    <!-- END CUSTOM FILTERS -->
-
     <filter>
         <filter-name>PageFilter</filter-name>
         <filter-class>com.psddev.cms.db.PageFilter</filter-class>
@@ -39,26 +35,4 @@
         <dispatcher>REQUEST</dispatcher>
     </filter-mapping>
 
-    <servlet>
-        <servlet-name>jsp</servlet-name>
-        <servlet-class>org.apache.jasper.servlet.JspServlet</servlet-class>
-        <init-param>
-            <param-name>fork</param-name>
-            <param-value>false</param-value>
-        </init-param>
-        <init-param>
-            <param-name>compilerSourceVM</param-name>
-            <param-value>1.8</param-value>
-        </init-param>
-        <init-param>
-            <param-name>compilerTargetVM</param-name>
-            <param-value>1.8</param-value>
-        </init-param>
-        <load-on-startup>3</load-on-startup>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>jsp</servlet-name>
-        <url-pattern>*.jsp</url-pattern>
-        <url-pattern>*.jspx</url-pattern>
-    </servlet-mapping>
 </web-app>

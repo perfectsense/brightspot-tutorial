@@ -1,4 +1,4 @@
-# Installing and Running the Brightspot Vagrant
+# Brightspot Tutorial Vagrant Setup
 
 ## Prerequisites
 
@@ -7,8 +7,8 @@ You will need both [Vagrant](https://www.vagrantup.com/) and
 
 ## One-Time Setup
 
-Create a global Vagrantfile at `~/.vagrant.d/Vagrantfile`. If you do not have
-one already, the skeleton for the file looks like this:
+Make sure you have a global Vagrantfile created at `~/.vagrant.d/Vagrantfile`.
+If you do not have one already, the skeleton for the file looks like this:
 
 ```ruby
 # -*- mode: ruby -*-
@@ -34,7 +34,7 @@ config.vm.synced_folder home, home, type: 'nfs'
 ```
 
 Ensure you have the `vagrant-vbguest` plugin installed so that the appropriate
-Guest Additions versions is installed when you boot the box which will ensure
+Guest Additions version is installed when you boot the box which will ensure
 that the mounted folder configured above works properly.
 
 ```bash
@@ -95,6 +95,9 @@ The most common service commands are to stop, start and restart a service:
 ```
 service <service-name> (stop|start|restart)
 ```
+
+Make sure you are the root user before issuing commands by running `sudo -i`
+after login.
 
 #### Apache (w/ DIMS)
 
