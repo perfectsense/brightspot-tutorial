@@ -104,7 +104,8 @@ docker/logs <optional services>
 
 Valid services are:
 
-- `mysql`
-- `solr`
-- `tomcat`
-- `apache`
+- `mysql` - MySQL Percona database
+- `solr` - Apache Solr database
+- `tomcat` - Apache Tomcat web server
+- `apache` - Apache web server + DIMS
+- `greenmail` - Email server
