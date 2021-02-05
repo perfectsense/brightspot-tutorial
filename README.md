@@ -42,7 +42,7 @@ We'll use [Docker](https://www.docker.com) to streamline the server setup needed
 
 ### Run Brightspot
 
-#### Start the Containers
+#### Initialize and Start the Containers for the first time
 
 To create a runtime environment for Brightspot, boot up Docker containers with the following command:
 
@@ -54,27 +54,29 @@ docker/initialize
 
 You can build and deploy your code with a single command:
 
-**Linux/Mac**
 ```shell script
-./gradlew docker
-```
-
-**Windows**
-```shell script
-gradlew docker
+docker/deploy
 ```
 
 You can now access the CMS in your browser at `http://localhost/cms`
 
 Most changes you make to the code will automatically get picked up by the Dari Reloader when you refresh your browser window eliminating the need to rebuild and redeploy every time. If such a time comes that you do need a fresh build just re-run the command above.
 
-#### Stop the Containers
+#### Stop and Start the Containers
 
-To stop the containers, while still preserving their data, run the following command:
+To stop the containers and reclaim system resources, while still preserving your data, run the following command:
 
 ```shell script
 docker/stop
 ```
+
+When you're ready to boot things back up, run the following command:
+
+```shell script
+docker/start
+```
+
+From there you can resume your development and deployment workflow as described above.
 
 #### Project Structure
 
@@ -90,17 +92,26 @@ Docker is managed using [Docker Compose](https://docs.docker.com/compose/) and c
 
 ```console
 docker/initialize
+docker/deploy
 docker/start <optional services>
 docker/stop <optional services>
 docker/restart <optional services>
 docker/logs <optional services>
+docker/ssh <service>
+docker/down
 ```
 
 `initialize` destroys any existing containers along with their data and then creates them new.
 
+`deploy` compiles the Gradle project, deploys the WAR file, restarts the tomcat container and tails the logs.
+
 `start`, `stop`, or `restart` starts, stops, or restarts all or named containers.
 
 `logs` displays last 1000 lines of logs and follows them from all or named containers. You can `Control-C` to stop following.
+
+`ssh` logs you into the container of the specified service
+
+`down` destroys the containers along with their data. 
 
 Valid services are:
 

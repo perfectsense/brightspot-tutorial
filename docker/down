@@ -1,0 +1,7 @@
+#!/bin/bash
+
+set -e
+
+echo 'Removing existing Docker containers...'
+docker-compose down
+docker volume prune -f
