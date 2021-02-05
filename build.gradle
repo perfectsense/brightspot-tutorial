@@ -49,6 +49,7 @@ dependencies {
     api 'com.psddev:dari-util'
     api 'com.psddev:graphql'
     api 'com.psddev:handlebars'
+    api 'com.psddev:segmentation'
     api 'com.psddev:theme'
     api 'com.psddev:timeseries'
     api 'com.psddev:timeseries-mysql'
