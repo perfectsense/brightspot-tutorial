@@ -1,25 +1,110 @@
-# Brightspot Tutorials
+# Brightspot Demo
 
-## Repository Overview
+This repository serves as the quickest way to get started trying out [Brightspot](https://www.brightspot.com) and unlocking the power given to developers on the platform. It contains an example project called "Company" that depends on the Brightspot libraries and will serve as the baseline for many of the tutorials found on the [documentation site](http://docs.brightspot.com).
 
-This repository contains several tutorial projects illustrating various aspects of the Brightspot platform. 
+## Quick Start
 
-## Directories
+Clone or download this repository and follow the steps below to get started. You should be comfortable using a terminal or command line tool before proceeding as it will be needed to compile the code using the [Gradle Build Tool](https://gradle.org).
 
-* **init** - This directory contains a bare-bones project with just enough to start the Hello World tutorial found at http://docs.brightspot.com/cms/developers-guide/tutorials/init-index.html.
+### One-Time Setup
 
-* **hello-world** - This directory contains the results of the Hello World tutorial. Readers can compare their results from the Hello World tutorial with this one. In addition, readers can use this directory to skip the Hello World tutorial and proceed directly with the Hello Styleguide tutorial starting at http://docs.brightspot.com/cms/developers-guide/tutorials/hello-world-index.html.
+#### Install Java 8
 
-* **hello-styleguide** - This directory contains the results of the Hello Styleguide tutorial. Readers can compare their results from the Hello Styleguide tutorial with this one. 
+The quickest way to get Java 8 is to download it from the [AdoptOpenJDK releases page](https://adoptopenjdk.net/releases.html?variant=openjdk8&jvmVariant=hotspot). Find your Operating System and Architecture and be sure to download the **JDK**.
 
-## Running a Tutorial
+If you chose an installer package, make a note of the installation directory during setup, otherwise unpack the archive file to a location of your choice.
 
-1. Clone this repository or [download the zip](https://github.com/perfectsense/brightspot-tutorial/archive/master.zip).
+Set the `JAVA_HOME` environment variable to point to the sub-directory `Contents/Home` within your JDK installation directory from the previous step.
 
-2. Change to one of the above directories.
+For example, on a Mac, you might execute a command like this:
 
-3. Run `./run.sh` (OSX/Linux) or `run.cmd` (Windows).
+```
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home
+```
 
-The command compiles the Brightspot project and launches the application at `http://localhost:9480`. The Brightspot login page appears at `http://localhost:9480/cms`.
+Verify the installation was successful by navigating to the root of this repository in a terminal and running the following Gradle command:
 
-Alternatively, you can download the Brightspot [Vagrantfile](https://s3.amazonaws.com/perfectsense-ops/boxes/brightspot/Vagrantfile), place it in the root of one the directories listed above and run `vagrant up`. For information on how to run and deploy code with Vagrant, please consult the Brightspot [Documentation](http://docs.brightspot.com/).
+**Linux/Mac**
+```shell script
+./gradlew -version
+```
+
+**Windows**
+```shell script
+gradlew -version
+```
+
+The **JVM** version listed should be of the form `1.8.x`. You will now be able to compile the code. The next step in the installation is to be able to run it!
+
+#### Install Docker
+
+We'll use [Docker](https://www.docker.com) to streamline the server setup needed to run Brightspot. Follow the instructions on the [Docker Getting Started Page](https://www.docker.com/get-started) to download Docker for your OS and then install the package to get the Docker daemon up and running on your machine.
+
+### Run Brightspot
+
+#### Start the Containers
+
+To create a runtime environment for Brightspot, boot up Docker containers with the following command:
+
+```shell script
+docker/initialize
+```
+
+#### Build and Deploy the Project
+
+You can build and deploy your code with a single command:
+
+**Linux/Mac**
+```shell script
+./gradlew docker
+```
+
+**Windows**
+```shell script
+gradlew docker
+```
+
+You can now access the CMS in your browser at `http://localhost/cms`
+
+Most changes you make to the code will automatically get picked up by the Dari Reloader when you refresh your browser window eliminating the need to rebuild and redeploy every time. If such a time comes that you do need a fresh build just re-run the command above.
+
+#### Stop the Containers
+
+To stop the containers, while still preserving their data, run the following command:
+
+```shell script
+docker/stop
+```
+
+#### Project Structure
+
+All backend Java code should be placed in the `core/src/main/java` directory. You will find a package already created named `com.company` with a `package-info.java` file to verify you are in the right place.
+
+#### Settings
+
+If you want to experiment with different settings you can edit the config file located at `docker/demo-context.properties`. You'll need to restart the containers for your changes to take effect.
+
+### Docker Tips
+
+Docker is managed using [Docker Compose](https://docs.docker.com/compose/) and can be controlled directly with its [CLI](https://docs.docker.com/compose/reference/overview/). We have some shortcuts that make it easier to use for our specific use case though:
+
+```console
+docker/initialize
+docker/start <optional services>
+docker/stop <optional services>
+docker/restart <optional services>
+docker/logs <optional services>
+```
+
+`initialize` destroys any existing containers along with their data and then creates them new.
+
+`start`, `stop`, or `restart` starts, stops, or restarts all or named containers.
+
+`logs` displays last 1000 lines of logs and follows them from all or named containers. You can `Control-C` to stop following.
+
+Valid services are:
+
+- `mysql`
+- `solr`
+- `tomcat`
+- `apache`

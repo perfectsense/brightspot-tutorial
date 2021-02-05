@@ -1,0 +1,27 @@
+rootProject.name = 'company'
+
+// -- Gradle Cache Server -- //
+
+def gradleCacheUrl = "https://cache.gradle.psdops.com/cache/"
+def gradleCacheUsername = System.getenv('GRADLE_CACHE_USERNAME')
+def gradleCachePassword = System.getenv('GRADLE_CACHE_PASSWORD')
+boolean isCiServer = gradleCacheUsername != null
+
+buildCache {
+  if (gradleCacheUrl != null) {
+    local {
+      enabled = !isCiServer
+    }
+    remote(HttpBuildCache) {
+      push = isCiServer
+      url = gradleCacheUrl
+      allowUntrustedServer = true
+      if (gradleCacheUsername != null && gradleCachePassword != null) {
+        credentials {
+            username = gradleCacheUsername
+            password = gradleCachePassword
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,243 @@
+plugins {
+    id 'java-library'
+    id 'maven-publish'
+    id 'maven'
+    id 'com.github.node-gradle.node' version '1.3.0'
+    id 'war'
+}
+
+description = 'Company'
+
+def brightspotVersion = '4.2-SNAPSHOT'
+def rootDir = rootProject.projectDir
+
+group = 'com.company'
+version = '1.0.0-SNAPSHOT'
+defaultTasks 'build'
+
+dependencies {
+    compile 'com.psddev:cms-tool-ui'
+    implementation 'org.apache.solr:solr-solrj'
+
+    annotationProcessor 'com.github.therapi:therapi-runtime-javadoc-scribe'
+    compile platform("com.psddev:brightspot-bom:$brightspotVersion")
+    implementation enforcedPlatform("com.psddev:brightspot-dependencies:$brightspotVersion")
+
+    constraints {
+        annotationProcessor 'com.github.therapi:therapi-runtime-javadoc-scribe:0.12.0'
+        api('org.apache.solr:solr-solrj:8.6.1') {
+            force = true
+        }
+    }
+
+    api 'com.psddev:dari-solr-v6'
+    api 'com.psddev:analytics'
+    api 'com.psddev:cms-db'
+    api 'com.psddev:cms-hunspell'
+    api 'com.psddev:conversation'
+    api 'com.psddev:dari-aws'
+    api 'com.psddev:dari-db'
+    api 'com.psddev:dari-mysql'
+    api 'com.psddev:dari-util'
+    api 'com.psddev:graphql'
+    api 'com.psddev:handlebars'
+    api 'com.psddev:theme'
+    api 'com.psddev:timeseries'
+    api 'com.psddev:timeseries-mysql'
+    api 'com.psddev:watch'
+    api 'org.slf4j:slf4j-api'
+    api 'org.slf4j:slf4j-jdk14'
+
+    providedCompile 'javax.el:javax.el-api:3.0.0'
+    providedCompile 'javax.servlet:javax.servlet-api:3.1.0'
+    providedCompile 'javax.servlet.jsp:javax.servlet.jsp-api:2.3.3'
+}
+configurations.testImplementation.setCanBeResolved(true)
+configurations.implementation.setCanBeResolved(true)
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+sourceCompatibility = '1.8'
+
+node {
+    version = '8.9.3'
+    yarnVersion = '1.3.2'
+    download = true
+}
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+    maven { url = 'https://artifactory.psdops.com/public' }
+    // For org.apache.solr:solr-core
+    maven { url = 'http://maven.restlet.org' }
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+sourceSets {
+    test {
+        compileClasspath += configurations.compileOnly
+        runtimeClasspath += configurations.compileOnly
+    }
+}
+
+configurations {
+    enhanceClassesRuntime
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            from(components.java)
+        }
+    }
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+    options.warnings = false
+}
+
+def mainSourceSet = sourceSets.main
+def mainOutput = mainSourceSet.output
+def enhancedClassesDir = "$buildDir/enhanced-classes"
+
+task prepEnhanceClasses() {
+    doFirst {
+        mainOutput.classesDirs.forEach { mkdir it.path }
+    }
+}
+
+task enhanceClasses(type: JavaExec) {
+    dependsOn('prepEnhanceClasses')
+    dependsOn('classes')
+    delete enhancedClassesDir
+    mainOutput.classesDirs.forEach { inputs.dir(it) }
+    outputs.dir(enhancedClassesDir)
+    outputs.cacheIf { false }
+    outputs.upToDateWhen { false }
+
+    onlyIf {
+        configurations.implementation.files.find { it.name.contains('dari-db') }
+    }
+
+    classpath(
+            configurations.enhanceClassesRuntime,
+            mainSourceSet.compileClasspath,
+            mainSourceSet.runtimeClasspath
+    )
+
+    main = 'com.psddev.dari.util.ClassEnhancer$Static'
+
+    args = mainOutput.classesDirs + [
+            '-c',
+            'com.psddev.dari.db.LazyLoadEnhancer',
+            'com.psddev.dari.db.QueryCommentEnhancer',
+            '-o',
+            enhancedClassesDir
+    ]
+}
+
+task generateBuildProperties(type: WriteProperties) {
+    outputFile = file "$buildDir/build.properties"
+
+    def mainDir = rootDir.toPath()
+            .relativize(projectDir.toPath())
+            .toString()
+            .replace(File.separatorChar, '/' as char) + '/src/main'
+
+    properties(
+            'name': { project.description },
+            'version': { project.version },
+            'release': rootProject.version,
+            'projectDirectory': rootDir,
+            'javaSourceDirectory': "$mainDir/java",
+            'resourceDirectory': "$mainDir/resources",
+            'webappSourceDirectory': "$mainDir/webapp"
+    )
+}
+
+jar {
+    dependsOn enhanceClasses
+    dependsOn generateBuildProperties
+
+    from enhancedClassesDir
+    from generateBuildProperties.outputFile
+
+    manifest {
+        attributes(
+                'Dari-ClassFinder-Include': 'true'
+        )
+    }
+}
+
+gradle.taskGraph.whenReady {
+    if (configurations.implementation.files.find { it.name.contains('dari-db') }) {
+        mainOutput.classesDirs.forEach {
+            def p = it.path + '/'
+            jar.exclude { it.file.path.startsWith(p) && it.file.path.endsWith('.class') }
+        }
+
+    } else {
+        enhanceClasses.enabled = false
+    }
+}
+
+task yarnInstall(type: YarnTask) {
+    inputs.file { "${node.nodeModulesDir}/package.json" }
+    inputs.file { "${node.nodeModulesDir}/yarn.lock" }
+    outputs.files { fileTree("${node.nodeModulesDir}/node_modules").include('*') }
+
+    args = ['--mutex', 'network']
+}
+
+def jarSuffix = "-${project.version}.jar"
+def jarSuffixLength = jarSuffix.length()
+
+war {
+    dependsOn generateBuildProperties
+
+    from ({ zipTree(file(configurations.compile.find { it.name.startsWith('cms-tool-ui') })) }) { into('cms') }
+    from(generateBuildProperties.outputFile) { into 'WEB-INF/classes' }
+
+    rootSpec.rename({
+        it.endsWith(jarSuffix) ? "${it.substring(0, it.length() - jarSuffixLength)}.jar" : it
+    })
+}
+
+task docker(type: Exec) {
+    dependsOn war
+
+    workingDir = rootDir
+    executable = 'docker-compose'
+    args = ['restart', 'tomcat']
+}
+
+afterEvaluate {
+    def previous
+    subprojects.each {
+
+        def yarnBuilds = it.getTasksByName("yarnBuild", false)
+
+        if (yarnBuilds) {
+            def yarnBuild
+            yarnBuilds.each { yarnBuild = it }
+            if (previous) {
+                def previousyarnBuilds = previous.getTasksByName("yarnBuild", false)
+                if (previousyarnBuilds) {
+                    def previousyarnBuild
+                    previousyarnBuilds.each { previousyarnBuild = it }
+                    previousyarnBuild.dependsOn yarnBuild
+                }
+
+            }
+            previous = it
+        }
+    }
+}

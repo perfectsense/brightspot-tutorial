@@ -1,0 +1,53 @@
+version: '3.0'
+services:
+  mysql:
+    image: brightspot/mysql:percona5
+    volumes:
+      - mysql-data:/var/lib/mysql
+  solr:
+    image: brightspot/solr:8.6.1
+    ports:
+      - 8180:8180
+    volumes:
+      - solr-data:/opt/solr/server/solr/mycores/collection1/data
+  tomcat:
+    image: brightspot/tomcat:8-jdk8
+    ports:
+      - 5005:5005
+    volumes:
+      - storage:/servers/tomcat/storage
+      - ~/.aws/credentials:/etc/aws/credentials
+      - .:${PROJECT_DIRECTORY}:cached
+      #- ${BRIGHTSPOT_DIRECTORY}:${BRIGHTSPOT_DIRECTORY}:cached
+    environment:
+      - AWS_PROFILE=
+      - BRIGHTSPOT_PROJECT_DIRECTORY=${PROJECT_DIRECTORY}
+      - CONTEXT_PROPERTIES=${PROJECT_DIRECTORY}/docker/${PROJECT_ENVIRONMENT}-context.properties
+      - MYSQL_DATABASE=brightspot
+      - ROOT_WAR=${PROJECT_DIRECTORY}/build/libs/company-1.0.0-SNAPSHOT.war
+      - SOLR_URL=http://solr:8080/solr/collection1
+    depends_on:
+      - mysql
+      - solr
+  apache:
+    image: brightspot/apache:2-dims3
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - storage:/var/www/localhost/htdocs/storage
+    depends_on:
+      - tomcat
+  greenmail:
+    image: greenmail/standalone:1.5.14
+    ports:
+      - 3025:3025
+      - 3110:3110
+      - 3143:3143
+      - 3465:3465
+      - 3993:3993
+      - 3995:3995
+volumes:
+  mysql-data:
+  solr-data:
+  storage:
