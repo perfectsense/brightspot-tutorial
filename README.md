@@ -1,6 +1,6 @@
-# Brightspot Demo
+# Brightspot Tutorial
 
-This repository serves as the quickest way to get started trying out [Brightspot](https://www.brightspot.com) and unlocking the power given to developers on the platform. It contains an example project called "Company" that depends on the Brightspot libraries and will serve as the baseline for many of the tutorials found on the [documentation site](http://docs.brightspot.com).
+This repository serves as the quickest way to get started trying out [Brightspot](https://www.brightspot.com) and unlocking the power given to developers on the platform. The example project depends on the Brightspot libraries and will serve as the baseline for many of the tutorials found on the [documentation site](http://docs.brightspot.com).
 
 ## Quick Start
 
@@ -78,11 +78,11 @@ docker/stop
 
 #### Project Structure
 
-All backend Java code should be placed in the `core/src/main/java` directory. You will find a package already created named `com.company` with a `package-info.java` file to verify you are in the right place.
+All backend Java code should be placed in the `src/main/java` directory. You will find a package already created named `com.brightspot` with a `package-info.java` file to verify you are in the right place.
 
 #### Settings
 
-If you want to experiment with different settings you can edit the config file located at `docker/demo-context.properties`. You'll need to restart the containers for your changes to take effect.
+If you want to experiment with different settings you can edit the config file located at `docker/brightspot-context.properties`. You'll need to restart the containers for your changes to take effect.
 
 ### Docker Tips
 

@@ -6,12 +6,16 @@ plugins {
     id 'war'
 }
 
-description = 'Company'
+description = 'Brightspot'
 
+// TODO: Set Brightspot version here...
 def brightspotVersion = '4.2-SNAPSHOT'
-def rootDir = rootProject.projectDir
 
-group = 'com.company'
+def rootDir = rootProject.projectDir
+def solrjVersion = '8.6.1'
+def runtimeJavadocVersion = '0.12.0'
+
+group = 'com.brightspot'
 version = '1.0.0-SNAPSHOT'
 defaultTasks 'build'
 
@@ -24,20 +28,19 @@ dependencies {
     implementation enforcedPlatform("com.psddev:brightspot-dependencies:$brightspotVersion")
 
     constraints {
-        annotationProcessor 'com.github.therapi:therapi-runtime-javadoc-scribe:0.12.0'
-        api('org.apache.solr:solr-solrj:8.6.1') {
+        annotationProcessor "com.github.therapi:therapi-runtime-javadoc-scribe:$runtimeJavadocVersion"
+        api("org.apache.solr:solr-solrj:$solrjVersion") {
             force = true
         }
     }
 
-    api 'com.psddev:dari-solr-v6'
     api 'com.psddev:analytics'
     api 'com.psddev:cms-db'
     api 'com.psddev:cms-hunspell'
     api 'com.psddev:conversation'
-    api 'com.psddev:dari-aws'
     api 'com.psddev:dari-db'
     api 'com.psddev:dari-mysql'
+    api 'com.psddev:dari-solr-v6'
     api 'com.psddev:dari-util'
     api 'com.psddev:graphql'
     api 'com.psddev:handlebars'
@@ -45,6 +48,9 @@ dependencies {
     api 'com.psddev:timeseries'
     api 'com.psddev:timeseries-mysql'
     api 'com.psddev:watch'
+
+    // TODO: Add additional Brightspot dependencies here...
+
     api 'org.slf4j:slf4j-api'
     api 'org.slf4j:slf4j-jdk14'
 
@@ -89,14 +95,6 @@ sourceSets {
 
 configurations {
     enhanceClassesRuntime
-}
-
-publishing {
-    publications {
-        maven(MavenPublication) {
-            from(components.java)
-        }
-    }
 }
 
 tasks.withType(JavaCompile) {
@@ -189,14 +187,6 @@ gradle.taskGraph.whenReady {
     }
 }
 
-task yarnInstall(type: YarnTask) {
-    inputs.file { "${node.nodeModulesDir}/package.json" }
-    inputs.file { "${node.nodeModulesDir}/yarn.lock" }
-    outputs.files { fileTree("${node.nodeModulesDir}/node_modules").include('*') }
-
-    args = ['--mutex', 'network']
-}
-
 def jarSuffix = "-${project.version}.jar"
 def jarSuffixLength = jarSuffix.length()
 
@@ -226,14 +216,14 @@ afterEvaluate {
         def yarnBuilds = it.getTasksByName("yarnBuild", false)
 
         if (yarnBuilds) {
-            def yarnBuild
+            def yarnBuild = null
             yarnBuilds.each { yarnBuild = it }
             if (previous) {
-                def previousyarnBuilds = previous.getTasksByName("yarnBuild", false)
-                if (previousyarnBuilds) {
-                    def previousyarnBuild
-                    previousyarnBuilds.each { previousyarnBuild = it }
-                    previousyarnBuild.dependsOn yarnBuild
+                def previousYarnBuilds = previous.getTasksByName("yarnBuild", false)
+                if (previousYarnBuilds) {
+                    def previousYarnBuild = null
+                    previousYarnBuilds.each { previousYarnBuild = it }
+                    previousYarnBuild.dependsOn yarnBuild
                 }
 
             }
