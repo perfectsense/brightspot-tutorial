@@ -104,8 +104,8 @@ docker/logs <optional services>
 
 Valid services are:
 
-- `mysql` - MySQL Percona database
-- `solr` - Apache Solr database
-- `tomcat` - Apache Tomcat web server
-- `apache` - Apache web server + DIMS
-- `greenmail` - Email server
+- `mysql` - [MySQL](https://www.mysql.com/) database [Percona distribution](https://www.percona.com/software/mysql-database)
+- `solr` - [Apache Solr](https://lucene.apache.org/solr/) database
+- `tomcat` - [Apache Tomcat](http://tomcat.apache.org/) web server
+- `apache` - [Apache](https://httpd.apache.org/) web server + [DIMS](https://github.com/beetlebugorg/mod_dims/wiki) web service
+- `greenmail` - [Greenmail](https://greenmail-mail-test.github.io/greenmail/) email server
