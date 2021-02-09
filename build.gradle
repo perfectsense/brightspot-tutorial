@@ -39,7 +39,7 @@ dependencies {
     providedCompile 'javax.servlet:javax.servlet-api:3.1.0'
     providedCompile 'javax.servlet.jsp:javax.servlet.jsp-api:2.3.3'
 
-    api 'com.psddev:analytics'
+    api 'com.psddev:analytics-ui'
     api 'com.psddev:cms-db'
     api 'com.psddev:cms-hunspell'
     api 'com.psddev:conversation'
@@ -49,7 +49,6 @@ dependencies {
     api 'com.psddev:dari-util'
     api 'com.psddev:graphql'
     api 'com.psddev:handlebars'
-    api 'com.psddev:segmentation'
     api 'com.psddev:theme'
     api 'com.psddev:timeseries'
     api 'com.psddev:timeseries-mysql'
