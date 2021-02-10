@@ -39,7 +39,7 @@ dependencies {
     providedCompile 'javax.servlet:javax.servlet-api:3.1.0'
     providedCompile 'javax.servlet.jsp:javax.servlet.jsp-api:2.3.3'
 
-    api 'com.psddev:analytics-ui'
+    api 'com.psddev:analytics'
     api 'com.psddev:cms-db'
     api 'com.psddev:cms-hunspell'
     api 'com.psddev:conversation'
@@ -60,9 +60,14 @@ dependencies {
 configurations.testImplementation.setCanBeResolved(true)
 configurations.implementation.setCanBeResolved(true)
 
-java {
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
+compileJava {
+    if (JavaVersion.current().isJava9Compatible()) {
+        options.release = 8
+
+    } else {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
 }
 
 sourceCompatibility = '1.8'
