@@ -196,11 +196,3 @@ war {
         it.endsWith(jarSuffix) ? "${it.substring(0, it.length() - jarSuffixLength)}.jar" : it
     })
 }
-
-task docker(type: Exec) {
-    dependsOn war
-
-    workingDir = rootDir
-    executable = 'docker-compose'
-    args = ['restart', 'tomcat']
-}
