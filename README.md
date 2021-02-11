@@ -80,11 +80,11 @@ From there you can resume your development and deployment workflow as described 
 
 #### Project Structure
 
-All backend Java code should be placed in the `src/main/java` directory. You will find a package already created named `com.brightspot` with a `package-info.java` file to verify you are in the right place.
+All backend Java code should be placed in the `src/main/java` directory. You will find a package already created named `com.brightspot.tutorial` with a `package-info.java` file to verify you are in the right place.
 
 #### Settings
 
-If you want to experiment with different settings you can edit the config file located at `docker/brightspot-context.properties`. You'll need to restart the containers for your changes to take effect.
+If you want to experiment with different settings you can edit the config file located at `docker-context.properties`. You'll need to restart the containers for your changes to take effect.
 
 ### Docker Tips
 
@@ -109,7 +109,7 @@ docker/down
 
 `logs` displays last 1000 lines of logs and follows them from all or named containers. You can `Control-C` to stop following.
 
-`ssh` logs you into the container of the specified service
+`ssh` drops you into an interactive shell inside the named container.
 
 `down` destroys the containers along with their data. 
 

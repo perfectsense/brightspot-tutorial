@@ -21,7 +21,7 @@ services:
       - BRIGHTSPOT_PROJECT_DIRECTORY=${PROJECT_DIRECTORY}
       - CONTEXT_PROPERTIES=${PROJECT_DIRECTORY}/docker-context.properties
       - MYSQL_DATABASE=brightspot
-      - ROOT_WAR=${PROJECT_DIRECTORY}/build/libs/brightspot-1.0.0-SNAPSHOT.war
+      - ROOT_WAR=${PROJECT_DIRECTORY}/build/libs/brightspot-tutorial-1.0.0-SNAPSHOT.war
       - SOLR_URL=http://solr:8080/solr/collection1
     depends_on:
       - mysql
