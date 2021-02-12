@@ -2,6 +2,8 @@
 
 This tutorial will guide you through the steps to create a Brightspot application and React/Typescript application that communicate with each other over a Brightspot powered GraphQL API.
 
+**Before you begin, make sure you have checked out the `feature/graphql-react-typescript` branch of this repository.**
+
 Refer to the README at the root of the project for [running the Brightspot application with Docker](/README.md). Refer to the README in the grapqhl/react-typescript folder for [running the React application with Typescript](/graphql/react-typescript/README.md).
 
 ## Step 1: Launch a Site in Brightspot
@@ -21,7 +23,7 @@ Name your site by filling out the `Name` field with something like "React App". 
 
 Content types in Brightspot are represented by Java classes that extend the class `Content`. The instance variables added to the class represent the fields of your content type.
 
-We'll begin by creating a Content Type called `HelloBrightspot` with a single `name` field.
+We'll begin by creating a Content Type called `HelloBrightspot` with a single `name` field. The Java files should go in the `src/main/java/` directory in the `com/brightspot/tutorial` package.
 
 ```java
 package com.brightspot.tutorial;
@@ -36,9 +38,9 @@ public class HelloBrightspot extends Content {
 
 Refresh your browser window to see the result. Your newly created content type should appear in the "All Content Types" dropdown in the left rail of the Search UI when you click into the Search bar in the header. Selecting `Hello Brightspot` will yield no matching items, but you can create new instances by clicking the `New` button in the bottom left corner. You'll be presented with an edit page containing the single field `name` that we defined.
 
-NOTE: If your content type doesn't appear you can force a reload by appending the parameter `?_reload=true` to your browser address bar and hit Enter to reload the app.
+**NOTE:** If your content type doesn't appear you can force a reload by appending the parameter `?_reload=true` to your browser address bar and hit Enter to reload the app.
 
-Before publishing any instances though, let's spruce up our data model a bit. First, we'll add getters and setters since we'll eventually want to access the data in our field. And then we'll also define permalink generation rules by implementing the `Directory.Item` interface's `String createPermalink(Site)` method and providing logic for deriving a permalink path from the content type's data. The implementation below prepends the String `/hello-` to the normalized (URL safe) name field when it's present.
+Before publishing any instances though, let's spruce up our data model a bit. First, we'll add getters and setters since we'll eventually want to access the data in our field. And then we'll also define permalink generation rules by implementing the `Directory.Item` interface's `String createPermalink(Site)` method to provide logic for deriving a permalink path from the content type's data. The implementation below prepends the String `/hello-` to the normalized (URL safe) name field when it's present.
 
 ```java
 package com.brightspot.tutorial;
@@ -74,7 +76,7 @@ public class HelloBrightspot extends Content implements Directory.Item {
 
 Refresh your browser window, and you should see the Brightspot Reloader screen appear. Give it a few seconds to reload and once back on the edit form, go ahead and fill out a name. You'll notice the URLs widget in the right rail will automatically update to reflect our permalink generation rules. Feel free to publish the content and verify that it appears in search results and the recent activity widget on the dashboard.
 
-### Step 3: Create a View Model
+## Step 3: Create a View Model
 
 Next, we'll create a View Model, which serves two primary functions: 1) Defines the type schema for our GraphQL API, and 2) Contains business logic for transforming our raw content type into a format better suited for downstream consumption.
 
@@ -185,11 +187,11 @@ Congrats! Now let's get to work making Brightspot and React communicate with eac
 
 You can leave the app running for now. In an IDE or new terminal window, from the same `graphql/react-typescript` directory, edit the `codegen.yml` file. Line 2 contains a `schema` field. Enter the full URL to the Brightspot GraphQL endpoint (e.g. `http://localhost/graphql/delivery/hello-brightspot`) between the quotes, then save and close the file.
 
-Next, open and edit `src/index.tsx`. Line 14 contains a HttpLink uri. Enter the same Brightspot GraphQL endpoint URL from the previous step between those quotes, then save and close the file.
+Next, open and edit `src/index.tsx`. Line 14 contains a `HttpLink` uri. Enter the same Brightspot GraphQL endpoint URL from the previous step between those quotes, then save and close the file.
 
 Now, let's build some components!
 
-Create a new directory structure in the `src` folder named `components/HelloBrightspot`. Inside there, create a file named `queries.ts` where we will create a new Apollo client `gql` constant with the query from our GraphQL Explorer UI from the last step. The file should look like this:
+Create a new directory structure in the `graphql/react-typescript/src` folder named `components/HelloBrightspot`. Inside there, create a file named `queries.ts` where we will create a new Apollo client `gql` constant with the query from our GraphQL Explorer UI from the last step. The file should look like this:
 
 ```typescript
 import { gql } from '@apollo/client';
@@ -272,6 +274,6 @@ const previewId = urlParams.get('previewId')
 const VARIABLES = previewId != null ? { id: previewId } : { path: window.location.pathname }
 ```
 
-Back in the Brightspot UI, from the burger menu, navigate to `Admin → Sites & Settings`. Your `React App Site` should be pre-selected. Fom the `Main` Tab look for the `Preview` Cluster down below and expand it. In the `Preview Types` field click `Add GraphQL Preview`. In the new form enter a value in the `Name` field like, "React App", and the `Preview URL` field should be pre-populated with `http://localhost:3000` which points to our React app. Finally, in the `Default Preview Type` field, select `React App` from the dropdown. Save your changes and go back to the dashboard.
+Back in the Brightspot UI, from the burger menu, navigate to `Admin → Sites & Settings`. Your `React App` Site should be pre-selected. Fom the `Main` Tab look for the `Preview` Cluster down below and expand it. In the `Preview Types` field click `Add GraphQL Preview`. In the new form enter a value in the `Name` field like, "React App", and the `Preview URL` field should be pre-populated with `http://localhost:3000` which points to our React app. Finally, in the `Default Preview Type` field, select `React App` from the dropdown. Save your changes and go back to the dashboard.
 
 Now, create a new `Hello Brightspot` content type using the Quick Start widget on the dashboard. The Preview pane should automatically be open and render a live preview of our application. As you type in the `Name` field, the Preview should reflect the changes in real-time! 🎊 🎉 🎊 🎉
