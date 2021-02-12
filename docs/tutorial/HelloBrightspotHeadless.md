@@ -32,7 +32,7 @@ We'll begin by creating a Content Type called `HelloBrightspot` with a single `n
 ```java
 package com.brightspot.tutorial;
 
-import com.psddev.cms.db.*;
+import com.psddev.cms.db.Content;
 
 public class HelloBrightspot extends Content {
 
@@ -53,11 +53,13 @@ Before publishing any instances though, let's spruce up our data model a bit. Fi
 ```java
 package com.brightspot.tutorial;
 
-import java.util.*;
+import java.util.Optional;
 
-import com.psddev.cms.db.*;
-import com.psddev.dari.util.*;
-import org.apache.commons.lang3.*;
+import com.psddev.cms.db.Content;
+import com.psddev.cms.db.Directory;
+import com.psddev.cms.db.Site;
+import com.psddev.dari.util.Utils;
+import org.apache.commons.lang3.StringUtils;
 
 public class HelloBrightspot extends Content implements Directory.Item {
 
@@ -97,9 +99,11 @@ Create a new class named `HelloBrightspotViewModel` as shown below with a single
 ```java
 package com.brightspot.tutorial;
 
-import java.util.*;
+import java.util.Optional;
 
-import com.psddev.cms.view.*;
+import com.psddev.cms.view.PageEntryView;
+import com.psddev.cms.view.ViewInterface;
+import com.psddev.cms.view.ViewModel;
 
 /**
  * A warm Brightspot welcome.
@@ -130,12 +134,16 @@ Create a new class called `HelloBrightspotApi`. We extend `ContentDeliveryApiEnd
 ```java
 package com.brightspot.tutorial;
 
-import java.util.*;
-import java.util.stream.*;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
-import com.psddev.dari.db.*;
-import com.psddev.graphql.*;
-import com.psddev.graphql.cda.*;
+import com.psddev.dari.db.Singleton;
+import com.psddev.graphql.GraphQLCorsConfiguration;
+import com.psddev.graphql.cda.ContentDeliveryApiAccessOption;
+import com.psddev.graphql.cda.ContentDeliveryApiAccessOptionImplicit;
+import com.psddev.graphql.cda.ContentDeliveryApiEndpoint;
+import com.psddev.graphql.cda.ContentDeliveryEntryPointField;
 
 public class HelloBrightspotApi extends ContentDeliveryApiEndpoint implements Singleton {
 
