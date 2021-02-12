@@ -308,4 +308,7 @@ Back in the Brightspot UI, from the burger menu, navigate to `Admin → Sites & 
 
 Now, create a new `Hello Brightspot` content type using the Quick Start widget on the dashboard. The Preview pane should automatically be open and render a live preview of our application. As you type in the `Name` field, the Preview should reflect the changes in real-time! 🎊 🎉 🎊 🎉
 
-![step06a](https://user-images.githubusercontent.com/361297/107783704-8ef51080-6d18-11eb-8fb5-0b3c38f86506.png)
+
+| Enable GraphQL Preview | Live Preview In Action |
+| --- | --- |
+| ![step06a](https://user-images.githubusercontent.com/361297/107816835-54ed3400-6d43-11eb-942e-84391734c0db.png) | ![step06b](https://user-images.githubusercontent.com/361297/107783704-8ef51080-6d18-11eb-8fb5-0b3c38f86506.png) |
