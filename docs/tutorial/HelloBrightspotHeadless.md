@@ -2,7 +2,7 @@
 
 This tutorial will guide you through the steps to create a Brightspot application and React/Typescript application that communicate with each other over a Brightspot powered GraphQL API.
 
-Refer to the README at the root of the project for [running the Brightspot application with Docker](README.md). Refer to the README in the grapqhl/react-typescript folder for [running the React application with Typescript](graphql/react-typescript/README.md).
+Refer to the README at the root of the project for [running the Brightspot application with Docker](/README.md). Refer to the README in the grapqhl/react-typescript folder for [running the React application with Typescript](/graphql/react-typescript/README.md).
 
 ## Step 1: Launch a Site in Brightspot
 
@@ -177,7 +177,7 @@ If that worked, you are ready to configure and run your React application.
 
 ## Step 5: Configure and Run the React App
 
-The React/Typescript app, found inside of the `graphql/typescript` directory, was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), and then further modified to add [GraphQL tooling](https://codeburst.io/tooling-your-typescript-create-react-app-to-work-with-graphql-d845e035d44e). We will use [yarn](https://yarnpkg.com/lang/en/) for managing the app. You can read more info on how to interact with the available scripts at the [README here](graphql/react-typescript/README.md).
+The React/Typescript app, found inside of the `graphql/typescript` directory, was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), and then further modified to add [GraphQL tooling](https://codeburst.io/tooling-your-typescript-create-react-app-to-work-with-graphql-d845e035d44e). We will use [yarn](https://yarnpkg.com/lang/en/) for managing the app. You can read more info on how to interact with the available scripts at the [README here](/graphql/react-typescript/README.md).
 
 Open a terminal and navigate to the `graphql/typescript` directory of the project. We'll start off by downloading and installing all the necessary dependencies to run the application by running the `yarn` command (no arguments necessary). Next, let's start the application with `yarn start`. Upon successful start up, your default browser should open to `http://localhost:3000` and you'll see the React logo.
 
