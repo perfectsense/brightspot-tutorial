@@ -19,6 +19,10 @@ Log in to the CMS using any credentials that you'd like. From the burger menu in
 
 Name your site by filling out the `Name` field with something like "React App". A little further down you'll see the `Urls` field. Configure it to point to the URL of our React application which will run at `http://localhost:3000`. Add a second URL that points to the Brightspot application at `http://localhost`. The first URL allows Brightspot to link off to the React application when appropriate while also accepting traffic from the second URL and associating it with our Site. Click `Save` to create the Site and then return to the dashboard.
 
+| Login | Dashboard | Create Site | Save Site |
+| --- | --- | --- | --- |
+| ![step01a](https://user-images.githubusercontent.com/361297/107783682-8d2b4d00-6d18-11eb-8fce-d094e18664e2.png) | ![step01b](https://user-images.githubusercontent.com/361297/107783683-8d2b4d00-6d18-11eb-8af7-d1f832ff03f5.png) | ![step01c](https://user-images.githubusercontent.com/361297/107783684-8d2b4d00-6d18-11eb-9cc1-fe262ef9d5ba.png) | ![step01d](https://user-images.githubusercontent.com/361297/107783686-8d2b4d00-6d18-11eb-8fa8-b6376277ba7d.png) |
+
 ## Step 2: Create a Content Type
 
 Content types in Brightspot are represented by Java classes that extend the class `Content`. The instance variables added to the class represent the fields of your content type.
@@ -39,6 +43,10 @@ public class HelloBrightspot extends Content {
 Refresh your browser window to see the result. Your newly created content type should appear in the "All Content Types" dropdown in the left rail of the Search UI when you click into the Search bar in the header. Selecting `Hello Brightspot` will yield no matching items, but you can create new instances by clicking the `New` button in the bottom left corner. You'll be presented with an edit page containing the single field `name` that we defined.
 
 **NOTE:** If your content type doesn't appear you can force a reload by appending the parameter `?_reload=true` to your browser address bar and hit Enter to reload the app.
+
+| Search | New Content |
+| --- | --- |
+| ![step02a](https://user-images.githubusercontent.com/361297/107783687-8dc3e380-6d18-11eb-97a7-2c6ae5a5f414.png) | ![step02b](https://user-images.githubusercontent.com/361297/107783689-8dc3e380-6d18-11eb-808e-2cc724b61924.png) |
 
 Before publishing any instances though, let's spruce up our data model a bit. First, we'll add getters and setters since we'll eventually want to access the data in our field. And then we'll also define permalink generation rules by implementing the `Directory.Item` interface's `String createPermalink(Site)` method to provide logic for deriving a permalink path from the content type's data. The implementation below prepends the String `/hello-` to the normalized (URL safe) name field when it's present.
 
@@ -76,6 +84,10 @@ public class HelloBrightspot extends Content implements Directory.Item {
 
 Refresh your browser window, and you should see the Brightspot Reloader screen appear. Give it a few seconds to reload and once back on the edit form, go ahead and fill out a name. You'll notice the URLs widget in the right rail will automatically update to reflect our permalink generation rules. Feel free to publish the content and verify that it appears in search results and the recent activity widget on the dashboard.
 
+| Dashboard Quick Start | Create Content | Publish Content | Search Content
+| --- | --- | --- | --- 
+| ![step02c](https://user-images.githubusercontent.com/361297/107783691-8dc3e380-6d18-11eb-8b2b-e366f5098582.png) | ![step02d](https://user-images.githubusercontent.com/361297/107783693-8dc3e380-6d18-11eb-82fe-fc5f584cdb40.png) | ![step02e](https://user-images.githubusercontent.com/361297/107783694-8dc3e380-6d18-11eb-933b-2c0de29c70ce.png) | ![step02f](https://user-images.githubusercontent.com/361297/107783695-8e5c7a00-6d18-11eb-8ab2-34c57a3b988c.png) ||
+
 ## Step 3: Create a View Model
 
 Next, we'll create a View Model, which serves two primary functions: 1) Defines the type schema for our GraphQL API, and 2) Contains business logic for transforming our raw content type into a format better suited for downstream consumption.
@@ -106,6 +118,8 @@ public class HelloBrightspotViewModel extends ViewModel<HelloBrightspot> impleme
 ```
 
 You can verify the creation of your `ViewModel` by navigating to `http://localhost/_debug/` and clicking the `View Interface: Schema Viewer` link under the `Standard Tools` heading. Clicking into the Select box should yield a single result of `HelloBrightspotViewModel`. Select it, and click the "View" button to reveal our `ViewModel` as having a single text field named `message`.
+
+<img src="https://user-images.githubusercontent.com/361297/107783697-8e5c7a00-6d18-11eb-96c9-31b032b4347a.png" height="400" alt="step03a">
 
 ## Step 4: Define a GraphQL API Endpoint
 
@@ -176,6 +190,10 @@ In the `Query Variables` input form right below add a JSON structure with `path`
 ```
 
 If that worked, you are ready to configure and run your React application.
+
+| API Endpoint | GraphQL Explorer |
+| --- | --- |
+| ![step04a](https://user-images.githubusercontent.com/361297/107783700-8e5c7a00-6d18-11eb-96c9-b527c17c6fc2.png) | ![step04b](https://user-images.githubusercontent.com/361297/107783701-8e5c7a00-6d18-11eb-9c2e-d9d28a5a04dd.png) |
 
 ## Step 5: Configure and Run the React App
 
@@ -262,6 +280,10 @@ export default App;
 
 Put it all together now by going back to Brightspot in your browser and either publish a new or edit an existing `Hello Brightspot` content type. The URLs widget will display the permalink path, and when clicked, will take you to your React application and display the results! Success! Congrats! 🎉
 
+| Create React App | React App Powered by Brightspot GraphQL API |
+| --- | --- |
+| ![step05a](https://user-images.githubusercontent.com/361297/107783702-8e5c7a00-6d18-11eb-80d7-231c7691824e.png) | ![step05b](https://user-images.githubusercontent.com/361297/107783703-8ef51080-6d18-11eb-8c02-7a2fac13bfc0.png) |
+
 ## Step 6 (Extra Credit): Enable Live Preview
 
 With just a little more code in our React app, and some configuration on the Brightspot side we can enable a live preview of our app from inside of Brightspot!
@@ -277,3 +299,5 @@ const VARIABLES = previewId != null ? { id: previewId } : { path: window.locatio
 Back in the Brightspot UI, from the burger menu, navigate to `Admin → Sites & Settings`. Your `React App` Site should be pre-selected. Fom the `Main` Tab look for the `Preview` Cluster down below and expand it. In the `Preview Types` field click `Add GraphQL Preview`. In the new form enter a value in the `Name` field like, "React App", and the `Preview URL` field should be pre-populated with `http://localhost:3000` which points to our React app. Finally, in the `Default Preview Type` field, select `React App` from the dropdown. Save your changes and go back to the dashboard.
 
 Now, create a new `Hello Brightspot` content type using the Quick Start widget on the dashboard. The Preview pane should automatically be open and render a live preview of our application. As you type in the `Name` field, the Preview should reflect the changes in real-time! 🎊 🎉 🎊 🎉
+
+![step06a](https://user-images.githubusercontent.com/361297/107783704-8ef51080-6d18-11eb-8fb5-0b3c38f86506.png)
