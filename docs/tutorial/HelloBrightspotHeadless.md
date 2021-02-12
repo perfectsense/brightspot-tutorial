@@ -123,7 +123,7 @@ public class HelloBrightspotViewModel extends ViewModel<HelloBrightspot> impleme
 
 You can verify the creation of your `ViewModel` by navigating to `http://localhost/_debug/` and clicking the `View Interface: Schema Viewer` link under the `Standard Tools` heading. Clicking into the Select box should yield a single result of `HelloBrightspotViewModel`. Select it, and click the "View" button to reveal our `ViewModel` as having a single text field named `message`.
 
-<img src="https://user-images.githubusercontent.com/361297/107783697-8e5c7a00-6d18-11eb-96c9-31b032b4347a.png" height="400" alt="step03a">
+![step03](https://user-images.githubusercontent.com/361297/107787396-06c53a00-6d1d-11eb-9589-4799e624ebcb.png)
 
 ## Step 4: Define a GraphQL API Endpoint
 
