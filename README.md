@@ -16,10 +16,10 @@ If you chose an installer package, make a note of the installation directory dur
 
 Set the `JAVA_HOME` environment variable to point to the sub-directory `Contents/Home` within your JDK installation directory from the previous step.
 
-For example, on a Mac, you might execute a command like this:
+For example, on a Mac, you could execute a command like this to automatically find the installation directory.
 
 ```
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home
+export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
 ```
 
 Verify the installation was successful by navigating to the root of this repository in a terminal and running the following Gradle command:
