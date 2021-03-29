@@ -4,19 +4,21 @@
 <head>
     <meta charset="UTF-8">
     <title>{{headline}}</title>
+    <link rel="stylesheet" type="text/css" href ="/styleguide/All.min.css" />
 </head>
 
+
 <body>
-    <div>
-        <div>
-            <h1>{{headline}}</h1>
-        </div>
-        <div>
-            {{body}}
-        </div>
-        <div>
-            <img src="{{imageUrl}}" height="300">
-        </div>
+<div class="Article">
+    <div class="Article-headline">
+        <h1>{{headline}}</h1>
+    </div>
+    <div class="Article-body">
+        {{body}}
+    </div>
+    <div class="Article-image">
+        <img src="{{imageUrl}}" height="300">
+    </div>
     <div>
 </body>
 
