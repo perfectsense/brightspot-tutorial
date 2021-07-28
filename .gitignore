@@ -2,5 +2,7 @@
 # to your global config. If you don't have one set up already, you can create
 # it using "git config --global core.excludesfile ~/.gitignore".
 
-build
 .gradle
+build
+node_modules
+theme/*.zip

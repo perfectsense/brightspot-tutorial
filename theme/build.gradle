@@ -1,0 +1,45 @@
+import java.time.Instant
+import java.time.format.DateTimeFormatter
+
+plugins {
+    id 'java-library'
+    id 'com.github.node-gradle.node' version '3.1.0'
+}
+
+description = 'Brightspot Tutorial: Theme'
+
+node {
+    download = true
+    version = '12.18.0'
+    yarnVersion = '1.22.4'
+}
+
+task yarnBuild(type: YarnTask) {
+    dependsOn yarn_install
+    inputs.file '.browserlistrc'
+    inputs.file 'yarn.lock'
+    inputs.files fileTree('.').include('*.js')
+    inputs.files fileTree('.').include('*.json')
+    inputs.files fileTree('.').include('*.ts')
+    inputs.dir 'styleguide'
+    outputs.dir buildDir
+    outputs.cacheIf { true }
+
+    args = ['build']
+}
+
+jar {
+    dependsOn yarnBuild
+
+    from zipTree(file("brightspot-tutorial-theme-1.0.0-SNAPSHOT.zip"))
+    from '.brightspot-theme.properties'
+
+    manifest {
+        attributes(
+            'theme-groupId': project.group,
+            'theme-artifactId': project.name,
+            'theme-version': project.version,
+            'theme-buildTimestamp': DateTimeFormatter.ISO_INSTANT.format(Instant.now())
+        )
+    }
+}

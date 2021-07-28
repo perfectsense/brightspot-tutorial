@@ -1,1 +1,4 @@
 rootProject.name = 'brightspot-tutorial'
+
+include(':theme')
+project(':theme').projectDir = file('theme')
