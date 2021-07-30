@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "lint:js": "eslint \"**/*.js\" \"**/*.ts\" --ignore-pattern \"build/**/*\" --no-error-on-unmatched-pattern",
-    "lint:misc": "prettier \"**/*.hbs\" \"**/*.json\" --check",
+    "lint:misc": "prettier \"**/*.json\" --check",
     "lint": "yarn lint:js && yarn lint:misc",
     "format:js": "yarn lint:js --fix",
     "format:misc": "yarn lint:misc --write",
