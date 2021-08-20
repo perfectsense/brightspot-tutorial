@@ -29,6 +29,8 @@ dependencies {
         }
     }
 
+    compile project(':theme')
+
     implementation 'com.psddev:cms-tool-ui'
     implementation 'org.apache.solr:solr-solrj'
 
@@ -50,6 +52,7 @@ dependencies {
     api 'com.psddev:graphql'
     api 'com.psddev:handlebars'
     api 'com.psddev:theme'
+    api 'com.psddev:styleguide-codegen'
     api 'com.psddev:timeseries'
     api 'com.psddev:timeseries-mysql'
     api 'com.psddev:watch'
@@ -82,7 +85,16 @@ tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
 }
 
+def styleguideBuildDir = "theme/styleguide"
+def viewClassesDir = "$buildDir/generated-sources/styleguide"
+
 sourceSets {
+    main {
+        java {
+            srcDir viewClassesDir
+            srcDir 'src/java'
+        }
+    }
     test {
         compileClasspath += configurations.compileOnly
         runtimeClasspath += configurations.compileOnly
@@ -101,6 +113,26 @@ tasks.withType(JavaCompile) {
 def mainSourceSet = sourceSets.main
 def mainOutput = mainSourceSet.output
 def enhancedClassesDir = "$buildDir/enhanced-classes"
+
+task generateViewClasses(type: JavaExec) {
+    inputs.dir styleguideBuildDir
+    outputs.dir viewClassesDir
+    outputs.cacheIf { true }
+
+    classpath += sourceSets.main.compileClasspath
+    main = 'com.psddev.styleguide.codegen.ViewClassGenerator'
+    args = ["--json-dir=$styleguideBuildDir", "--build-dir=$viewClassesDir"]
+}
+
+task sourceJar(type: Jar, dependsOn: classes) {
+    dependsOn generateViewClasses
+    classifier 'sources'
+    from sourceSets.main.allSource
+}
+
+project.afterEvaluate {
+    compileJava.dependsOn(generateViewClasses)
+}
 
 task prepEnhanceClasses() {
     doFirst {
@@ -158,8 +190,11 @@ task generateBuildProperties(type: WriteProperties) {
 }
 
 jar {
+    dependsOn generateViewClasses
     dependsOn enhanceClasses
     dependsOn generateBuildProperties
+
+    compileJava.source sourceSets.main.java
 
     from enhancedClassesDir
     from generateBuildProperties.outputFile
