@@ -16,6 +16,20 @@ group = 'com.brightspot.tutorial'
 version = '1.0.0-SNAPSHOT'
 defaultTasks 'build'
 
+allprojects {
+    tasks.withType(JavaCompile) {
+        if (JavaVersion.current().isJava9Compatible()) {
+            options.release = 8
+
+        } else {
+            sourceCompatibility = JavaVersion.VERSION_1_8
+            targetCompatibility = JavaVersion.VERSION_1_8
+        }
+    }
+
+    sourceCompatibility = '1.8'
+}
+
 dependencies {
     implementation enforcedPlatform("com.psddev:brightspot-bom:$brightspotVersion")
     implementation enforcedPlatform("com.psddev:brightspot-dependencies:$brightspotVersion")
@@ -65,18 +79,6 @@ dependencies {
 
 configurations.testImplementation.setCanBeResolved(true)
 configurations.implementation.setCanBeResolved(true)
-
-compileJava {
-    if (JavaVersion.current().isJava9Compatible()) {
-        options.release = 8
-
-    } else {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
-    }
-}
-
-sourceCompatibility = '1.8'
 
 repositories {
     mavenLocal()
