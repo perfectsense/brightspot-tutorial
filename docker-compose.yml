@@ -9,7 +9,7 @@ services:
     ports:
       - 8180:8180
     volumes:
-      - solr-data:/opt/solr/server/solr/mycores/collection1/data
+      - solr-data:/var/solr
   tomcat:
     image: brightspot/tomcat:8-jdk8
     ports:
