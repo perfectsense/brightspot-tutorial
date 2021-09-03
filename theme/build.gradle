@@ -10,7 +10,7 @@ description = 'Brightspot Tutorial: Theme'
 
 node {
     download = true
-    version = '12.18.0'
+    version = '16.8.0'
     yarnVersion = '1.22.4'
 }
 
