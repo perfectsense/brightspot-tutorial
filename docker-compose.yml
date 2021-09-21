@@ -1,11 +1,12 @@
 version: '3.0'
 services:
   mysql:
-    image: brightspot/mysql:percona5
+    image: brightspot/mysql:mysql5.6
     volumes:
       - mysql-data:/var/lib/mysql
+      - mysql-logs:/var/log/mysql
   solr:
-    image: brightspot/solr:8.6.1
+    image: brightspot/solr:8
     ports:
       - 8180:8180
     volumes:
@@ -46,5 +47,6 @@ services:
       - 3995:3995
 volumes:
   mysql-data:
+  mysql-logs:
   solr-data:
   storage:
