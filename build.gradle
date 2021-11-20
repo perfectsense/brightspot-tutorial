@@ -6,7 +6,7 @@ plugins {
 description = 'Brightspot Tutorial'
 
 // TODO: Set Brightspot version here...
-def brightspotVersion = '4.2-SNAPSHOT'
+def brightspotVersion = '4.5-SNAPSHOT'
 
 def rootDir = rootProject.projectDir
 def solrjVersion = '8.6.1'
@@ -68,11 +68,9 @@ dependencies {
     api 'com.psddev:graphql'
     api 'com.psddev:handlebars'
     api 'com.psddev:theme'
-    api 'com.psddev:segmentation'
     api 'com.psddev:styleguide-codegen'
     api 'com.psddev:timeseries'
     api 'com.psddev:timeseries-mysql'
-    api 'com.psddev:watch'
 
     // TODO: Add additional Brightspot dependencies here...
 }
