@@ -185,6 +185,7 @@ task generateBuildProperties(type: WriteProperties) {
         'name': { project.description },
         'version': { project.version },
         'release': rootProject.version,
+        'projectId': rootProject.name,
         'projectDirectory': rootDir,
         'javaSourceDirectory': "$mainDir/java",
         'resourceDirectory': "$mainDir/resources",
