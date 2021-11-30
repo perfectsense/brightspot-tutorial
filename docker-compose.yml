@@ -18,8 +18,10 @@ services:
     volumes:
       - storage:/servers/tomcat/storage
       - .:${PROJECT_DIRECTORY}:cached
+      # Override the following line in a git ignored docker-compose.override.yml with your local Brightspot directory.
+      #- <LOCAL BSP DIR>:${BRIGHTSPOT_DIRECTORY}:cached
     environment:
-      - BRIGHTSPOT_PROJECT_DIRECTORY=${PROJECT_DIRECTORY}
+      - BRIGHTSPOT_PROJECT_DIRECTORY=/code
       - CONTEXT_PROPERTIES=${PROJECT_DIRECTORY}/docker-context.properties
       - MYSQL_DATABASE=brightspot
       - ROOT_WAR=${PROJECT_DIRECTORY}/build/libs/brightspot-tutorial-1.0.0-SNAPSHOT.war
