@@ -1,0 +1,8 @@
+query Home {
+    Text(id: "0000017e-744f-d0cd-a5ff-f47ff5100000") {
+      name
+      text
+      statusCode
+      _id
+    }
+  }
