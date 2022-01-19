@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint --fix . && echo 'Lint complete.'",
-    "codegen": "graphql-codegen --require dotenv/config --config codegen.yml && node rest/codegen.mjs"
+    "codegen": "graphql-codegen --require dotenv/config --config codegen.yml"
   },
   "dependencies": {
     "@apollo/react-hooks": "^4.0.0",

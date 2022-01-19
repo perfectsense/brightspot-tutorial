@@ -1,20 +1,9 @@
 import React, { Fragment } from 'react'
-import { useQuery, gql } from '@apollo/client'
 import Head from 'next/head'
-
-const QUERY = gql`
-  query Home {
-    Text(id: "0000017e-744f-d0cd-a5ff-f47ff5100000") {
-      name
-      text
-      statusCode
-      _id
-    }
-  }
-`
+import { useHomeQuery } from '../generated/graphql'
 
 const Home = () => {
-  const { data, loading, error } = useQuery(QUERY)
+  const { data, loading, error } = useHomeQuery({})
 
   if (loading) {
     return <h2>Loading...</h2>

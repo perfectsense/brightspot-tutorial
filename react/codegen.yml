@@ -1,6 +1,6 @@
 overwrite: true
 schema:
-  - ${GRAPHQL_URL}:
+  - "http://localhost/graphql/delivery/content":
       headers:
         X-Client-ID: ${GRAPHQL_CLIENT_ID}
         X-Client-Secret: ${GRAPHQL_CLIENT_SECRET}
