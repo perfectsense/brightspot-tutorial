@@ -1,0 +1,22 @@
+query RTE {
+  Test(id: "0000017e-74ac-d0cd-a5ff-f4bd0b020000") {
+    richText {
+      text
+      marks {
+        start
+        end
+        isBlock
+        selfClosing
+        ... on HtmlMark {
+          name
+          attributes {
+            entries {
+              key
+              value
+            }
+          }
+        }
+      }
+    }
+  }
+}

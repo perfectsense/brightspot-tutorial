@@ -5,6 +5,8 @@ import { getDataFromTree } from '@apollo/client/react/ssr'
 import withApollo from 'next-with-apollo'
 import { ApolloClient } from 'apollo-client'
 import { InMemoryCache } from 'apollo-cache-inmemory'
+import { IntrospectionFragmentMatcher } from 'apollo-cache-inmemory'
+import introspectionQueryResultData from '../generated/fragmentTypes.json'
 import { createHttpLink } from 'apollo-link-http'
 import fetch from 'isomorphic-unfetch'
 import { createPersistedQueryLink } from '@apollo/client/link/persisted-queries'
@@ -27,6 +29,10 @@ class MyApp extends App {
 }
 
 export default withApollo(({ initialState }) => {
+  const fragmentMatcher = new IntrospectionFragmentMatcher({
+    introspectionQueryResultData,
+  })
+
   const linkOptions = {
     fetch, // Switches between unfetch & node-fetch for client & server.
     uri: process.env.GRAPHQL_URL,
@@ -48,7 +54,7 @@ export default withApollo(({ initialState }) => {
   return new ApolloClient({
     defaultOptions,
     link: persistedQueriesLink.concat(createHttpLink(linkOptions)),
-    cache: new InMemoryCache()
+    cache: new InMemoryCache({ fragmentMatcher })
       // rehydrate the cache using the initial data passed from the server:
       .restore(initialState || {}),
   })

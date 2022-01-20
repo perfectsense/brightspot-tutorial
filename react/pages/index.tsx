@@ -1,9 +1,9 @@
 import React, { Fragment } from 'react'
 import Head from 'next/head'
-import { useHomeQuery } from '../generated/graphql'
+import { useRteQuery } from '../generated/graphql'
 
 const Home = () => {
-  const { data, loading, error } = useHomeQuery({})
+  const { data, loading, error } = useRteQuery({})
 
   if (loading) {
     return <h2>Loading...</h2>
@@ -14,6 +14,8 @@ const Home = () => {
     return null
   }
 
+  console.log(data.Test.richText.marks)
+
   return (
     <Fragment>
       <Head>
@@ -21,7 +23,7 @@ const Home = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <h1>Hello Brightspot!</h1>
-      {data.Text.text}
+      {data.Test.richText.text}
     </Fragment>
   )
 }
