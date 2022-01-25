@@ -9,6 +9,8 @@ generates:
   generated/fragmentTypes.json:
     plugins:
       - fragment-matcher
+    config:
+      apolloClientVersion: 2
   generated/graphql.tsx:
     plugins:
       - "typescript"

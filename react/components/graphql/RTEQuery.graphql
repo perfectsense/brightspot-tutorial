@@ -3,10 +3,6 @@ query RTE {
     richText {
       text
       marks {
-        start
-        end
-        isBlock
-        selfClosing
         ... on HtmlMark {
           name
           attributes {
@@ -15,6 +11,23 @@ query RTE {
               value
             }
           }
+          start
+          end
+          isBlock
+          selfClosing
+        }
+        ... on RichTextMark {
+          start
+          end
+          selfClosing
+          richTextElement {
+            ... on ExternalContentRichTextElement {
+              maximumWidth
+              maximumHeight
+              url
+            }
+          }
+          isBlock
         }
       }
     }
