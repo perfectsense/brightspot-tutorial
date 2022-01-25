@@ -14,8 +14,6 @@ const Home = () => {
     return null
   }
 
-  console.log(data.Test.richText.marks)
-
   type MapData = {
     json: string
     entries: [MapEntry]
@@ -81,65 +79,48 @@ const Home = () => {
       },
     ]
 
+    let key = 0
+    let charactersAddedBefore = 0
+
+    const replaceText = (mark, type) => {
+      if (type === 'close') {
+        key = findHtmlMarkEnd(mark)
+      } else {
+        key = findHtmlMarkStart(mark)
+      }
+
+      charactersAddedBefore = 0
+
+      charactersAdded.forEach((character) => {
+        if (type === 'close') {
+          if (character.key < key) {
+            charactersAddedBefore += character.length
+          }
+        } else {
+          if (character.key <= key) {
+            charactersAddedBefore += character.length
+          }
+        }
+      })
+
+      htmlRichText =
+        htmlRichText.slice(0, key + charactersAddedBefore) +
+        transformHtmlMarkToHtml(mark)[type] +
+        htmlRichText.slice(key + charactersAddedBefore)
+
+      charactersAdded.push({
+        key: key,
+        length: transformHtmlMarkToHtml(mark)[type].length,
+      })
+    }
+
     richText.marks.forEach((mark) => {
       if (isHtmlMark(mark)) {
         if (mark.selfClosing) {
-          const key = findHtmlMarkStart(mark)
-          let charactersAddedBefore = 0
-
-          charactersAdded.forEach((character) => {
-            if (character.key <= key) {
-              charactersAddedBefore += character.length
-            }
-          })
-
-          htmlRichText =
-            htmlRichText.slice(0, key + charactersAddedBefore) +
-            transformHtmlMarkToHtml(mark).closed +
-            htmlRichText.slice(key + charactersAddedBefore)
-
-          charactersAdded.push({
-            key: key,
-            length: transformHtmlMarkToHtml(mark).closed.length,
-          })
+          replaceText(mark, 'closed')
         } else {
-          let key = findHtmlMarkStart(mark)
-          let charactersAddedBefore = 0
-
-          charactersAdded.forEach((character) => {
-            if (character.key <= key) {
-              charactersAddedBefore += character.length
-            }
-          })
-
-          htmlRichText =
-            htmlRichText.slice(0, key + charactersAddedBefore) +
-            transformHtmlMarkToHtml(mark).open +
-            htmlRichText.slice(key + charactersAddedBefore)
-
-          charactersAdded.push({
-            key: key,
-            length: transformHtmlMarkToHtml(mark).open.length,
-          })
-
-          key = findHtmlMarkEnd(mark)
-          charactersAddedBefore = 0
-
-          charactersAdded.forEach((character) => {
-            if (character.key < key) {
-              charactersAddedBefore += character.length
-            }
-          })
-
-          htmlRichText =
-            htmlRichText.slice(0, key + charactersAddedBefore) +
-            transformHtmlMarkToHtml(mark).close +
-            htmlRichText.slice(key + charactersAddedBefore)
-
-          charactersAdded.push({
-            key: key,
-            length: transformHtmlMarkToHtml(mark).close.length,
-          })
+          replaceText(mark, 'open')
+          replaceText(mark, 'close')
         }
       }
     })
@@ -159,7 +140,6 @@ const Home = () => {
           __html: transformRichText(data.Test.richText),
         }}
       />
-      {/* {transformRichText(data.Test.richText)} */}
     </Fragment>
   )
 }
