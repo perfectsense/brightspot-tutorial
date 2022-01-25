@@ -1,9 +1,15 @@
 import React, { Fragment } from 'react'
 import Head from 'next/head'
 import { useRteQuery } from '../generated/graphql'
+import { useRouter } from 'next/router'
 
 const Home = () => {
-  const { data, loading, error } = useRteQuery({})
+  const router = useRouter()
+  const searchParams = new URLSearchParams(router.asPath.split(/\?/)[1])
+
+  const { data, loading, error } = useRteQuery({
+    variables: { id: searchParams.get('id') },
+  })
 
   if (loading) {
     return <h2>Loading...</h2>
@@ -63,10 +69,6 @@ const Home = () => {
 
   const findHtmlMarkEnd = (htmlMark: HtmlMark) => {
     return htmlMark.end
-  }
-
-  const isSelfClosing = (htmlMark: HtmlMark) => {
-    return htmlMark.selfClosing
   }
 
   const transformRichText = (richText) => {
@@ -134,10 +136,13 @@ const Home = () => {
         <title>Hello Brightspot!</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <h1>Hello Brightspot!</h1>
       <div
         dangerouslySetInnerHTML={{
-          __html: transformRichText(data.Test.richText),
+          __html: data
+            ? data.RteField
+              ? transformRichText(data.RteField.rteField)
+              : 'id from querystring not found'
+            : 'add id in querystring',
         }}
       />
     </Fragment>

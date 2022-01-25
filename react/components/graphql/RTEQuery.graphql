@@ -1,6 +1,6 @@
-query RTE {
-  Test(id: "0000017e-74ac-d0cd-a5ff-f4bd0b020000") {
-    richText {
+query RTE($id: ID) {
+  RteField(id: $id) {
+    rteField {
       text
       marks {
         ... on HtmlMark {
