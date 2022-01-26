@@ -9,5 +9,27 @@
         }
       ]
     }
-  ]
+  ],
+  "imageSizes": {
+    "24x24": {
+      "width": 24,
+      "height": 24,
+      "srcsetDescriptors": ["1x", "2x"]
+    },
+    "80xauto": {
+      "width": 80,
+      "previewHeight": 80,
+      "srcsetDescriptors": ["1x", "2x"]
+    },
+    "96x96": {
+      "width": 96,
+      "height": 96,
+      "srcsetDescriptors": ["1x", "2x"]
+    },
+    "128x128": {
+      "width": 128,
+      "height": 128,
+      "srcsetDescriptors": ["1x", "2x"]
+    }
+  }
 }

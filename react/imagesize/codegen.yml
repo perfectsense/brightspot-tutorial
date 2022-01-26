@@ -1,0 +1,12 @@
+overwrite: true
+schema: http://localhost/graphql/delivery/image-api
+documents: "components/**/*.graphql"
+generates:
+  generated/graphql.tsx:
+    plugins:
+      - "typescript"
+      - "typescript-operations"
+      - "typescript-react-apollo"
+  generated/graphql.schema.json:
+    plugins:
+      - "introspection"
