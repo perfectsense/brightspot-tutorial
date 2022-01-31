@@ -7,5 +7,5 @@ build
 node_modules
 .next/
 theme/*.zip
-.env
+react/**/.env
 bin/**

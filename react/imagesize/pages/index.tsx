@@ -1,12 +1,12 @@
 import React, { Fragment } from 'react'
 import Head from 'next/head'
-import { useImageQueryQuery } from '../generated/graphql'
+import { useImageByIdQuery } from '../generated/graphql'
 
 const Home = () => {
-  const {data, loading, error} = useImageQueryQuery({
+  const {data, loading, error} = useImageByIdQuery({
     variables: { 
-      id: "0000017e-96a7-ddda-af7e-b6ff8cb90000", 
-      size: "96x96"
+      id: "0000017e-b0a8-dcfb-abff-fbfb6e320000",
+      size: "80xauto"
     }
   })
 

@@ -1,4 +1,4 @@
-query ImageQuery($id: ID, $size: String) {
+query ImageById($id: ID, $size: String) {
     Image(id: $id) {
         title
         image(size: $size) {

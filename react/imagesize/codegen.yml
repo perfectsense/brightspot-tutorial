@@ -1,5 +1,9 @@
 overwrite: true
-schema: http://localhost/graphql/delivery/image-api
+schema:
+  - ${GRAPHQL_URL}:
+      headers:
+        X-Client-ID: ${GRAPHQL_CLIENT_ID}
+        X-Client-Secret: ${GRAPHQL_CLIENT_SECRET}
 documents: "components/**/*.graphql"
 generates:
   generated/graphql.tsx:

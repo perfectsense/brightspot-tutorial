@@ -117,16 +117,6 @@ export type ImageSrcSet = {
   src?: Maybe<Scalars['String']>;
 };
 
-export type Mutation = {
-  __typename?: 'Mutation';
-  Image?: Maybe<Image>;
-};
-
-
-export type MutationImageArgs = {
-  id?: Maybe<Scalars['ID']>;
-};
-
 export type PageEntry = Image;
 
 export type Query = {
@@ -139,17 +129,17 @@ export type QueryImageArgs = {
   id?: Maybe<Scalars['ID']>;
 };
 
-export type ImageQueryQueryVariables = Exact<{
+export type ImageByIdQueryVariables = Exact<{
   id?: Maybe<Scalars['ID']>;
   size?: Maybe<Scalars['String']>;
 }>;
 
 
-export type ImageQueryQuery = { __typename?: 'Query', Image?: Maybe<{ __typename?: 'Image', title?: Maybe<string>, image?: Maybe<{ __typename?: 'ImageAttributes', height?: Maybe<number>, width?: Maybe<number>, size?: Maybe<{ __typename?: 'ImageSize', src?: Maybe<string> }> }> }> };
+export type ImageByIdQuery = { __typename?: 'Query', Image?: Maybe<{ __typename?: 'Image', title?: Maybe<string>, image?: Maybe<{ __typename?: 'ImageAttributes', height?: Maybe<number>, width?: Maybe<number>, size?: Maybe<{ __typename?: 'ImageSize', src?: Maybe<string> }> }> }> };
 
 
-export const ImageQueryDocument = gql`
-    query ImageQuery($id: ID, $size: String) {
+export const ImageByIdDocument = gql`
+    query ImageById($id: ID, $size: String) {
   Image(id: $id) {
     title
     image(size: $size) {
@@ -164,30 +154,30 @@ export const ImageQueryDocument = gql`
     `;
 
 /**
- * __useImageQueryQuery__
+ * __useImageByIdQuery__
  *
- * To run a query within a React component, call `useImageQueryQuery` and pass it any options that fit your needs.
- * When your component renders, `useImageQueryQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * To run a query within a React component, call `useImageByIdQuery` and pass it any options that fit your needs.
+ * When your component renders, `useImageByIdQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
  *
  * @example
- * const { data, loading, error } = useImageQueryQuery({
+ * const { data, loading, error } = useImageByIdQuery({
  *   variables: {
  *      id: // value for 'id'
  *      size: // value for 'size'
  *   },
  * });
  */
-export function useImageQueryQuery(baseOptions?: Apollo.QueryHookOptions<ImageQueryQuery, ImageQueryQueryVariables>) {
+export function useImageByIdQuery(baseOptions?: Apollo.QueryHookOptions<ImageByIdQuery, ImageByIdQueryVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<ImageQueryQuery, ImageQueryQueryVariables>(ImageQueryDocument, options);
+        return Apollo.useQuery<ImageByIdQuery, ImageByIdQueryVariables>(ImageByIdDocument, options);
       }
-export function useImageQueryLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<ImageQueryQuery, ImageQueryQueryVariables>) {
+export function useImageByIdLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<ImageByIdQuery, ImageByIdQueryVariables>) {
           const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<ImageQueryQuery, ImageQueryQueryVariables>(ImageQueryDocument, options);
+          return Apollo.useLazyQuery<ImageByIdQuery, ImageByIdQueryVariables>(ImageByIdDocument, options);
         }
-export type ImageQueryQueryHookResult = ReturnType<typeof useImageQueryQuery>;
-export type ImageQueryLazyQueryHookResult = ReturnType<typeof useImageQueryLazyQuery>;
-export type ImageQueryQueryResult = Apollo.QueryResult<ImageQueryQuery, ImageQueryQueryVariables>;
+export type ImageByIdQueryHookResult = ReturnType<typeof useImageByIdQuery>;
+export type ImageByIdLazyQueryHookResult = ReturnType<typeof useImageByIdLazyQuery>;
+export type ImageByIdQueryResult = Apollo.QueryResult<ImageByIdQuery, ImageByIdQueryVariables>;
