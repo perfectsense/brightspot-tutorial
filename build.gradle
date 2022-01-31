@@ -6,7 +6,7 @@ plugins {
 description = 'Brightspot Tutorial'
 
 // TODO: Set Brightspot version here...
-def brightspotVersion = '4.5-SNAPSHOT'
+def brightspotVersion = '4.5.1-rc3'
 
 def rootDir = rootProject.projectDir
 def solrjVersion = '8.6.1'
@@ -59,7 +59,6 @@ dependencies {
     //api 'com.psddev:analytics-reporting'
     //api 'com.psddev:analytics-ui'
     api 'com.psddev:cms-db'
-    api 'com.psddev:cms-hunspell'
     api 'com.psddev:conversation'
     api 'com.psddev:dari-db'
     api 'com.psddev:dari-mysql'
