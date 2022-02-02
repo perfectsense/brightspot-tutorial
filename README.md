@@ -1,6 +1,6 @@
 # Brightspot Tutorial
 
-This repository serves as the quickest way to get started trying out [Brightspot](https://www.brightspot.com) and unlocking the power given to developers on the platform. The example project depends on the Brightspot libraries and will serve as the baseline for many of the tutorials found on the [documentation site](http://docs.brightspot.com).
+This repository serves as the quickest way to get started trying out [Brightspot](https://www.brightspot.com) and unlocking the power given to developers on the platform. The example project depends on the Brightspot libraries and will serve as the baseline for many of the tutorials found on the [Brightspot Docs Site](http://docs.brightspot.com).
 
 ## Quick Start
 
@@ -8,19 +8,9 @@ Clone or download this repository and follow the steps below to get started. You
 
 ### One-Time Setup
 
-#### Install Java 8
+#### Install Java JDK
 
-The quickest way to get Java 8 is to download it from the [AdoptOpenJDK releases page](https://adoptopenjdk.net/releases.html?variant=openjdk8&jvmVariant=hotspot). Find your Operating System and Architecture and be sure to download the **JDK**.
-
-If you chose an installer package, make a note of the installation directory during setup, otherwise unpack the archive file to a location of your choice.
-
-Set the `JAVA_HOME` environment variable to point to the sub-directory `Contents/Home` within your JDK installation directory from the previous step.
-
-For example, on a Mac, you could execute a command like this to automatically find the installation directory.
-
-```
-export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
-```
+You'll need to install Java version 8 or later. We recommend the LTS versions 8, 11, or 17 from the [Azul Zulu](https://www.azul.com/downloads/?package=jdk) or [Adoptium Temurin](https://adoptium.net/releases.html) builds.
 
 Verify the installation was successful by navigating to the root of this repository in a terminal and running the following Gradle command:
 
@@ -34,7 +24,7 @@ Verify the installation was successful by navigating to the root of this reposit
 gradlew -version
 ```
 
-The **JVM** version listed should be of the form `1.8.x`. You will now be able to compile the code. The next step in the installation is to be able to run it!
+The correct **JVM** version should be listed in the output. You will now be able to compile the code. The next step in the installation is to be able to run it!
 
 #### Install Docker
 
@@ -42,27 +32,41 @@ We'll use [Docker](https://www.docker.com) to streamline the server setup needed
 
 ### Run Brightspot
 
-#### Initialize and Start the Containers for the first time
+#### Build the project
 
-To create a runtime environment for Brightspot, boot up Docker containers with the following command:
+Compile the project using Gradle by executing the following command from the root of the project folder:
 
+**Linux/Mac**
 ```shell script
-docker/initialize
+./gradlew
 ```
 
-#### Build and Deploy the Project
+**Windows**
+```shell script
+gradlew
+```
 
-You can build and deploy your code with a single command:
+#### Start the Containers
+
+To create a runtime environment for Brightspot, boot up Docker containers by executing the following command from the root of the project folder.
+
+```shell script
+docker/start
+```
+
+You can now access the Brightspot from your browser at [http://localhost/cms]([http://localhost/cms]) 🎉
+
+### Additional Tips
+
+#### Rebuild and Redeploy
+
+Most changes you make to the code will automatically get picked up by the Dari Reloader when you refresh your browser window eliminating the need to rebuild and redeploy every time. If such a time comes that you do need a fresh build, you can build and deploy the code with a single command:
 
 ```shell script
 docker/deploy
 ```
 
-You can now access the CMS in your browser at `http://localhost/cms`
-
-Most changes you make to the code will automatically get picked up by the Dari Reloader when you refresh your browser window eliminating the need to rebuild and redeploy every time. If such a time comes that you do need a fresh build just re-run the command above.
-
-#### Stop and Start the Containers
+#### Stop, Start and Destroy the Containers
 
 To stop the containers and reclaim system resources, while still preserving your data, run the following command:
 
@@ -77,6 +81,12 @@ docker/start
 ```
 
 From there you can resume your development and deployment workflow as described above.
+
+If you want to delete all the data and remove the containers you can run the follow command:
+
+```shell script
+docker/down
+```
 
 #### Project Structure
 
@@ -101,7 +111,7 @@ docker/ssh <service>
 docker/down
 ```
 
-`initialize` destroys any existing containers along with their data and then creates them new.
+`initialize` destroys any existing containers by the same name along with their data and then creates them new.
 
 `deploy` compiles the Gradle project, deploys the WAR file, restarts the tomcat container and tails the logs.
 
@@ -111,7 +121,7 @@ docker/down
 
 `ssh` drops you into an interactive shell inside the named container.
 
-`down` destroys the containers along with their data. 
+`down` destroys the containers along with their data.
 
 Valid services are:
 
