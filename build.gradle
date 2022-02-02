@@ -8,6 +8,8 @@ description = 'Brightspot Tutorial'
 // TODO: Set Brightspot version here...
 def brightspotVersion = '4.5.1'
 
+def componentLibVersion = '4.5.3'
+
 def rootDir = rootProject.projectDir
 def solrjVersion = '8.6.1'
 def runtimeJavadocVersion = '0.12.0'
@@ -33,6 +35,7 @@ allprojects {
 dependencies {
     implementation enforcedPlatform("com.psddev:brightspot-bom:$brightspotVersion")
     implementation enforcedPlatform("com.psddev:brightspot-dependencies:$brightspotVersion")
+    implementation enforcedPlatform("com.psddev.component-lib:bom:$componentLibVersion")
 
     annotationProcessor 'com.github.therapi:therapi-runtime-javadoc-scribe'
 
@@ -54,6 +57,8 @@ dependencies {
     providedCompile 'javax.el:javax.el-api:3.0.0'
     providedCompile 'javax.servlet:javax.servlet-api:3.1.0'
     providedCompile 'javax.servlet.jsp:javax.servlet.jsp-api:2.3.3'
+
+    api 'com.psddev.component-lib:util-settings-enforcer'
 
     api 'com.psddev:analytics'
     api 'com.psddev:cms-db'
