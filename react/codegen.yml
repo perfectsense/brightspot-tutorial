@@ -6,6 +6,11 @@ schema:
         X-Client-Secret: ${GRAPHQL_CLIENT_SECRET}
 documents: "components/**/*.graphql"
 generates:
+  generated/fragmentTypes.json:
+    plugins:
+      - fragment-matcher
+    config:
+      apolloClientVersion: 2
   generated/graphql.tsx:
     plugins:
       - "typescript"
