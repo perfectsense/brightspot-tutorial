@@ -1,0 +1,21 @@
+overwrite: true
+schema:
+  - ${GRAPHQL_URL}:
+      headers:
+        X-Client-ID: ${GRAPHQL_CLIENT_ID}
+        X-Client-Secret: ${GRAPHQL_CLIENT_SECRET}
+documents: "components/**/*.graphql"
+generates:
+  generated/fragmentTypes.json:
+    plugins:
+      - fragment-matcher
+    config:
+      apolloClientVersion: 2
+  generated/graphql.tsx:
+    plugins:
+      - "typescript"
+      - "typescript-operations"
+      - "typescript-react-apollo"
+  generated/graphql.schema.json:
+    plugins:
+      - "introspection"

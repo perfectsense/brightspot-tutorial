@@ -1,0 +1,13 @@
+import {
+  ${queryTypeName}, ${queryVariablesTypeName}, ${useQueryHookName} as originalQuery
+} from './graphql'
+import * as Apollo from '@apollo/client'
+import { ApolloQueryResult, QueryResult } from '@apollo/react-hooks'
+import { generateUseQuery } from '../rest/query'
+
+const useQuery = generateUseQuery('${restApiPath}', originalQuery)
+export const use${queryTypeName} = (baseOptions?: Apollo.QueryHookOptions<${queryTypeName}, ${queryVariablesTypeName}>):
+  ApolloQueryResult<${queryTypeName}> | QueryResult<${queryTypeName}, ${queryVariablesTypeName}> => {
+
+  return useQuery(baseOptions)
+}

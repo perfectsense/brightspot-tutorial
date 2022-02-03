@@ -1,0 +1,6 @@
+import Handler from '../../rest/handler'
+
+const handler = new Handler('${queryFile}', [${variableNames}])
+export default async (req, res) => {
+  await handler.handle(req, res)
+}
