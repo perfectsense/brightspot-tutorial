@@ -69,6 +69,7 @@ dependencies {
     api 'com.psddev:dari-solr-v6'
     api 'com.psddev:dari-util'
     api 'com.psddev:graphql'
+    api 'com.psddev:graphql-segmentation'
     api 'com.psddev:handlebars'
     api 'com.psddev:js'
     api 'com.psddev:theme'
