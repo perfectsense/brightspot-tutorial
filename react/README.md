@@ -4,8 +4,8 @@ This is an example React application that leverages Next.js for its server side 
 
 ## Prerequisites
 
-- Node 16 or later
-- Yarn 1.22 or later
+- Node v12 or later
+- Yarn
 
 ## Getting Started
 
