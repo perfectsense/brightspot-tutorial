@@ -17,11 +17,7 @@ This is an example React application that leverages Next.js for its server side 
 
 ```yarn dev```
 
-### For production build
-
-```yarn build```
-
-```yarn start```
+Server is accessible at [http://localhost:3000](http://localhost:3000)  🎉
 
 ## Configure GraphQL
 
