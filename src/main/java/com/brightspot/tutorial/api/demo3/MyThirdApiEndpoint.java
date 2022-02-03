@@ -8,11 +8,11 @@ import com.psddev.cms.api.ApiClient;
 import com.psddev.cms.api.ApiClientCredentials;
 import com.psddev.cms.api.ApiRequest;
 import com.psddev.cms.api.JsonApiEndpoint;
-import com.psddev.dari.db.Recordable;
+import com.psddev.dari.db.Recordable.DisplayName;
 import com.psddev.dari.db.Singleton;
 import com.psddev.dari.util.ObjectUtils;
 
-@Recordable.DisplayName("API Example 3")
+@DisplayName("API Demo 3")
 public class MyThirdApiEndpoint extends JsonApiEndpoint implements Singleton {
 
     @Override

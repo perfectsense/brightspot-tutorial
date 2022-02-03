@@ -10,11 +10,11 @@ import com.psddev.cms.api.ApiRequest;
 import com.psddev.cms.api.ApiSiteProvider;
 import com.psddev.cms.api.JsonApiEndpoint;
 import com.psddev.cms.db.Site;
-import com.psddev.dari.db.Recordable;
+import com.psddev.dari.db.Recordable.DisplayName;
 import com.psddev.dari.db.Singleton;
 import com.psddev.dari.util.ObjectUtils;
 
-@Recordable.DisplayName("API Example 4")
+@DisplayName("API Demo 4")
 public class MyFourthApiEndpoint extends JsonApiEndpoint implements Singleton {
 
     @Override

@@ -27,7 +27,6 @@ public class MySeventhApiServlet extends HttpServlet {
         responseMap.put("result", ObjectUtils.build(new LinkedHashMap<>(), result -> {
             result.put("message", mySeventhApi.getMessage());
             result.put("servletPath", request.getServletPath());
-            result.put("pathInfo", request.getPathInfo());
         }));
 
         response.setContentType("application/json");

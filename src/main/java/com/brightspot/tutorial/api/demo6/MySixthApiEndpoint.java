@@ -11,12 +11,12 @@ import com.psddev.cms.api.JsonApiEndpoint;
 import com.psddev.cms.db.Directory;
 import com.psddev.dari.db.ObjectField;
 import com.psddev.dari.db.ObjectIndex;
-import com.psddev.dari.db.Recordable;
+import com.psddev.dari.db.Recordable.DisplayName;
 import com.psddev.dari.db.StringException;
 import com.psddev.dari.util.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 
-@Recordable.DisplayName("API Example 6")
+@DisplayName("API Demo 6")
 public class MySixthApiEndpoint extends JsonApiEndpoint {
 
     private static final String BASE_PATH = "/api-6";

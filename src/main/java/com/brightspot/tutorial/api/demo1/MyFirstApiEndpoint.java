@@ -5,11 +5,11 @@ import java.util.Set;
 
 import com.psddev.cms.api.ApiEndpoint;
 import com.psddev.cms.api.ApiRequest;
-import com.psddev.dari.db.Recordable;
+import com.psddev.dari.db.Recordable.DisplayName;
 import com.psddev.dari.db.Singleton;
 import com.psddev.dari.web.WebResponse;
 
-@Recordable.DisplayName("API Example 1")
+@DisplayName("API Demo 1")
 public class MyFirstApiEndpoint extends ApiEndpoint implements Singleton {
 
     @Override

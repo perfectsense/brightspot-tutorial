@@ -7,7 +7,7 @@ import com.psddev.cms.api.ServletApiEndpoint;
 import com.psddev.dari.db.Recordable.DisplayName;
 import com.psddev.dari.db.Singleton;
 
-@DisplayName("API Example 7")
+@DisplayName("API Demo 7")
 public class MySeventhApiEndpoint extends ServletApiEndpoint<MySeventhApiServlet> implements Singleton {
 
     private String message;
@@ -18,6 +18,6 @@ public class MySeventhApiEndpoint extends ServletApiEndpoint<MySeventhApiServlet
 
     @Override
     public Set<String> getPaths() {
-        return Collections.singleton("/api-7");
+        return Collections.singleton("/api-7/**");
     }
 }
