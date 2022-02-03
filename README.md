@@ -54,7 +54,7 @@ To create a runtime environment for Brightspot, boot up Docker containers by exe
 docker/start
 ```
 
-You can now access the Brightspot from your browser at [http://localhost/cms]([http://localhost/cms]) 🎉
+You can now access the Brightspot from your browser at [http://localhost/cms](http://localhost/cms) 🎉
 
 ### Additional Tips
 
