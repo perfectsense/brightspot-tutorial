@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev -p 3000",
+    "dev": "next dev -p 3006",
     "build": "next build",
-    "start": "next start -p 3000",
+    "start": "next start -p 3006",
     "lint": "eslint --fix . && echo 'Lint complete.'",
     "codegen": "graphql-codegen --require dotenv/config --config codegen.yml && node rest/codegen.mjs"
   },
