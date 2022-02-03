@@ -25,7 +25,7 @@ This is an example React application that leverages Next.js for its server side 
 
 ## Configure GraphQL
 
-The app needs to know how to access Brightspot's GraphQL endpoint for the purpose of build time code generation as well for runtime query execution. The settings need to be configured in a `.env` file. You can copy the provided `example.env.local` file and add your project specific settings to it. You'll need to configure the GraphQL endpoint URL, and optionally a Client ID and Secret if the endpoint is protected.
+The app needs to know how to access Brightspot's GraphQL endpoint for the purpose of build time code generation as well for runtime query execution. The settings need to be configured in a `.env` file. You can copy the provided `example.env.local` file and add your project specific settings to it. You'll need to configure the GraphQL endpoint URL, and optionally a Client ID and Secret if the endpoint is protected. You can see the endpoint URL as well as furnish API keys from Brightspot by going to `Menu --> Admin --> APIs` in the CMS.
 
 Next, you should add all the GraphQL queries you wish to execute to the `components/graphql` folder each in a `.graphql` file, 1 file per query, e.g.
 
