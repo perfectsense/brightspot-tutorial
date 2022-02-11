@@ -1,8 +1,10 @@
 package com.brightspot.tutorial.graphql.demo13;
 
-import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
+import com.brightspot.tutorial.graphql.demo13.article.ArticleViewModel;
 import com.psddev.dari.db.Recordable.DisplayName;
 import com.psddev.dari.db.Singleton;
 import com.psddev.graphql.GraphQLCorsConfiguration;
@@ -22,11 +24,9 @@ public class MyThirteenthGraphQLEndpoint extends ContentDeliveryApiEndpoint impl
 
     @Override
     public List<ContentDeliveryEntryPointField> getQueryEntryFields() {
-        return Collections.singletonList(
-            new ContentDeliveryEntryPointField(
-                Demo13ViewModel.class
-            )
-        );
+        return Stream.of(ArticleViewModel.class, Demo13ViewModel.class)
+            .map(ContentDeliveryEntryPointField::new)
+            .collect(Collectors.toList());
     }
 
     @Override

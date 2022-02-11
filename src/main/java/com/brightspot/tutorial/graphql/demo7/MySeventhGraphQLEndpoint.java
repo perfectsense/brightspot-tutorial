@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import com.brightspot.tutorial.Image;
 import com.psddev.dari.db.Recordable.DisplayName;
 import com.psddev.dari.db.Singleton;
 import com.psddev.graphql.GraphQLCorsConfiguration;
@@ -23,7 +24,7 @@ public class MySeventhGraphQLEndpoint extends ContentManagementApiEndpoint imple
 
     @Override
     public List<ContentManagementEntryPointField> getEntryFields() {
-        return Stream.of(Demo7Image.class)
+        return Stream.of(Image.class)
             .map(clazz -> new ContentManagementEntryPointField(clazz, true))
             .collect(Collectors.toList());
     }

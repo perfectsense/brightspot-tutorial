@@ -62,6 +62,7 @@ dependencies {
 
     api 'com.psddev:analytics'
     api 'com.psddev:cms-db'
+    api 'com.psddev:cms-mark'
     api 'com.psddev:cms-type'
     api 'com.psddev:conversation'
     api 'com.psddev:dari-db'

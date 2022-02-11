@@ -1,0 +1,117 @@
+query Demo13Query {
+  Article(id: "/articles/rich-text-demo") {
+    body {
+      text
+      marks {
+        __typename
+        start
+        end
+        isBlock
+        selfClosing
+        ... on HtmlMark {
+          name
+        }
+        ... on RichTextMark {
+          richTextElement {
+            __typename
+            ... on HeadingRichTextElement {
+              level
+              value {
+                text
+              }
+            }
+            ... on CodeInlineRichTextElement {
+              tagName
+            }
+            ... on DelimiterRichTextElement {
+              style
+            }
+            ... on ExternalContentRichTextElement {
+              title
+              width
+              height
+              type
+              thumbnailUrl
+              thumbnailWidth
+              thumbnailHeight
+              providerUrl
+              html
+            }
+            ... on ImageRichTextElement {
+              fileUrl
+              stretched
+              withBackground
+              withBorder
+              credit
+              alt
+              caption {
+                text
+                marks {
+                  start
+                  end
+                  ... on RichTextMark {
+                    richTextElement {
+                      ... on CodeInlineRichTextElement {
+                        tagName
+                      }
+                      ... on LinkRichTextElement {
+                        contentId
+                        target
+                        url
+                      }
+                    }
+                  }
+                  ... on HtmlMark {
+                    name
+                  }
+                }
+              }
+            }
+            ... on LinkRichTextElement {
+              contentId
+              target
+              url
+            }
+            ... on QuoteRichTextElement {
+              attribution
+              quote
+            }
+            ... on RawHtmlRichTextElement {
+              rawHtml
+              snippetName
+            }
+            ... on CodeBlockRichTextElement {
+              title
+              lines
+              annotations {
+                lineNumber
+                annotation {
+                  text
+                  marks {
+                    start
+                    end
+                    ... on HtmlMark {
+                      name
+                    }
+                    ... on RichTextMark {
+                      richTextElement {
+                        ... on LinkRichTextElement {
+                          url
+                          contentId
+                          target
+                        }
+                        ... on CodeInlineRichTextElement {
+                          tagName
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

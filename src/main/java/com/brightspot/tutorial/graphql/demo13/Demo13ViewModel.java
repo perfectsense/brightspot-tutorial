@@ -6,4 +6,7 @@ import com.psddev.cms.view.ViewModel;
 @ViewInterface
 public class Demo13ViewModel extends ViewModel<MyThirteenthGraphQLEndpoint> {
 
+    public String getHeadline() {
+        return null;
+    }
 }

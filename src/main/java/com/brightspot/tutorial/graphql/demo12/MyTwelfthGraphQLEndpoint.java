@@ -12,7 +12,10 @@ import com.psddev.graphql.cda.ContentDeliveryEntryPointField;
 
 /**
  * CDA - Theme Fields
+ *
+ * @see com.brightspot.tutorial.graphql.demo16.MySixteenthGraphQLEndpoint
  */
+@Deprecated
 @DisplayName("GraphQL Demo 12")
 public class MyTwelfthGraphQLEndpoint extends ContentDeliveryApiEndpoint implements Singleton,
     ContentDeliveryApiThemeable {

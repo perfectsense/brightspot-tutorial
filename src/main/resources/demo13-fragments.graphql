@@ -1,0 +1,147 @@
+query Demo13Query {
+  Article(id: "/articles/rich-text-demo") {
+    id
+    title
+    author
+    path
+    tags
+    body {
+      ...allMarkedText
+    }
+  }
+}
+
+fragment allMarkedText on MarkedText {
+  text
+  marks {
+    __typename
+    start
+    end
+    isBlock
+    selfClosing
+    ... on HtmlMark {
+      name
+    }
+    ... on RichTextMark {
+      richTextElement {
+        __typename
+        ... on HeadingRichTextElement {
+          ...headingRte
+        }
+        ... on CodeInlineRichTextElement {
+          ...codeInlineRte
+        }
+        ... on DelimiterRichTextElement {
+          ...delimiterRte
+        }
+        ... on ExternalContentRichTextElement {
+          ...externalContentRte
+        }
+        ... on ImageRichTextElement {
+          ...imageRte
+        }
+        ... on LinkRichTextElement {
+          ...linkRte
+        }
+        ... on QuoteRichTextElement {
+          ...quoteRte
+        }
+        ... on RawHtmlRichTextElement {
+          ...rawHtmlRte
+        }
+        ... on CodeBlockRichTextElement {
+          ...codeBlockRte
+        }
+      }
+    }
+  }
+}
+
+fragment inlineMarkedText on MarkedText {
+  __typename
+  text
+  marks {
+    start
+    end
+    selfClosing
+    ... on HtmlMark {
+      name
+    }
+    ... on RichTextMark {
+      richTextElement {
+        ... on CodeInlineRichTextElement {
+          ...codeInlineRte
+        }
+        ... on LinkRichTextElement {
+          ...linkRte
+        }
+      }
+    }
+  }
+}
+
+fragment codeBlockRte on CodeBlockRichTextElement {
+  title
+  lines
+  annotations {
+    lineNumber
+    annotation {
+      ...inlineMarkedText
+    }
+  }
+}
+
+fragment codeInlineRte on CodeInlineRichTextElement {
+  tagName
+}
+
+fragment delimiterRte on DelimiterRichTextElement {
+  style
+}
+
+fragment externalContentRte on ExternalContentRichTextElement {
+  title
+  width
+  height
+  type
+  thumbnailUrl
+  thumbnailWidth
+  thumbnailHeight
+  providerUrl
+  html
+}
+
+fragment headingRte on HeadingRichTextElement {
+  level
+  value {
+    text
+  }
+}
+
+fragment imageRte on ImageRichTextElement {
+  fileUrl
+  stretched
+  withBackground
+  withBorder
+  credit
+  alt
+  caption {
+    ...inlineMarkedText
+  }
+}
+
+fragment linkRte on LinkRichTextElement {
+  url
+  contentId
+  target
+}
+
+fragment quoteRte on QuoteRichTextElement {
+  attribution
+  quote
+}
+
+fragment rawHtmlRte on RawHtmlRichTextElement {
+  snippetName
+  rawHtml
+}

@@ -1,0 +1,69 @@
+.rte2-style-com-brightspot-tutorial-graphql-demo13-rte-code-CodeInlineRichTextElement {
+    background-color: #faeff0;
+    color: #b44437;
+    font-family: monospace;
+    padding: 0 4px;
+}
+
+.Enhancement-preview > [data-style-key="com-brightspot-tutorial-graphql-demo13-rte-code-CodeBlockRichTextElement"] > pre {
+    font-family: monospace;
+}
+
+.rte2-style-com-brightspot-tutorial-graphql-demo13-rte-delimiter-DelimiterRichTextElement:before {
+    content: '';
+    display: block;
+    margin-top: 50px;
+}
+
+.rte2-style-com-brightspot-tutorial-graphql-demo13-rte-delimiter-DelimiterRichTextElement:after {
+    content: '';
+    display: block;
+    border: 0;
+    height: 1px;
+    width: 90%;
+    margin-bottom: 50px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+}
+
+.rte2-style-com-brightspot-tutorial-graphql-demo13-rte-delimiter-DelimiterRichTextElement > .Enhancement-label {
+    display: inline-block;
+    text-align: center;
+    width: 90%;
+    visibility: hidden;
+}
+.rte2-style-com-brightspot-tutorial-graphql-demo13-rte-delimiter-DelimiterRichTextElement > .Enhancement-label:before {
+    content: '***';
+    visibility: visible;
+}
+
+/* omitted [label=""] for now. */
+.CIG-small:focus-within .rte2-style-com-brightspot-tutorial-graphql-demo13-rte-heading-HeadingRichTextElement:before,
+.ProseMirror-fullscreen-container .rte2-style-com-brightspot-tutorial-graphql-demo13-rte-HeadingRichTextElement:before {
+    content: attr(data-level-label);
+    margin-right: 5px;
+    opacity: 50%
+}
+
+.rte2-style-com-brightspot-tutorial-graphql-demo13-rte-heading-HeadingRichTextElement[data-level="1"] {
+    font-size: 36px;
+}
+
+.rte2-style-com-brightspot-tutorial-graphql-demo13-rte-heading-HeadingRichTextElement[data-level="2"] {
+    font-size: 30px;
+}
+
+.rte2-style-com-brightspot-tutorial-graphql-demo13-rte-heading-HeadingRichTextElement[data-level="3"] {
+    font-size: 24px;
+}
+
+.rte2-style-com-brightspot-tutorial-graphql-demo13-rte-heading-HeadingRichTextElement[data-level="4"] {
+    font-size: 18px;
+}
+
+.rte2-style-com-brightspot-tutorial-graphql-demo13-rte-heading-HeadingRichTextElement[data-level="5"] {
+    font-size: 14px;
+}
+
+.rte2-style-com-brightspot-tutorial-graphql-demo13-rte-heading-HeadingRichTextElement[data-level="6"] {
+    font-size: 12px;
+}
