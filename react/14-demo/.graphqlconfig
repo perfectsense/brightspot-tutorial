@@ -1,0 +1,4 @@
+{
+  "name": "Brightspot GraphQL Schema",
+  "schemaPath": "generated/graphql.schema.json"
+}

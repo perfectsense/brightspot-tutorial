@@ -1,0 +1,6 @@
+query Demo14ById($id: ID) {
+    Demo14(id: $id) {
+        title
+        description
+    }
+}

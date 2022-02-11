@@ -16,7 +16,7 @@ import com.psddev.dari.db.StringException;
 import com.psddev.dari.util.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 
-@DisplayName("API Demo 6")
+@DisplayName("API Demo 06")
 public class MySixthApiEndpoint extends JsonApiEndpoint {
 
     private static final String BASE_PATH = "/api-6";

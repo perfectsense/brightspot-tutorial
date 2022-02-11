@@ -1,0 +1,11 @@
+query Demo4 {
+    Demo4 {
+        alpha
+        bravo
+        charlie
+        delta
+        foxtrot {
+            value
+        }
+    }
+}

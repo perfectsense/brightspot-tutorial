@@ -1,0 +1,60 @@
+{
+  "themeFields": {
+    "primaryColor": {
+      "type": "color",
+      "cms.ui.placeholder": "#22b8e1",
+      "cms.ui.cluster": "Brand Colors"
+    },
+    "secondaryColor": {
+      "type": "color",
+      "cms.ui.placeholder": "#333333",
+      "cms.ui.cluster": "Brand Colors"
+    },
+    "backgroundColor": {
+      "type": "color",
+      "cms.ui.placeholder": "#ffffff",
+      "cms.ui.cluster": "Brand Colors"
+    },
+    "primaryFont": {
+      "displayName": "Primary Font",
+      "type": "text",
+      "cms.ui.dropDown": true,
+      "cms.ui.placeholder": "Noto Sans",
+      "cms.ui.cluster": "Brand Fonts",
+      "values": [
+        {
+          "label": "Cursive",
+          "value": "cursive"
+        },
+        {
+          "label": "Fantasy",
+          "value": "fantasy"
+        },
+        {
+          "label": "Monospace",
+          "value": "monospace"
+        },
+        {
+          "label": "Sans-Serif",
+          "value": "sans-serif"
+        },
+        {
+          "label": "Merriweather",
+          "value": "Merriweather"
+        },
+        {
+          "label": "Raleway",
+          "value": "Raleway"
+        },
+        {
+          "label": "Roboto Slab",
+          "value": "Roboto Slab"
+        },
+        {
+          "label": "Source Serif Pro",
+          "value": "Source Serif Pro"
+        }
+      ]
+    }
+  }
+}

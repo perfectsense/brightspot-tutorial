@@ -1,13 +1,6 @@
 {
-  "navigation": [
-    {
-      "displayName": "Demo",
-      "pages": [
-        {
-          "displayName": "Foo",
-          "page": "/demo/Foo.json"
-        }
-      ]
-    }
-  ]
+  "themeFields": {},
+  "fields": {},
+  "styles": {},
+  "includes": ["**/*.config.json"]
 }

@@ -11,11 +11,7 @@ export default class Handler {
     this.client = new ApolloClient({
       link: createHttpLink({
           fetch,
-          uri: process.env.GRAPHQL_URL,
-          headers: {
-            'X-Client-ID': process.env.GRAPHQL_CLIENT_ID,
-            'X-Client-Secret': process.env.GRAPHQL_CLIENT_SECRET
-          }
+          uri: process.env.GRAPHQL_URL || process.env.NEXT_PUBLIC_GRAPHQL_URL,
         }
       ),
       cache: new InMemoryCache()

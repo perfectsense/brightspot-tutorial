@@ -18,7 +18,7 @@ import com.psddev.dari.db.Recordable.DisplayName;
 import com.psddev.dari.db.Singleton;
 import com.psddev.dari.util.ObjectUtils;
 
-@DisplayName("API Demo 5")
+@DisplayName("API Demo 05")
 public class MyFifthApiEndpoint extends JsonApiEndpoint implements Singleton {
 
     @Override

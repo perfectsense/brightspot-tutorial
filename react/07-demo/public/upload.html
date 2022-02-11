@@ -1,0 +1,48 @@
+<!DOCTYPE>
+<html lang="en">
+<head>
+    <title>CMA StorageItem Upload Example</title>
+</head>
+<body>
+<input type="file" id="file-selector">
+<script>
+  (() => {
+    const fileSelector = document.getElementById('file-selector');
+    fileSelector.addEventListener('change', (event) => {
+
+      const file = event.target.files[0];
+      const query = 'mutation MyMutation($file: Upload!) { com_brightspot_tutorial_graphql_demo7_Demo7ImageSave(toolUser: "demo", diffs: [{ ' +
+        'com_brightspot_tutorial_graphql_demo7_Demo7ImageDiff: { file: { file: $file } } }] ) { file {  publicUrl metadata { entries { key value } }  } }}'
+      const variables = { file: null }
+      const operations = { query, variables }
+      const map = { 0: ['variables.file'] }
+
+      const formData = new FormData();
+      formData.append('operations', JSON.stringify(operations))
+      formData.append('map', JSON.stringify(map))
+      formData.append('0', file, file.name)
+
+      fetch('http://localhost/graphql/management/demo-7', {
+        method: 'POST',
+        headers: {
+          'x-client-id': '0000017ec112d662a37ec9dfb3320000',
+          'x-client-secret': '4jtYnxiLFQaPU97xCcxHxWNaxWQukEOapAAkEqj'
+        },
+        body: formData,
+      })
+        .then(response => response.json())
+        .then(responseData => {
+          console.log('Success:', responseData);
+          const publicUrl = responseData.data.com_brightspot_tutorial_graphql_demo7_Demo7ImageSave.file.publicUrl
+          document.body.innerHTML = '<div>Upload Successful!</div>' +
+            '<img src="' + publicUrl + '" height="400px">' +
+            '<pre>' + JSON.stringify(responseData, null, 2) + '</pre>'
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        });
+    });
+  })();
+</script>
+</body>
+</html>

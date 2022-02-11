@@ -1,0 +1,15 @@
+query Demo6Search($arguments: [String]) {
+    com_brightspot_tutorial_graphql_demo6_Demo6Query(where: {predicate: "getFullName matches ?", arguments: $arguments}, sorts: {order: ascending, options: "getFullName"}) {
+        pageInfo {
+            count
+        }
+        items {
+            _id
+            _type
+            firstName
+            lastName
+            title
+            getFullName
+        }
+    }
+}

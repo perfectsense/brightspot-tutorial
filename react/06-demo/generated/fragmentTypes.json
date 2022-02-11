@@ -1,6 +1,47 @@
 {
   "__schema": {
     "types": [
+      {
+        "kind": "INTERFACE",
+        "name": "com_psddev_cms_db_Content",
+        "possibleTypes": [
+          {
+            "name": "com_brightspot_tutorial_graphql_demo6_Demo6"
+          }
+        ]
+      },
+      {
+        "kind": "INTERFACE",
+        "name": "com_psddev_cms_db_Revision",
+        "possibleTypes": [
+          {
+            "name": "com_psddev_cms_db_WorkflowLog"
+          }
+        ]
+      },
+      {
+        "kind": "INTERFACE",
+        "name": "com_psddev_dari_db_Record",
+        "possibleTypes": [
+          {
+            "name": "com_brightspot_tutorial_graphql_demo6_Demo6"
+          },
+          {
+            "name": "com_psddev_cms_db_WorkflowLog"
+          },
+          {
+            "name": "com_psddev_dari_db_ColorDistribution"
+          },
+          {
+            "name": "com_psddev_dari_db_Record_Type"
+          }
+        ]
+      },
+      {
+        "kind": "INTERFACE",
+        "name": "com_psddev_dari_db_VisibilityValues",
+        "possibleTypes": []
+      }
     ]
   }
 }

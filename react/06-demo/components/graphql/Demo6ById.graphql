@@ -1,0 +1,12 @@
+query Demo6ById($id: ID) {
+    com_brightspot_tutorial_graphql_demo6_Demo6Query(id: $id) {
+        items {
+            _id
+            _type
+            firstName
+            lastName
+            title
+            getFullName
+        }
+    }
+}

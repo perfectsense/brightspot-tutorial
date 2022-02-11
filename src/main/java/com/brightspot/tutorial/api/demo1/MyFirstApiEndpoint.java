@@ -9,7 +9,7 @@ import com.psddev.dari.db.Recordable.DisplayName;
 import com.psddev.dari.db.Singleton;
 import com.psddev.dari.web.WebResponse;
 
-@DisplayName("API Demo 1")
+@DisplayName("API Demo 01")
 public class MyFirstApiEndpoint extends ApiEndpoint implements Singleton {
 
     @Override

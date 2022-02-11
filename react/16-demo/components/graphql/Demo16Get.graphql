@@ -1,0 +1,35 @@
+query Demo16Get($id: ID, $path: String) {
+    Demo16(id: $id, path: $path) {
+        title
+        description
+        image {
+            publicUrl
+            width
+            height
+            sizes {
+                name
+                src
+                width
+                height
+                srcSets {
+                    src
+                    size
+                }
+                altFormats {
+                    name
+                    src
+                    srcSets {
+                        src
+                        size
+                    }
+                }
+            }
+        }
+        _theme {
+            primaryColor
+            secondaryColor
+            backgroundColor
+            primaryFont
+        }
+    }
+}

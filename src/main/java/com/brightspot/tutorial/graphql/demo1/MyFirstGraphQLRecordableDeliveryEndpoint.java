@@ -9,12 +9,14 @@ import com.psddev.graphql.cda.ContentDeliveryApiEndpoint;
 import com.psddev.graphql.cda.ContentDeliveryEntryPointField;
 import com.psddev.graphql.cda.rda.RecordableDeliveryEntryPointField;
 
-@DisplayName("GraphQL Demo 1")
-public class MyFirstGraphQLEndpoint extends ContentDeliveryApiEndpoint implements Singleton {
+@DisplayName("GraphQL Demo 01 (rCDA)")
+public class MyFirstGraphQLRecordableDeliveryEndpoint
+    extends ContentDeliveryApiEndpoint
+    implements Singleton {
 
     @Override
     protected String getPathSuffix() {
-        return "/demo-1";
+        return "/demo-1r";
     }
 
     @Override

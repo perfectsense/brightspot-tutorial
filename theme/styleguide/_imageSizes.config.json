@@ -1,0 +1,44 @@
+{
+  "imageSizes": {
+    "square-small-100x100": {
+      "width": 100,
+      "height": 100,
+      "displayName": "Small Square",
+      "group": "square",
+      "srcsetDescriptors": ["1x", "2x", "4x"],
+      "alternateFormats": ["webp"]
+    },
+    "square-medium-400x400": {
+      "width": 400,
+      "height": 400,
+      "displayName": "Medium Square",
+      "group": "square",
+      "srcsetDescriptors": ["1x", "2x", "4x"],
+      "alternateFormats": ["webp"]
+    },
+    "square-large-800x800": {
+      "width": 800,
+      "height": 800,
+      "displayName": "Large Square",
+      "group": "square",
+      "srcsetDescriptors": ["1x", "2x", "4x"],
+      "alternateFormats": ["webp"]
+    },
+    "portrait-300x500": {
+      "width": 300,
+      "height": 500,
+      "displayName": "Portrait",
+      "group": "portrait",
+      "srcsetDescriptors": ["1x", "2x", "4x"],
+      "alternateFormats": ["webp"]
+    },
+    "landscape-1600x900": {
+      "width": 1600,
+      "height": 900,
+      "displayName": "Landscape",
+      "group": "landscape",
+      "srcsetDescriptors": ["1x", "2x", "4x"],
+      "alternateFormats": ["webp"]
+    }
+  }
+}

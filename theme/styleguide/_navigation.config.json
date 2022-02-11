@@ -1,0 +1,13 @@
+{
+  "navigation": [
+    {
+      "displayName": "Demo",
+      "pages": [
+        {
+          "displayName": "Foo",
+          "page": "/demo/Foo.json"
+        }
+      ]
+    }
+  ]
+}

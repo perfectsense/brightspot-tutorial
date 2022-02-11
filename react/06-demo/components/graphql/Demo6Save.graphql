@@ -1,0 +1,10 @@
+mutation Demo6Save($id: DiffId, $firstName: String, $lastName: String, $title: String, $toolUser: ToolUser) {
+    com_brightspot_tutorial_graphql_demo6_Demo6Save(id: $id, toolUser: $toolUser, diffs: {com_brightspot_tutorial_graphql_demo6_Demo6Diff: {firstName: $firstName, lastName: $lastName, title: $title}}) {
+        _id
+        _type
+        firstName
+        lastName
+        title
+        getFullName
+    }
+}

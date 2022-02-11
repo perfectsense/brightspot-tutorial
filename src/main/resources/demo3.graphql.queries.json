@@ -1,0 +1,5 @@
+{
+  "example1": "query Demo3($id: ID) {  Demo3(id: $id) {    message    byline    randomNumber    staticPersistedQueries  }}",
+  "example2": "query Demo3($id: ID) {  Demo3(id: $id) {    message    byline    randomNumber  }}",
+  "example3": "query Demo3($id: ID) {  Demo3(id: $id) {    message  }}"
+}

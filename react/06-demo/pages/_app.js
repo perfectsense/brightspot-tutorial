@@ -35,10 +35,10 @@ export default withApollo(({ initialState }) => {
 
   const linkOptions = {
     fetch, // Switches between unfetch & node-fetch for client & server.
-    uri: process.env.GRAPHQL_URL,
+    uri: process.env.GRAPHQL_URL || process.env.NEXT_PUBLIC_GRAPHQL_URL,
   }
 
-  const fetchPolicy = { fetchPolicy: 'cache-only' }
+  const fetchPolicy = { fetchPolicy: 'no-cache' }
 
   const defaultOptions = {}
   if (typeof window === 'undefined') {
@@ -49,6 +49,11 @@ export default withApollo(({ initialState }) => {
   } else {
     defaultOptions.query = fetchPolicy
     defaultOptions.watchQuery = fetchPolicy
+    linkOptions.url = process.env.NEXT_PUBLIC_GRAPHQL_URL
+    linkOptions.headers = {
+      'X-Client-ID': process.env.NEXT_PUBLIC_GRAPHQL_CLIENT_ID,
+      'X-Client-Secret': process.env.NEXT_PUBLIC_GRAPHQL_CLIENT_SECRET,
+    }
   }
 
   return new ApolloClient({
