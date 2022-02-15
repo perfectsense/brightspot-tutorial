@@ -9,6 +9,9 @@ import com.psddev.dari.db.Recordable.DisplayName;
 import com.psddev.dari.db.Singleton;
 import com.psddev.dari.web.WebResponse;
 
+/**
+ * Hello API Framework
+ */
 @DisplayName("API Demo 01")
 public class MyFirstApiEndpoint extends ApiEndpoint implements Singleton {
 

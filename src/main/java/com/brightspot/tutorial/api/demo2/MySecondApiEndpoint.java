@@ -10,6 +10,9 @@ import com.psddev.dari.db.Recordable.DisplayName;
 import com.psddev.dari.db.Singleton;
 import com.psddev.dari.util.ObjectUtils;
 
+/**
+ * JSON API Endpoint
+ */
 @DisplayName("API Demo 02")
 public class MySecondApiEndpoint extends JsonApiEndpoint implements Singleton {
 

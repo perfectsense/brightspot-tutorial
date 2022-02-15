@@ -16,6 +16,9 @@ import com.psddev.dari.db.StringException;
 import com.psddev.dari.util.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 
+/**
+ * Multiple Endpoint Configurations
+ */
 @DisplayName("API Demo 06")
 public class MySixthApiEndpoint extends JsonApiEndpoint {
 

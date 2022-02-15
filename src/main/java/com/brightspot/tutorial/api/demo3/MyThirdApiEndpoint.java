@@ -12,6 +12,9 @@ import com.psddev.dari.db.Recordable.DisplayName;
 import com.psddev.dari.db.Singleton;
 import com.psddev.dari.util.ObjectUtils;
 
+/**
+ * Client Authentication
+ */
 @DisplayName("API Demo 03")
 public class MyThirdApiEndpoint extends JsonApiEndpoint implements Singleton {
 

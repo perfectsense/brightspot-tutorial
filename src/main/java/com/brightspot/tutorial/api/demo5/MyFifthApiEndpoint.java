@@ -18,6 +18,9 @@ import com.psddev.dari.db.Recordable.DisplayName;
 import com.psddev.dari.db.Singleton;
 import com.psddev.dari.util.ObjectUtils;
 
+/**
+ * Custom Permissions
+ */
 @DisplayName("API Demo 05")
 public class MyFifthApiEndpoint extends JsonApiEndpoint implements Singleton {
 

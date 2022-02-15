@@ -14,6 +14,9 @@ import com.psddev.dari.db.Recordable.DisplayName;
 import com.psddev.dari.db.Singleton;
 import com.psddev.dari.util.ObjectUtils;
 
+/**
+ * Sites & Permissions
+ */
 @DisplayName("API Demo 04")
 public class MyFourthApiEndpoint extends JsonApiEndpoint implements Singleton {
 

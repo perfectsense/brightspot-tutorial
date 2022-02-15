@@ -7,6 +7,9 @@ import com.psddev.cms.api.ServletApiEndpoint;
 import com.psddev.dari.db.Recordable.DisplayName;
 import com.psddev.dari.db.Singleton;
 
+/**
+ * Endpoints as HTTP Servlets
+ */
 @DisplayName("API Demo 07")
 public class MySeventhApiEndpoint extends ServletApiEndpoint<MySeventhApiServlet> implements Singleton {
 
