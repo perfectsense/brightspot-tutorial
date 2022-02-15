@@ -8,6 +8,7 @@ import com.psddev.cms.ui.form.DynamicPlaceholderMethod;
 import com.psddev.dari.db.Recordable;
 import com.psddev.dari.util.StorageItem;
 
+@Deprecated
 @ToolUi.Hidden
 @Recordable.PreviewField("file")
 @Recordable.DisplayName("Demo 7 Image")

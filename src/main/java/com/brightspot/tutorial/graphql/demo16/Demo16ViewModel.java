@@ -3,6 +3,7 @@ package com.brightspot.tutorial.graphql.demo16;
 import java.util.Map;
 import java.util.Optional;
 
+import com.brightspot.tutorial.Image;
 import com.psddev.cms.image.ImageSize;
 import com.psddev.cms.view.PageEntryView;
 import com.psddev.cms.view.ViewInterface;
@@ -10,7 +11,6 @@ import com.psddev.cms.view.ViewModel;
 import com.psddev.cms.view.ViewTemplate;
 import com.psddev.styleguide.ImageAttributes;
 
-@ViewTemplate("/com/brightspot/tutorial/graphql/demo16/Demo16.hbs")
 @ViewInterface
 public class Demo16ViewModel extends ViewModel<Demo16> implements PageEntryView {
 
@@ -25,7 +25,7 @@ public class Demo16ViewModel extends ViewModel<Demo16> implements PageEntryView 
     @ImageAttributes
     public Map<String, String> getImage() {
         return Optional.ofNullable(model.getImage())
-            .map(Demo16Image::getFile)
+            .map(Image::getFile)
             .map(ImageSize::getAttributes)
             .orElse(null);
     }

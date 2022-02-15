@@ -7,9 +7,10 @@ import com.psddev.cms.api.ApiPermission;
 import com.psddev.cms.api.ApiRequest;
 import com.psddev.dari.db.Recordable;
 
-@Recordable.DisplayName("IP Whitelist")
+@Recordable.DisplayName("IP Allow List")
 public class IpAddressApiPermission extends ApiPermission {
 
+    @DisplayName("Allowed IP Addresses")
     private Set<String> ipAddresses;
 
     public Set<String> getIpAddresses() {

@@ -3,6 +3,7 @@ package com.brightspot.tutorial.graphql.demo11;
 import java.util.Collections;
 import java.util.List;
 
+import com.psddev.cms.db.ToolUi;
 import com.psddev.dari.db.Recordable.DisplayName;
 import com.psddev.dari.db.Singleton;
 import com.psddev.graphql.GraphQLCorsConfiguration;
@@ -15,6 +16,7 @@ import com.psddev.graphql.cda.ContentDeliveryEntryPointField;
  *
  * @see com.brightspot.tutorial.graphql.demo16.MySixteenthGraphQLEndpoint
  */
+@ToolUi.Hidden
 @Deprecated
 @DisplayName("GraphQL Demo 11")
 public class MyEleventhGraphQLEndpoint extends ContentDeliveryApiEndpoint implements Singleton,

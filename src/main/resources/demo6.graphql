@@ -1,0 +1,36 @@
+query Demo6Query {
+  com_brightspot_tutorial_graphql_demo6_Demo6EmployeeQuery(where: {predicate: "firstName = ?", arguments: "Dan"}) {
+    pageInfo {
+      offset
+      limit
+      hasNext
+      count
+    }
+    items {
+      _id
+      _type
+      firstName
+      lastName
+      getFullName
+      title
+      projects {
+        _id
+        _type
+        projectName
+        employeeRole
+      }
+      _globals {
+        com_psddev_cms_db_Content_ObjectModification {
+          publishDate
+          publishUser {
+            _id
+          }
+          updateDate
+          updateUser {
+            _id
+          }
+        }
+      }
+    }
+  }
+}

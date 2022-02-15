@@ -1,7 +1,9 @@
 package com.brightspot.tutorial.graphql.demo8;
 
 import com.psddev.cms.db.Content;
+import com.psddev.dari.db.Recordable;
 
+@Recordable.DisplayName("Demo 8")
 public class Demo8 extends Content {
 
     private String title;

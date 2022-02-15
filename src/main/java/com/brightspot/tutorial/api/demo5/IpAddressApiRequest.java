@@ -11,9 +11,10 @@ import com.psddev.dari.web.WebRequestExtension;
 public class IpAddressApiRequest extends WebRequestExtension {
 
     private String ipAddress;
+    private boolean ipAddressSet;
 
     public String getIpAddress() {
-        if (ipAddress == null) {
+        if (ipAddress == null && !ipAddressSet) {
             ipAddress = getRemoteAddress(getOriginal());
         }
         return ipAddress;
@@ -21,6 +22,7 @@ public class IpAddressApiRequest extends WebRequestExtension {
 
     public void setIpAddress(String ipAddress) {
         this.ipAddress = ipAddress;
+        this.ipAddressSet = true;
     }
 
     public static String getRemoteAddress(WebRequest request) {

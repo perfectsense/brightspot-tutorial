@@ -1,7 +1,9 @@
 package com.brightspot.tutorial.graphql.demo8;
 
 import com.psddev.dari.db.Record;
+import com.psddev.dari.db.Recordable;
 
+@Recordable.DisplayName("Demo 8 Relation")
 public class Demo8Relation extends Record {
 
     private String field1;

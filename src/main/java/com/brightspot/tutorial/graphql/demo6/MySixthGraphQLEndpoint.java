@@ -23,7 +23,7 @@ public class MySixthGraphQLEndpoint extends ContentManagementApiEndpoint impleme
 
     @Override
     public List<ContentManagementEntryPointField> getEntryFields() {
-        return Stream.of(Demo6.class)
+        return Stream.of(Demo6Employee.class)
             .map(clazz -> new ContentManagementEntryPointField(clazz, true))
             .collect(Collectors.toList());
     }

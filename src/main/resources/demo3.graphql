@@ -1,0 +1,8 @@
+query Demo3($id: ID) {
+  Demo3(id: $id) {
+    message
+    byline
+    randomNumber
+    automaticPersistedQueries
+  }
+}

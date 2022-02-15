@@ -1,5 +1,6 @@
 package com.brightspot.tutorial.graphql.demo16;
 
+import com.brightspot.tutorial.Image;
 import com.psddev.cms.db.Content;
 import com.psddev.cms.db.Directory;
 import com.psddev.cms.db.Site;
@@ -14,7 +15,7 @@ public class Demo16 extends Content implements Directory.Item {
 
     private String description;
 
-    private Demo16Image image;
+    private Image image;
 
     public String getTitle() {
         return title;
@@ -32,11 +33,11 @@ public class Demo16 extends Content implements Directory.Item {
         this.description = description;
     }
 
-    public Demo16Image getImage() {
+    public Image getImage() {
         return image;
     }
 
-    public void setImage(Demo16Image image) {
+    public void setImage(Image image) {
         this.image = image;
     }
 

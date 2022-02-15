@@ -11,8 +11,8 @@
     fileSelector.addEventListener('change', (event) => {
 
       const file = event.target.files[0];
-      const query = 'mutation MyMutation($file: Upload!) { com_brightspot_tutorial_graphql_demo7_Demo7ImageSave(toolUser: "demo", diffs: [{ ' +
-        'com_brightspot_tutorial_graphql_demo7_Demo7ImageDiff: { file: { file: $file } } }] ) { file {  publicUrl metadata { entries { key value } }  } }}'
+      const query = 'mutation MyMutation($file: Upload!) { com_brightspot_tutorial_ImageSave(toolUser: "demo", diffs: [{ ' +
+        'com_brightspot_tutorial_ImageDiff: { file: { file: $file } } }] ) { file {  publicUrl metadata { entries { key value } }  } }}'
       const variables = { file: null }
       const operations = { query, variables }
       const map = { 0: ['variables.file'] }
@@ -33,7 +33,7 @@
         .then(response => response.json())
         .then(responseData => {
           console.log('Success:', responseData);
-          const publicUrl = responseData.data.com_brightspot_tutorial_graphql_demo7_Demo7ImageSave.file.publicUrl
+          const publicUrl = responseData.data.com_brightspot_tutorial_ImageSave.file.publicUrl
           document.body.innerHTML = '<div>Upload Successful!</div>' +
             '<img src="' + publicUrl + '" height="400px">' +
             '<pre>' + JSON.stringify(responseData, null, 2) + '</pre>'

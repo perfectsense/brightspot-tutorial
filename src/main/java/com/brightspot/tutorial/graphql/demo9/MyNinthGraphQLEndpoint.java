@@ -1,5 +1,7 @@
 package com.brightspot.tutorial.graphql.demo9;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import com.psddev.dari.db.Recordable.DisplayName;
@@ -20,6 +22,20 @@ public class MyNinthGraphQLEndpoint extends ContentDeliveryApiEndpoint implement
 
     @Override
     public List<ContentDeliveryEntryPointField> getQueryEntryFields() {
-        return null;
+        return Arrays.asList(
+            new ContentDeliveryEntryPointField(
+                Demo9SearchResultViewModel.class,
+                "demoNineSearch",
+                null),
+            new ContentDeliveryEntryPointField(
+                Demo9ViewModel.class));
+    }
+
+    @Override
+    public List<ContentDeliveryEntryPointField> getMutationEntryFields() {
+        return Collections.singletonList(new ContentDeliveryEntryPointField(
+            Demo9UpdateViewModel.class,
+            "demoNineSave",
+            null));
     }
 }

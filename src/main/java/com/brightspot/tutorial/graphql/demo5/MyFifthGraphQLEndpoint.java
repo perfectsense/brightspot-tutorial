@@ -23,7 +23,7 @@ public class MyFifthGraphQLEndpoint extends ContentDeliveryApiEndpoint implement
 
     @Override
     public List<ContentDeliveryEntryPointField> getQueryEntryFields() {
-        return Stream.of(Demo4ViewModel.class)
+        return Stream.of(Demo5ViewModel.class)
             .map(ContentDeliveryEntryPointField::new)
             .collect(Collectors.toList());
     }

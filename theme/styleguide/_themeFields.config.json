@@ -2,7 +2,7 @@
   "themeFields": {
     "primaryColor": {
       "type": "color",
-      "cms.ui.placeholder": "#22b8e1",
+      "cms.ui.placeholder": "#333333",
       "cms.ui.cluster": "Brand Colors"
     },
     "secondaryColor": {
@@ -16,10 +16,9 @@
       "cms.ui.cluster": "Brand Colors"
     },
     "primaryFont": {
-      "displayName": "Primary Font",
       "type": "text",
+      "displayName": "Primary Font",
       "cms.ui.dropDown": true,
-      "cms.ui.placeholder": "Noto Sans",
       "cms.ui.cluster": "Brand Fonts",
       "values": [
         {

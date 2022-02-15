@@ -1,0 +1,14 @@
+query Demo1 {
+  Demo1(id: "0000017e-c9e6-d49e-a5fe-efe667520000") {
+    name
+    shortName
+    day
+    month
+    year
+    imageUrl
+    totalRecordCount
+    allRelations {
+      name
+    }
+  }
+}
