@@ -12,8 +12,7 @@ services:
     volumes:
       - solr-data:/var/solr
   tomcat:
-    build: docker/tomcat
-    restart: unless-stopped
+    image: brightspot/tomcat:8-jdk8
     ports:
       - 5005:5005
     volumes:
@@ -28,7 +27,6 @@ services:
       - ROOT_WAR=${PROJECT_DIRECTORY}/build/libs/brightspot-tutorial-1.0.0-SNAPSHOT.war
       - SOLR_URL=http://solr:8080/solr/collection1
     depends_on:
-      - apache
       - mysql
       - solr
   apache:
@@ -38,6 +36,8 @@ services:
       - 443:443
     volumes:
       - storage:/var/www/localhost/htdocs/storage
+    depends_on:
+      - tomcat
   greenmail:
     image: greenmail/standalone:1.5.14
     ports:
