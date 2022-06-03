@@ -1,7 +1,6 @@
 package com.brightspot.tutorial.graphql.demo13.mark;
 
 import com.psddev.cms.db.RichTextElement;
-import com.psddev.dari.mark.Mark;
 
 public class RichTextMark {
 

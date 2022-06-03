@@ -8,7 +8,6 @@ import java.util.stream.Collectors;
 import com.psddev.cms.rte.EditorialMarkupRichTextPreprocessor;
 import com.psddev.cms.rte.LineBreakRichTextPreprocessor;
 import com.psddev.cms.rte.RichTextPreprocessor;
-import com.psddev.dari.mark.MarkedText;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 

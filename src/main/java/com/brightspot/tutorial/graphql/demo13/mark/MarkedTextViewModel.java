@@ -9,8 +9,6 @@ import com.psddev.cms.db.RichTextElement;
 import com.psddev.cms.view.ViewInterface;
 import com.psddev.cms.view.ViewModel;
 import com.psddev.cms.view.ViewResponse;
-import com.psddev.dari.mark.Mark;
-import com.psddev.dari.mark.MarkedText;
 
 @ViewInterface
 public class MarkedTextViewModel extends ViewModel<MarkedText> {

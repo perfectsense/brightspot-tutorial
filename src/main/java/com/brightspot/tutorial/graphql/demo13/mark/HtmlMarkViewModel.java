@@ -2,7 +2,6 @@ package com.brightspot.tutorial.graphql.demo13.mark;
 
 import com.psddev.cms.view.ViewInterface;
 import com.psddev.cms.view.ViewModel;
-import com.psddev.dari.mark.Mark;
 import org.jsoup.parser.Tag;
 
 @ViewInterface

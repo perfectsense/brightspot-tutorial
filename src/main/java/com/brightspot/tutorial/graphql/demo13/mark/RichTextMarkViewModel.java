@@ -8,7 +8,6 @@ import com.psddev.cms.db.ToolUi;
 import com.psddev.cms.view.ViewInterface;
 import com.psddev.cms.view.ViewModel;
 import com.psddev.cms.view.ViewResponse;
-import com.psddev.dari.mark.Mark;
 
 @ViewInterface
 public class RichTextMarkViewModel extends ViewModel<RichTextMark> implements MarkView {
