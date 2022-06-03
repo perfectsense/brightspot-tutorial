@@ -7,10 +7,11 @@ import java.util.stream.Collectors;
 import com.brightspot.tutorial.Image;
 import com.brightspot.tutorial.graphql.demo13.author.Author;
 import com.brightspot.tutorial.graphql.demo13.link.DirectoryItemUtils;
+import com.brightspot.tutorial.graphql.demo13.mark.MarkedTextFactory;
+import com.brightspot.tutorial.graphql.demo13.mark.MarkedTextViewModel;
 import com.brightspot.tutorial.graphql.demo13.tag.Tag;
 import com.brightspot.tutorial.graphql.demo13.tag.TaggableData;
 import com.psddev.cms.db.Site;
-import com.psddev.cms.mark.MarkedTextViewModel;
 import com.psddev.cms.page.CurrentSite;
 import com.psddev.cms.view.JsonView;
 import com.psddev.cms.view.PageEntryView;
@@ -53,7 +54,8 @@ public class ArticleViewModel extends ViewModel<Article> implements PageEntryVie
     }
 
     public MarkedTextViewModel getBody() {
-        return createView(MarkedTextViewModel.class, model.getBody());
+        return createView(MarkedTextViewModel.class,
+            MarkedTextFactory.createWithDefaultPreprocessors(model.getBody()));
     }
 
     public List<String> getTags() {

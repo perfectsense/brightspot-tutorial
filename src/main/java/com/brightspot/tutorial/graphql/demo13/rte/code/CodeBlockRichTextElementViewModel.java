@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.psddev.cms.mark.RichTextElementView;
+import com.brightspot.tutorial.graphql.demo13.mark.RichTextElementView;
 import com.psddev.cms.view.ViewInterface;
 import com.psddev.cms.view.ViewModel;
 

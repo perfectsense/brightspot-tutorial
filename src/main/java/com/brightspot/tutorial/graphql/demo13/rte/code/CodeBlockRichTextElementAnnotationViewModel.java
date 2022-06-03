@@ -1,6 +1,7 @@
 package com.brightspot.tutorial.graphql.demo13.rte.code;
 
-import com.psddev.cms.mark.MarkedTextViewModel;
+import com.brightspot.tutorial.graphql.demo13.mark.MarkedTextFactory;
+import com.brightspot.tutorial.graphql.demo13.mark.MarkedTextViewModel;
 import com.psddev.cms.view.ViewInterface;
 import com.psddev.cms.view.ViewModel;
 
@@ -12,6 +13,7 @@ public class CodeBlockRichTextElementAnnotationViewModel extends ViewModel<CodeB
     }
 
     public MarkedTextViewModel getAnnotation() {
-        return createView(MarkedTextViewModel.class, model.getAnnotation());
+        return createView(MarkedTextViewModel.class,
+            MarkedTextFactory.createWithDefaultPreprocessors(model.getAnnotation()));
     }
 }

@@ -4,9 +4,10 @@ import java.util.Map;
 import java.util.Optional;
 
 import com.brightspot.tutorial.Image;
+import com.brightspot.tutorial.graphql.demo13.mark.MarkedTextFactory;
+import com.brightspot.tutorial.graphql.demo13.mark.MarkedTextViewModel;
+import com.brightspot.tutorial.graphql.demo13.mark.RichTextElementView;
 import com.psddev.cms.image.ImageSize;
-import com.psddev.cms.mark.MarkedTextViewModel;
-import com.psddev.cms.mark.RichTextElementView;
 import com.psddev.cms.view.ViewInterface;
 import com.psddev.cms.view.ViewModel;
 import com.psddev.dari.util.StorageItem;
@@ -45,7 +46,8 @@ public class ImageRichTextElementViewModel extends ViewModel<ImageRichTextElemen
 
     public MarkedTextViewModel getCaption() {
         return Optional.ofNullable(model.getImage())
-            .map(image -> createView(MarkedTextViewModel.class, image.getCaption()))
+            .map(image -> createView(MarkedTextViewModel.class,
+                MarkedTextFactory.createWithDefaultPreprocessors(image.getCaption())))
             .orElse(null);
     }
 

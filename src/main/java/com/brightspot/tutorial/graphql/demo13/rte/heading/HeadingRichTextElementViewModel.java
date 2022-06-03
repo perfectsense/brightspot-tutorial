@@ -1,7 +1,8 @@
 package com.brightspot.tutorial.graphql.demo13.rte.heading;
 
-import com.psddev.cms.mark.MarkedTextViewModel;
-import com.psddev.cms.mark.RichTextElementView;
+import com.brightspot.tutorial.graphql.demo13.mark.MarkedTextFactory;
+import com.brightspot.tutorial.graphql.demo13.mark.MarkedTextViewModel;
+import com.brightspot.tutorial.graphql.demo13.mark.RichTextElementView;
 import com.psddev.cms.view.ViewInterface;
 import com.psddev.cms.view.ViewModel;
 import com.psddev.dari.util.ObjectUtils;
@@ -19,7 +20,7 @@ public class HeadingRichTextElementViewModel extends ViewModel<HeadingRichTextEl
     }
 
     public MarkedTextViewModel getValue() {
-        System.out.println("heading value: " + model.getValue());
-        return createView(MarkedTextViewModel.class, model.getValue());
+        return createView(MarkedTextViewModel.class,
+            MarkedTextFactory.createWithDefaultPreprocessors(model.getValue()));
     }
 }

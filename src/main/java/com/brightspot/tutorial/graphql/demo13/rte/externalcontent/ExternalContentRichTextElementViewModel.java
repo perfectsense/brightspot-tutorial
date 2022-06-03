@@ -3,7 +3,7 @@ package com.brightspot.tutorial.graphql.demo13.rte.externalcontent;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import com.psddev.cms.mark.RichTextElementView;
+import com.brightspot.tutorial.graphql.demo13.mark.RichTextElementView;
 import com.psddev.cms.rte.ExternalContentCache;
 import com.psddev.cms.rte.ExternalContentRichTextElement;
 import com.psddev.cms.view.ViewInterface;
