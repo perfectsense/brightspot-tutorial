@@ -4,20 +4,11 @@ import com.psddev.cms.view.ViewModel;
 import com.psddev.cms.view.ViewResponse;
 import com.psddev.dari.util.PaginatedResult;
 import com.psddev.dari.db.Query;
-// import com.psddev.dari.db.QueryPhrase;
 import com.psddev.dari.web.annotation.WebParameter;
 import com.psddev.cms.page.CurrentSite;
 import com.psddev.cms.view.ViewInterface;
-// import com.psddev.cms.view.ViewModel;
-// import com.psddev.cms.view.ViewResponse;
-
-// import com.brightspot.tutorial.Image;
-
 
 import com.psddev.cms.db.Site;
-// import com.psddev.cms.page.CurrentSite;
-
-
 @ViewInterface("Images")
 public class ImageGraphQLEndpointViewModel extends ViewModel<ImageGraphQLEndpoint>{
 
@@ -26,9 +17,6 @@ public class ImageGraphQLEndpointViewModel extends ViewModel<ImageGraphQLEndpoin
 
     @WebParameter
     private int page;
-
-    // @WebParameter
-    // private int limit;
 
     private PaginatedResult<Image> paginatedResult;
 

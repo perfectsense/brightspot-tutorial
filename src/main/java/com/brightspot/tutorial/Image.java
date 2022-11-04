@@ -22,7 +22,6 @@ public class Image extends Content {
     }
 
     public UUID getImageId() {
-        System.out.println("ID in Image.java 😊 😊 😊: " + getId());
         return getId();
     }
 

@@ -1,7 +1,5 @@
 package com.brightspot.tutorial;
-
 import java.util.ArrayList;
-// import java.util.Collections;
 import java.util.List;
 
 import com.psddev.graphql.cda.ContentDeliveryApiEndpoint;
@@ -21,10 +19,6 @@ public class ImageGraphQLEndpoint extends ContentDeliveryApiEndpoint implements 
         endpointFields.add(new ContentDeliveryEntryPointField(ImageGraphQLEndpointViewModel.class, "Images", null));
         endpointFields.add(new ContentDeliveryEntryPointField(ImageViewModel.class, "Image", null));
         return endpointFields;
-        // return  (new ContentDeliveryEntryPointField(
-        //     ImageGraphQLEndpointViewModel.class,
-        //     "Images",
-        //     null));
     }
 
     @Override
