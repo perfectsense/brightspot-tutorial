@@ -2,6 +2,7 @@ package com.brightspot.tutorial;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -19,8 +20,10 @@ public class CustomImageSizeProvider implements ImageSizeProvider {
     public static final ImageSize LANDSCAPE = ImageSize.builder()
             .displayName("Landscape")
             .internalName("landscape")
-            .width(338)
-            .height(150)
+            .group("landscape") // aspect ratio 3:2
+            .width(600)
+            .height(400)
+            .strip(false)
             .srcsetDescriptors(new ArrayList<String>() {{add("1x"); add("2x");}})
             .alternateFormats(new ArrayList<String>() {{add("webp");}})
             .build();
@@ -28,26 +31,30 @@ public class CustomImageSizeProvider implements ImageSizeProvider {
             public static final ImageSize PORTRAIT = ImageSize.builder()
             .displayName("Portrait")
             .internalName("portrait")
-            .width(338)
-            .height(375)
+            .width(400)
+            .height(600)
+            .group("portrait")// aspect ratio 2:3
             .srcsetDescriptors(new ArrayList<String>() {{add("1x"); add("2x");}})
             .alternateFormats(new ArrayList<String>() {{add("webp");}})
             .build();
 
     public static final ImageSize EXAMPLE_SMALL = ImageSize.builder()
-            .displayName("Example Small")
-            .internalName("example-small")
-            .width(421)
-            .height(421)
-            .srcsetDescriptors(new ArrayList<String>() {{add("1x"); add("2x");}})
+            .displayName("Example Large")
+            .internalName("example-large")
+            .maximumWidth(1000)
+            .group("landscape")
+            .srcsetDescriptors(new ArrayList<String>() {{add("350w"); add("550w"); add("750w"); add("1000w");}})
+            .formatMappings(new HashMap<String, String>() {{put("jpg", "png");}}) // will convert jpg image to png
             .alternateFormats(new ArrayList<String>() {{add("webp");}})
+            .quality(80) // default is 90
             .build();
 
     public static final ImageSize EXAMPLE_UNCROPPED = ImageSize.builder()
-            .displayName("Example (Uncropped)")
-            .internalName("example-uncropped")
-            .maximumHeight(421)
-            .maximumWidth(421)
+            .displayName("Square")
+            .internalName("square")
+            .height(800)
+            .width(800)
+            .group("square") //aspect ratio: 1: 1
             .srcsetDescriptors(new ArrayList<String>() {{add("1x"); add("2x");}})
             .alternateFormats(new ArrayList<String>() {{add("webp");}})
             .build();
@@ -55,8 +62,10 @@ public class CustomImageSizeProvider implements ImageSizeProvider {
     public static final ImageSize THUMBNAIL = ImageSize.builder()
             .displayName("Thumbnail")
             .internalName("thumbnail")
-            .maximumHeight(112)
-            .maximumWidth(112)
+            .height(112)
+            .width(112)
+            .group("square")  //aspect ratio: 1: 1
+            .format("png") // will convert all uploaded images to png
             .srcsetDescriptors(new ArrayList<String>() {{add("1x"); add("2x");}})
             .alternateFormats(new ArrayList<String>() {{add("webp");}})
             .build();

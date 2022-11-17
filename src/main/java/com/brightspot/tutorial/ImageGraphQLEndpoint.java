@@ -1,14 +1,16 @@
 package com.brightspot.tutorial;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
+import com.psddev.graphql.GraphQLApiAccessOption;
+import com.psddev.graphql.GraphQLApiAccessOptionImplicit;
 import com.psddev.graphql.cda.ContentDeliveryApiEndpoint;
 import com.psddev.graphql.cda.ContentDeliveryEntryPointField;
 import com.psddev.dari.db.Singleton;
 import com.psddev.dari.db.Recordable.DisplayName;
 import com.psddev.graphql.GraphQLCorsConfiguration;
-import com.psddev.graphql.cda.ContentDeliveryApiAccessOption;
-import com.psddev.graphql.cda.ContentDeliveryApiAccessOptionImplicit;
 
 @DisplayName("Images GraphQL")
 public class ImageGraphQLEndpoint extends ContentDeliveryApiEndpoint implements Singleton {
@@ -22,15 +24,17 @@ public class ImageGraphQLEndpoint extends ContentDeliveryApiEndpoint implements 
     }
 
     @Override
-    protected String getPathSuffix() {
-        return "/images";
-    }
-    
+    public Set<String> getPaths() {
+            Set<String> endpointPaths = new HashSet<String>();
+            endpointPaths.add("/graphql/delivery/images");
+            return endpointPaths;
+    };
+
     @Override
-    public ContentDeliveryApiAccessOption getAccessOption() {
-        return new ContentDeliveryApiAccessOptionImplicit();
+    public GraphQLApiAccessOption getApiAccessOption() {
+        return new GraphQLApiAccessOptionImplicit();
     }
- 
+
     @Override
     protected void updateCorsConfiguration(GraphQLCorsConfiguration corsConfiguration) {
         super.updateCorsConfiguration(corsConfiguration);
