@@ -6,7 +6,7 @@ plugins {
 description = 'Brightspot Tutorial'
 
 // TODO: Set Brightspot version here...
-def brightspotVersion = '4.7.1'
+def brightspotVersion = '4.7.2'
 
 def componentLibVersion = '4.5.3'
 
