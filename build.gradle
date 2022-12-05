@@ -6,7 +6,7 @@ plugins {
 description = 'Brightspot Tutorial'
 
 // TODO: Set Brightspot version here...
-def brightspotVersion = '4.5-SNAPSHOT'
+def brightspotVersion = '4.7-SNAPSHOT'
 
 def componentLibVersion = '4.5.3'
 
@@ -61,6 +61,7 @@ dependencies {
     api 'com.psddev.component-lib:util-settings-enforcer'
 
     api 'com.psddev:analytics'
+    api 'com.psddev:cms-api'
     api 'com.psddev:cms-db'
     api 'com.psddev:cms-type'
     api 'com.psddev:conversation'
@@ -69,6 +70,7 @@ dependencies {
     api 'com.psddev:dari-solr-v6'
     api 'com.psddev:dari-util'
     api 'com.psddev:graphql'
+    api 'com.psddev:graphql-rest'
     api 'com.psddev:handlebars'
     api 'com.psddev:js'
     api 'com.psddev:theme'
