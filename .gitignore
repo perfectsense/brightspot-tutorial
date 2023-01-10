@@ -8,3 +8,6 @@ node_modules
 .next/
 theme/*.zip
 react/**/.env
+.DS_STORE
+.idea
+bin
