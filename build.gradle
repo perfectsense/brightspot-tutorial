@@ -11,7 +11,7 @@ def brightspotVersion = '4.7-SNAPSHOT'
 def componentLibVersion = '4.5.3'
 
 def rootDir = rootProject.projectDir
-def solrjVersion = '8.6.1'
+def solrjVersion = '8.11.1'
 def runtimeJavadocVersion = '0.12.0'
 
 group = 'com.brightspot.tutorial'
@@ -20,16 +20,9 @@ defaultTasks 'build'
 
 allprojects {
     tasks.withType(JavaCompile) {
-        if (JavaVersion.current().isJava9Compatible()) {
-            options.release = 8
-
-        } else {
-            sourceCompatibility = JavaVersion.VERSION_1_8
-            targetCompatibility = JavaVersion.VERSION_1_8
-        }
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
-
-    sourceCompatibility = '1.8'
 }
 
 dependencies {
@@ -67,7 +60,7 @@ dependencies {
     api 'com.psddev:conversation'
     api 'com.psddev:dari-db'
     api 'com.psddev:dari-mysql'
-    api 'com.psddev:dari-solr-v6'
+    api 'com.psddev:dari-solr'
     api 'com.psddev:dari-util'
     api 'com.psddev:graphql'
     api 'com.psddev:graphql-rest'

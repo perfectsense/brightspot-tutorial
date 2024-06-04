@@ -1,5 +1,6 @@
 version: '3.0'
 services:
+
   mysql:
     image: brightspot/mysql:mysql5.6
     volumes:
@@ -7,12 +8,15 @@ services:
       - mysql-logs:/var/log/mysql
   solr:
     image: brightspot/solr:8
+    environment:
+      -  SOLR_CONFIG=dari-solr-11
     ports:
-      - 8180:8180
+      - 8081:8080
     volumes:
-      - solr-data:/var/solr
+      - solr-data:/var/solr/data/collection1/data
+
   tomcat:
-    image: brightspot/tomcat:8-jdk8
+    image: brightspot/tomcat:9-jdk11
     ports:
       - 5005:5005
     volumes:
@@ -30,6 +34,7 @@ services:
       - apache
       - mysql
       - solr
+
   apache:
     image: brightspot/apache:2-dims3
     ports:
@@ -37,15 +42,23 @@ services:
       - 443:443
     volumes:
       - storage:/var/www/localhost/htdocs/storage
+
   greenmail:
-    image: greenmail/standalone:1.5.14
+    image: greenmail/standalone:2.1.0-alpha-4
     ports:
-      - 3025:3025
-      - 3110:3110
-      - 3143:3143
-      - 3465:3465
-      - 3993:3993
-      - 3995:3995
+      # Debug
+      - 3080:8080
+      # Outgoing
+      - 3025:3025 # SMTP
+      - 3465:3465 # SMTP(s)
+      # Incoming
+      - 3143:3143 # IMAP
+      - 3110:3110 # POP3
+      - 3993:3993 # IMAP(s)
+      - 3995:3995 # POP3(s)
+    environment:
+      - GREENMAIL_OPTS=-Dgreenmail.setup.test.all -Dgreenmail.hostname=greenmail -Dgreenmail.auth.disabled -Dgreenmail.timeout=10000 -Dgreenmail.startup.timeout=10000
+
 volumes:
   mysql-data:
   mysql-logs:
